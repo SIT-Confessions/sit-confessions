@@ -1,36 +1,52 @@
 # sit-confessions
+
 Confessions web application built on MERN.
 
 ## Project setup
-Install packages in both frontend and backend folders
+
+Install packages
+
 ```
+// Root folder
+npm i
+
+// Frontend folder
 cd frontend
 npm i
+
+// Backend folder
 cd ../backend
 npm i
 ```
-Run application
+
+Run both frontend and backend
+
 ```
-npm start
+// In root folder
+npm run dev
 ```
+
 ## Frontend folder structure
-src/api - axios implementation (connection to server)  
 
-src/assets - store all images or files needed for project  
+src/api - axios implementation (connection to server)
 
-src/components - create a folder for each component inside this folder  
+src/assets - store all images or files needed for project
 
-src/constants - store constant variables to be used throughout the app  
+src/components - create a folder for each component inside this folder
+
+src/constants - store constant variables to be used throughout the app
 
 src/reducers - redux implementation (global app state)
 
 ## Backend folder structure
-controllers - functions to handle each request  
 
-models - models for each class  
+controllers - functions to handle each request
+
+models - models for each class
 
 routes - routing for each request call
 
 ## Recommended conventions
+
 variables/function names: camelCase  
-component names: PascalCase
+component/model names: PascalCase
