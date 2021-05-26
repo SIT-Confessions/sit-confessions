@@ -45,6 +45,21 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+// @route   GET api/confessions/approved
+// @desc    Get all confessions
+// @access  Private
+router.get("/approved", auth, async (req, res) => {
+  try {
+    const confessions = await Confession.find({ approved: true }).sort({
+      date: -1,
+    });
+    res.json(confessions);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 // @route   GET api/confessions/:id
 // @desc    Get confession by id
 // @access  Private
@@ -54,15 +69,61 @@ router.get("/:id", auth, async (req, res) => {
     if (!confession) {
       return res.status(404).json({ msg: "Confession not found" });
     }
-    return res.json(confession);
-  } catch (error) {
-    console.error(error.message);
+    res.json(confession);
+  } catch (err) {
+    console.error(err.message);
 
-    if (error.kind === "ObjectId") {
+    if (err.kind === "ObjectId") {
       return res.status(404).json({ msg: "confession not found" });
     }
 
-    return res.status(500).send("Server error");
+    res.status(500).send("Server error");
+  }
+});
+
+// @route   PUT api/confessions/approve/:id
+// @desc    Approve confession by id
+// @access  Private
+router.put("/approve/:id", auth, async (req, res) => {
+  try {
+    const confession = await Confession.findById(req.params.id);
+    if (!confession) {
+      return res.status(404).json({ msg: "Confession not found" });
+    }
+
+    // Approve confession
+    if (!confession.approved) {
+      confession.approved = true;
+      await confession.save();
+    }
+
+    res.status(200).json({ msg: "Confession approved" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+// @route   PUT api/confessions/reject/:id
+// @desc    Reject confession by id
+// @access  Private
+router.put("/reject/:id", auth, async (req, res) => {
+  try {
+    const confession = await Confession.findById(req.params.id);
+    if (!confession) {
+      return res.status(404).json({ msg: "Confession not found" });
+    }
+
+    // Approve confession
+    if (confession.approved) {
+      confession.approved = false;
+      await confession.save();
+    }
+
+    res.status(200).json({ msg: "Confession rejected" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
   }
 });
 
