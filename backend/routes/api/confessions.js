@@ -32,4 +32,38 @@ router.post(
   }
 );
 
+// @route   GET api/confessions
+// @desc    Get all confessions
+// @access  Private
+router.get("/", auth, async (req, res) => {
+  try {
+    const confessions = await Confession.find().sort({ date: -1 });
+    res.json(confessions);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+// @route   GET api/confessions/:id
+// @desc    Get confession by id
+// @access  Private
+router.get("/:id", auth, async (req, res) => {
+  try {
+    const confession = await Confession.findById(req.params.id);
+    if (!confession) {
+      return res.status(404).json({ msg: "Confession not found" });
+    }
+    return res.json(confession);
+  } catch (error) {
+    console.error(error.message);
+
+    if (error.kind === "ObjectId") {
+      return res.status(404).json({ msg: "confession not found" });
+    }
+
+    return res.status(500).send("Server error");
+  }
+});
+
 export default router;
