@@ -45,6 +45,21 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+// @route   GET api/confessions/approved
+// @desc    Get all confessions
+// @access  Private
+router.get("/approved", auth, async (req, res) => {
+  try {
+    const confessions = await Confession.find({ approved: true }).sort({
+      date: -1,
+    });
+    res.json(confessions);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 // @route   GET api/confessions/:id
 // @desc    Get confession by id
 // @access  Private
