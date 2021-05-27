@@ -21,5 +21,9 @@
   "homepage": "https://github.com/gabrielkhh/sit-confessions#readme",
   "devDependencies": {
     "concurrently": "^6.2.0"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.3.2",
+    "@tailwindcss/typography": "^0.4.1"
   }
 }
