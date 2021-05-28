@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { MenuIcon } from "@heroicons/react/outline";
+import React, { useState, useEffect, Fragment } from "react";
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 
 const Navbar = () => {
   const [isShown, setIsShown] = useState("hidden");
