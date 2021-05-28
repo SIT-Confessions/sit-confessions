@@ -1,5 +1,14 @@
 import React, { useState, useEffect, Fragment } from "react";
+// import { MenuIcon } from "@heroicons/react/outline";
+import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+
+const navigation = ['Dashboard', 'Team', 'Projects', 'Calendar', 'Reports']
+const profile = ['Your Profile', 'Settings', 'Sign out']
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 
 const Navbar = () => {
   const [isShown, setIsShown] = useState("hidden");
@@ -12,76 +21,116 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <nav class="flex items-center justify-between flex-wrap bg-gray-800 p-6 fixed w-full z-10 top-0">
-        <div class="flex items-center flex-shrink-0 text-white mr-6">
-          <a
-            class="text-white no-underline hover:text-white hover:no-underline"
-            href="#"
-          >
-            <span class="text-2xl pl-2">
-              <i class="em em-grinning"></i> SIT Confessions
-            </span>
-          </a>
-        </div>
+    <div>
+    <Disclosure as="nav" className="bg-gray-800">
+      {({ open }) => (
+        <>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <img
+                    className="h-8 w-8"
+                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    alt="Workflow"
+                  />
+                </div>
+              </div>
+              <div className="flex items-center">
+                <div className="hidden md:block">
+                  <div className="ml-10 flex items-baseline space-x-4">
+                    {navigation.map((item, itemIdx) =>
+                      itemIdx === 0 ? (
+                        <Fragment key={item}>
+                          {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
+                          <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                            {item}
+                          </a>
+                        </Fragment>
+                      ) : (
+                        <a
+                          key={item}
+                          href="#"
+                          className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        >
+                          {item}
+                        </a>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
 
-        <div class="block lg:hidden">
-          <button
-            id="nav-toggle"
-            class="flex items-center rounded hover:text-white hover:border-white"
-            onClick={toggleHamburger}
-          >
-              <span className="inset-y-0 text-white-500 flex items-center pl-3">
-                  <MenuIcon className="h-8 w-6 text-white"/>
-                </span>
-          </button>
-        </div>
+              <div className="-mr-2 flex md:hidden">
+                {/* Mobile menu button */}
+                <Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <XIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
+              </div>
+            </div>
+          </div>
 
-        <div
-          //   class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0"
-          className={
-            "w-full flex-grow lg:flex lg:items-center lg:w-auto lg:block pt-6 lg:pt-0 " +
-            isShown
-          }
-          id="nav-content"
-        >
-          <ul class="list-reset lg:flex justify-end flex-1 items-center">
-            <li class="mr-3">
-              <a
-                class="inline-block py-2 px-4 text-white no-underline"
-                href="#"
-              >
-                Active
-              </a>
-            </li>
-            <li class="mr-3">
-              <a
-                class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-                href="#"
-              >
-                link
-              </a>
-            </li>
-            <li class="mr-3">
-              <a
-                class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-                href="#"
-              >
-                link
-              </a>
-            </li>
-            <li class="mr-3">
-              <a
-                class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
-                href="#"
-              >
-                link
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </>
+          <Disclosure.Panel className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {navigation.map((item, itemIdx) =>
+                itemIdx === 0 ? (
+                  <Fragment key={item}>
+                    {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
+                    <a href="#" className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
+                      {item}
+                    </a>
+                  </Fragment>
+                ) : (
+                  <a
+                    key={item}
+                    href="#"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    {item}
+                  </a>
+                )
+              )}
+            </div>
+            <div className="pt-4 pb-3 border-t border-gray-700">
+              <div className="flex items-center px-5">
+                <div className="flex-shrink-0">
+                  <img
+                    className="h-10 w-10 rounded-full"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                </div>
+                <div className="ml-3">
+                  <div className="text-base font-medium leading-none text-white">Tom Cook</div>
+                  <div className="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
+                </div>
+                <button className="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <span className="sr-only">View notifications</span>
+                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
+              <div className="mt-3 px-2 space-y-1">
+                {profile.map((item) => (
+                  <a
+                    key={item}
+                    href="#"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                  >
+                    {item}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
+  </div>
   );
 };
 
