@@ -3,7 +3,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 
-const navigation = ['Dashboard', 'Team', 'Projects', 'Calendar', 'Reports']
+const navigation = ['Dashboard', 'Team', 'Projects', 'Calendar', 'Reports', 'Post Confession']
 const profile = ['Your Profile', 'Settings', 'Sign out']
 
 function classNames(...classes) {
