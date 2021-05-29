@@ -20,7 +20,6 @@ const ConfessionSchema = new Schema({
   },
   approvedDate: {
     type: Date,
-    default: Date.now,
   },
 });
 
