@@ -6,13 +6,21 @@ const ConfessionSchema = new Schema({
     type: String,
     required: true,
   },
-  date: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
   approved: {
     type: Boolean,
     default: false,
+  },
+  approvedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
+  approvedDate: {
+    type: Date,
+    default: Date.now,
   },
 });
 
