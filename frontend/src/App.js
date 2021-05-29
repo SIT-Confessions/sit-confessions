@@ -8,11 +8,17 @@ function App() {
   return (
     <Router>
       <Navbar></Navbar>
-      <Switch>
-        <Route path="/" exact component={ Home }></Route>
-        <Route path="/post-confession" exact component={ ConfessionForm }></Route>
-        <Route path="/dashboard" exact component={ Home }></Route>
-      </Switch>
+      <div className="container mx-auto mt-10 mb-10">
+        <Switch>
+          <Route path="/" exact component={Home}></Route>
+          <Route
+            path="/post-confession"
+            exact
+            component={ConfessionForm}
+          ></Route>
+          <Route path="/dashboard" exact component={Home}></Route>
+        </Switch>
+      </div>
     </Router>
   );
 }
