@@ -94,6 +94,8 @@ router.put("/approve/:id", auth, async (req, res) => {
     // Approve confession
     if (!confession.approved) {
       confession.approved = true;
+      confession.approvedBy = req.user.id;
+      confession.approvedDate = new Date().toISOString();
       await confession.save();
     }
 
