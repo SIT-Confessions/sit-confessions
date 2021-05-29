@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ConfessionForm from "./components/Confessions/ConfessionForm";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Navbar></Navbar>
       <Switch>
         <Route path="/" exact component={ Home }></Route>
-        <Route path="/post-confession" exact component={ Home }></Route>
+        <Route path="/post-confession" exact component={ ConfessionForm }></Route>
         <Route path="/dashboard" exact component={ Home }></Route>
       </Switch>
     </Router>
