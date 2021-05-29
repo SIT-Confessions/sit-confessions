@@ -19,6 +19,3 @@ yarn-error.log*
 
 node_modules
 # build
-
-# Environment Variables
-.env
