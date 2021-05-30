@@ -47,7 +47,7 @@ router.get("/", auth, async (req, res) => {
 
 // @route   GET api/confessions/approved
 // @desc    Get all approved confessions
-// @access  Private
+// @access  Public
 router.get("/approved", async (req, res) => {
   try {
     const confessions = await Confession.find({ approved: true }).sort({
