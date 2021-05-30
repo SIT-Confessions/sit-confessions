@@ -8,10 +8,10 @@ const router = express.Router();
 
 // @route   POST api/confessions
 // @desc    Create a confession
-// @access  Private
+// @access  Public
 router.post(
   "/",
-  [auth, [check("text", "Text is required").not().isEmpty()]],
+  [[check("text", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -46,9 +46,9 @@ router.get("/", auth, async (req, res) => {
 });
 
 // @route   GET api/confessions/approved
-// @desc    Get all confessions
+// @desc    Get all approved confessions
 // @access  Private
-router.get("/approved", auth, async (req, res) => {
+router.get("/approved", async (req, res) => {
   try {
     const confessions = await Confession.find({ approved: true }).sort({
       date: -1,
