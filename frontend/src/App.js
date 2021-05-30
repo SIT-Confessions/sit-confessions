@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ConfessionForm from "./components/Confessions/ConfessionForm";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             component={ConfessionForm}
           ></Route>
           <Route path="/dashboard" exact component={Home}></Route>
+          <Route component={ NotFound }></Route>
         </Switch>
       </div>
     </Router>
