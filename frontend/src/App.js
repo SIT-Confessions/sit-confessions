@@ -4,10 +4,14 @@ import { AdjustmentsIcon } from "@heroicons/react/outline";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ConfessionForm from "./components/Confessions/ConfessionForm";
 import NotFound from "./components/NotFound";
+import { Helmet } from "react-helmet";
 
 function App() {
   return (
     <Router>
+      <Helmet>
+        <body className="bg-gray-50 dark:bg-dark-gray" />
+      </Helmet>
       <Navbar></Navbar>
       <div className="container mx-auto mt-10 mb-10">
         <Switch>

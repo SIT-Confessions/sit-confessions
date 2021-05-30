@@ -6,7 +6,7 @@ const NotFound = () => {
     <div class="container mx-auto px-6 md:px-12 relative z-10 flex items-center">
       <div class="container mx-auto px-6 flex flex-col justify-between items-center relative">
         <div class="flex w-full items-center justify-center space-x-12 flex-col md:flex-row mb-16 md:mb-8">
-          <h1 class="text-center text-5xl text-gray-800 dark:text-gray-100">404 NOT FOUND!</h1>
+          <h1 class="text-center text-6xl text-gray-800 dark:text-gray-100">404 NOT FOUND!</h1>
           <Link to="/">
             <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Back To Home
