@@ -1,3 +1,11 @@
+/* :root {
+  @apply bg-gray-50 dark:bg-dark-gray;
+} */
+
+/* :root {
+  @apply dark;
+} */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

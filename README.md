@@ -1,6 +1,8 @@
 # sit-confessions
-
-Confessions web application built on MERN.
+Confessions web application built on MERN.  
+**Database:** MongoDB  
+**Frontend:** ReactJS  
+**Backend:** NodeJS
 
 ## Project setup
 
