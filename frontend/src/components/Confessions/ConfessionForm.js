@@ -13,11 +13,8 @@ const ConfessionForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("button pressed");
     let data = userInput.enteredConfession;
-    console.log(data);
     let confessionJSON = { text: data };
-    console.log(confessionJSON)
     let res = await api.post('/confessions', confessionJSON)
     console.log("sent confession to API")
     console.log(res)
