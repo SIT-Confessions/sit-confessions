@@ -20,6 +20,7 @@ router.post(
       "password",
       "Please enter a password with 6 or more characters"
     ).isLength({ min: 6 }),
+    check("password2", "Please enter confirmation password").not().isEmpty(),
   ],
   async (req, res) => {
     // Validate input
@@ -28,7 +29,13 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password } = req.body;
+    const { name, email, password, password2 } = req.body;
+
+    if (password !== password2) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "Passwords do not match" }] });
+    }
 
     try {
       let user = await User.findOne({ email });
