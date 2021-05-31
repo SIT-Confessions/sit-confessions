@@ -1,24 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: `http://localhost:5000/api/`
-})
+  baseURL: `http://localhost:5000/api/`,
+});
 
 const ConfessionForm = () => {
 
-    const handleSubmit = async event => {
-        event.preventDefault();
-        console.log("button pressed")
-        let res = await api.post('/confessions', { text: "Test" })
-        console.log("sent confession to API")
-        console.log(res)
-      };
+  const [userInput, setUserInput] = useState({
+    enteredConfession: "",
+  });
 
-    const createConfession = async () => {
-        let res = await api.post('/confessions', { text: "Test" })
-        console.log("sent confession to API")
-    }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("button pressed");
+    let data = userInput.enteredConfession;
+    console.log(data);
+    let confessionJSON = { text: data };
+    console.log(confessionJSON)
+    let res = await api.post('/confessions', confessionJSON)
+    console.log("sent confession to API")
+    console.log(res)
+  };
+
+  // const createConfession = async () => {
+  //   let res = await api.post("/confessions", { text: "Test" });
+  //   console.log("sent confession to API");
+  // };
+
+  const confessionChangeHandler = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredConfession: event.target.value };
+    });
+  };
 
   return (
     <>
@@ -52,7 +66,7 @@ const ConfessionForm = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-gray-50 dark:bg-dark-gray-light space-y-6 sm:p-6">
                   <div>
@@ -70,6 +84,7 @@ const ConfessionForm = () => {
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md"
                         placeholder="Your wonderful story goes in here."
                         defaultValue={""}
+                        onChange={confessionChangeHandler}
                       />
                     </div>
                   </div>
@@ -94,8 +109,8 @@ const ConfessionForm = () => {
                 </div>
                 <div className="px-4 py-3 bg-gray-100 dark:bg-dark-gray-lighter text-right sm:px-6">
                   <button
+                    type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    onClick={ handleSubmit }
                   >
                     Submit
                   </button>
