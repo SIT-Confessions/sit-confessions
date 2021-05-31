@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: `http://localhost:5000/api/`,
+});
 
 const ConfessionForm = () => {
+
+  const [userInput, setUserInput] = useState({
+    enteredConfession: "",
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    let data = userInput.enteredConfession;
+    let confessionJSON = { text: data };
+    let res = await api.post('/confessions', confessionJSON)
+    console.log("sent confession to API")
+    console.log(res)
+  };
+
+  // const createConfession = async () => {
+  //   let res = await api.post("/confessions", { text: "Test" });
+  //   console.log("sent confession to API");
+  // };
+
+  const confessionChangeHandler = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredConfession: event.target.value };
+    });
+  };
+
   return (
     <>
       <div>
@@ -33,7 +63,7 @@ const ConfessionForm = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form onSubmit={handleSubmit}>
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-gray-50 dark:bg-dark-gray-light space-y-6 sm:p-6">
                   <div>
@@ -51,6 +81,7 @@ const ConfessionForm = () => {
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md"
                         placeholder="Your wonderful story goes in here."
                         defaultValue={""}
+                        onChange={confessionChangeHandler}
                       />
                     </div>
                   </div>

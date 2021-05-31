@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
@@ -7,12 +8,29 @@ import NotFound from "./components/NotFound";
 import { Helmet } from "react-helmet";
 
 function App() {
+  const [isDark, setIsDark] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDark((prevState) => {
+      return !prevState;
+    });
+  };
+
+  useEffect(() => {
+    //Do Something
+  });
+
   return (
     <Router>
       <Helmet>
+        {isDark === false ? (
+          <html className="" />
+        ) : (
+          <html className="dark" />
+        )}
         <body className="bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
-      <Navbar></Navbar>
+      <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode}></Navbar>
       <div className="container mx-auto mt-10 mb-10">
         <Switch>
           <Route path="/" exact component={Home}></Route>
@@ -22,7 +40,7 @@ function App() {
             component={ConfessionForm}
           ></Route>
           <Route path="/dashboard" exact component={Home}></Route>
-          <Route component={ NotFound }></Route>
+          <Route component={NotFound}></Route>
         </Switch>
       </div>
     </Router>
