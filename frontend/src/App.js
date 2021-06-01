@@ -28,7 +28,7 @@ function App() {
         <body className="bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode}></Navbar>
-      <div className="container mx-auto mt-10 mb-10">
+      <div className="container mx-auto py-10">
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route
