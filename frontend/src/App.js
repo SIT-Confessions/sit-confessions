@@ -23,11 +23,7 @@ function App() {
   return (
     <Router>
       <Helmet>
-        {isDark === false ? (
-          <html className="" />
-        ) : (
-          <html className="dark" />
-        )}
+        {isDark === false ? <html className="" /> : <html className="dark" />}
         <body className="bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode}></Navbar>
@@ -49,6 +45,15 @@ function App() {
 
 const Home = () => (
   <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="shadow-lg rounded-2xl p-4 bg-white relative overflow-hidden">
+      <div class="w-4/6">
+        <p class="text-gray-800 text-lg font-medium mb-2">#3195</p>
+        <p class="text-gray-400 text-xs">
+          Detail is not an obsession, it is the very essence of perfection.
+        </p>
+        <p class="text-indigo-500 text-xl font-medium">$399</p>
+      </div>
+    </div>
     <div className="max-w-md w-full space-y-8">
       <div>
         <img
