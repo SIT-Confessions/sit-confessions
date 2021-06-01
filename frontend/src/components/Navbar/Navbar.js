@@ -1,6 +1,12 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon, MoonIcon, SunIcon } from "@heroicons/react/outline";
+import {
+  BellIcon,
+  MenuIcon,
+  XIcon,
+  MoonIcon,
+  SunIcon,
+} from "@heroicons/react/outline";
 import { MoonIcon as MoonIconSolid } from "@heroicons/react/solid";
 import { NavLink } from "react-router-dom";
 // import { style } from "../../../craco.config";
@@ -58,7 +64,7 @@ const Navbar = (props) => {
   ];
 
   useEffect(() => {
-    console.log("Work In Progress Moon Icon")
+    console.log("Work In Progress Moon Icon");
   });
 
   return (
@@ -93,14 +99,16 @@ const Navbar = (props) => {
                     </div>
                   </div>
                   <div className="ml-10 flex items-baseline space-x-4">
-                    <button onClick={props.toggleDarkMode} className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none">
+                    <button
+                      onClick={props.toggleDarkMode}
+                      className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none"
+                    >
                       <span className="sr-only">Dark Mode Toggle</span>
-                      { props.isDark === false ? (
+                      {props.isDark === false ? (
                         <MoonIcon className="h-6 w-6" aria-hidden="true" />
                       ) : (
                         <MoonIconSolid className="h-6 w-6" aria-hidden="true" />
                       )}
-
                     </button>
                   </div>
                 </div>
@@ -121,29 +129,18 @@ const Navbar = (props) => {
 
             <Disclosure.Panel className="md:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                {navigation.map((item, itemIdx) =>
-                  itemIdx === 0 ? (
-                    <Fragment key={item}>
-                      {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                      <a
-                        href="#"
-                        className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-                      >
-                        {item}
-                      </a>
-                    </Fragment>
-                  ) : (
-                    <a
-                      key={item}
-                      href="#"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                    >
-                      {item}
-                    </a>
-                  )
-                )}
+                {links.map((link, linkIdx) => (
+                  <NavLink
+                    exact
+                    className={link.className}
+                    activeClassName={link.activeStyle}
+                    to={link.to}
+                  >
+                    {link.name}
+                  </NavLink>
+                ))}
               </div>
-              <div className="pt-4 pb-3 border-t border-gray-700">
+              {/* <div className="pt-4 pb-3 border-t border-gray-700">
                 <div className="flex items-center px-5">
                   <div className="flex-shrink-0">
                     <img
@@ -176,7 +173,7 @@ const Navbar = (props) => {
                     </a>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </Disclosure.Panel>
           </>
         )}
