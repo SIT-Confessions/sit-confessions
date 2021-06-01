@@ -1,7 +1,12 @@
 import React, { Fragment } from "react";
+import * as dayjs from "dayjs";
+
+let RelativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(RelativeTime);
 
 const ConfessionCard = (props) => {
-    let itemData = props.data;
+  let itemData = props.data;
+  let relativeTimeStamp = dayjs(itemData.createdAt).fromNow();
 
   return (
     <div className="flex-shrink-0 items-center justify-center bg-gray-50 max-w-2xl sm:w-full min-w-min py-4">
@@ -16,7 +21,7 @@ const ConfessionCard = (props) => {
             >
               View on Facebook
             </a>
-            <div className="text-gray-400 text-sm">14 May 2021, 7:44 PM</div>
+            <div className="text-gray-400 text-sm">{relativeTimeStamp}</div>
           </div>
         </div>
       </div>
