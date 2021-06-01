@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = axios.create({ baseURL: "http://localhost:5000" });
 
-const CallApprovedConfessions = async () => {
+export const GetApprovedConfessions = async () => {
   let res = await API.get("/api/confessions/approved")
     .then((res) => res)
     .catch((err) => {
@@ -11,6 +11,6 @@ const CallApprovedConfessions = async () => {
   return res.data;
 };
 
-export const GetApprovedConfessions = () => {
-    return CallApprovedConfessions();
-};
+// export const GetApprovedConfessions = () => {
+//     return CallApprovedConfessions();
+// };

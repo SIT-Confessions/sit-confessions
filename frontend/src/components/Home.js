@@ -9,28 +9,12 @@ const Home = () => {
   const confessions = useSelector((state) => state.approvedConfessions);
   const dispatch = useDispatch();
 
-  //   const fetchApprovedConfessions = async () => {
-  //       const res = await axios
-  //   }
-
-  const api = axios.create({
-    baseURL: `http://localhost:5000/api/`,
-  });
-
-  const fetchApprovedConfessions = async () => {
-    let res = await api
-      .get("/confessions/approved")
-      .then((res) => res)
-      .catch((err) => {
-        console.log(err);
-      });
-    dispatch(setApprovedConfessions(res.data));
-  };
-
-  //   dispatch(setApprovedConfessions(result));
-
   useEffect(() => {
-    fetchApprovedConfessions();
+    let getData = async () => {
+        let resultData = await GetApprovedConfessions();
+        dispatch(setApprovedConfessions(resultData))
+    }
+    getData();
   }, []);
 
   return (
