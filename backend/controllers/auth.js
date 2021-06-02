@@ -2,14 +2,25 @@ import express from "express";
 import config from "config";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import auth from "../middleware/auth.js";
-import { check, validationResult } from "express-validator";
+import { validationResult } from "express-validator";
 
 import User from "../models/User.js";
 
 export const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const user = await User.find({ _id: { $ne: req.user.id } }).select(
+      "-password"
+    );
     res.json(user);
   } catch (err) {
     console.error(err.message);
