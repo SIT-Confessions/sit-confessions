@@ -30,6 +30,8 @@ npm run dev
 
 ## Frontend folder structure
 
+src/actions - store all actions for Redux
+
 src/api - axios implementation (connection to server)
 
 src/assets - store all images or files needed for project
