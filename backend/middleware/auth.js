@@ -21,7 +21,7 @@ export default (req, res, next) => {
   }
 };
 
-export function master(req, res, next) {
+export const master = (req, res, next) => {
   // Get token from header
   const token = req.header("x-auth-token");
 
@@ -44,4 +44,4 @@ export function master(req, res, next) {
   } catch (err) {
     res.status(401).json({ msg: "Token is not valid" });
   }
-}
+};
