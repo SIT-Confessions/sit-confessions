@@ -30,10 +30,6 @@ const Home = () => {
   //   dispatch(setApprovedConfessions(result));
 
   useEffect(() => {
-    //   let result = GetApprovedConfessions();
-    // let result = GetApprovedConfessions();
-    // console.log(result);
-    //dispatch(setApprovedConfessions(result));
     fetchApprovedConfessions();
   }, []);
 
