@@ -1,10 +1,7 @@
 import bcrypt from "bcryptjs";
 import config from "config";
-import express from "express";
 import jwt from "jsonwebtoken";
-import { MASTER, ADMIN } from "../constants/roles.js";
-import auth, { master } from "../middleware/auth.js";
-import { check, validationResult } from "express-validator";
+import { validationResult } from "express-validator";
 
 import User from "../models/User.js";
 
