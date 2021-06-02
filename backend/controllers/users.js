@@ -105,3 +105,30 @@ export const changePassword = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+
+export const changeRole = async (req, res) => {
+  // Validate input
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { _id, role } = req.body;
+
+  try {
+    const user = await User.findById(_id);
+
+    // Check if user exist
+    if (!user) {
+      return res.status(400).json({ errors: [{ msg: "No user found" }] });
+    }
+
+    user.role = role;
+    await user.save();
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
