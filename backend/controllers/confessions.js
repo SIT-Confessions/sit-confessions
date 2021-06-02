@@ -1,41 +1,29 @@
-import auth from "../../middleware/auth.js";
+import auth from "../middleware/auth.js";
 import express from "express";
 import { check, validationResult } from "express-validator";
 
-import Confession from "../../models/Confession.js";
+import Confession from "../models/Confession.js";
 
-const router = express.Router();
-
-// @route   POST api/confessions
-// @desc    Create a confession
-// @access  Public
-router.post(
-  "/",
-  [[check("text", "Text is required").notEmpty()]],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    try {
-      const newConfession = new Confession({
-        text: req.body.text,
-      });
-
-      const confession = await newConfession.save();
-      res.json(confession);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server error");
-    }
+export const createConfession = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
-);
 
-// @route   GET api/confessions
-// @desc    Get all confessions
-// @access  Private
-router.get("/", auth, async (req, res) => {
+  try {
+    const newConfession = new Confession({
+      text: req.body.text,
+    });
+
+    const confession = await newConfession.save();
+    res.json(confession);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
+
+export const getAllConfessions = async (req, res) => {
   try {
     const confessions = await Confession.find().sort({ createdAt: -1 });
     res.json(confessions);
@@ -43,12 +31,9 @@ router.get("/", auth, async (req, res) => {
     console.error(err.message);
     res.status(500).send("Server error");
   }
-});
+};
 
-// @route   GET api/confessions/approved
-// @desc    Get all approved confessions
-// @access  Public
-router.get("/approved", async (req, res) => {
+export const getApprovedConfessions = async (req, res) => {
   try {
     const confessions = await Confession.find({ approved: true }).sort({
       createdAt: -1,
@@ -58,12 +43,9 @@ router.get("/approved", async (req, res) => {
     console.error(err.message);
     res.status(500).send("Server error");
   }
-});
+};
 
-// @route   GET api/confessions/:id
-// @desc    Get confession by id
-// @access  Private
-router.get("/:id", auth, async (req, res) => {
+export const getConfession = async (req, res) => {
   try {
     const confession = await Confession.findById(req.params.id);
     if (!confession) {
@@ -79,12 +61,9 @@ router.get("/:id", auth, async (req, res) => {
 
     res.status(500).send("Server error");
   }
-});
+};
 
-// @route   PUT api/confessions/approve/:id
-// @desc    Approve confession by id
-// @access  Private
-router.put("/approve/:id", auth, async (req, res) => {
+export const approveConfession = async (req, res) => {
   try {
     const confession = await Confession.findById(req.params.id);
     if (!confession) {
@@ -104,12 +83,9 @@ router.put("/approve/:id", auth, async (req, res) => {
     console.error(err.message);
     res.status(500).send("Server error");
   }
-});
+};
 
-// @route   PUT api/confessions/reject/:id
-// @desc    Reject confession by id
-// @access  Private
-router.put("/reject/:id", auth, async (req, res) => {
+export const rejectConfession = async (req, res) => {
   try {
     const confession = await Confession.findById(req.params.id);
     if (!confession) {
@@ -127,6 +103,4 @@ router.put("/reject/:id", auth, async (req, res) => {
     console.error(err.message);
     res.status(500).send("Server error");
   }
-});
-
-export default router;
+};
