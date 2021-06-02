@@ -7,6 +7,7 @@ import ConfessionForm from "./components/Confessions/ConfessionForm";
 import NotFound from "./components/NotFound";
 import Home from "./components/Home";
 import { Helmet } from "react-helmet";
+import Login from "./components/Admin/Login";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -37,6 +38,7 @@ function App() {
             component={ConfessionForm}
           ></Route>
           <Route path="/dashboard" exact component={Home}></Route>
+          <Route path="/login" exact component={Login}></Route>
           <Route component={NotFound}></Route>
         </Switch>
       </div>
