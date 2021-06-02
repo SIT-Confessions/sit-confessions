@@ -12,7 +12,7 @@ const ConfessionCard = (props) => {
     <div className="flex-shrink-0 items-center justify-center bg-gray-50 max-w-2xl sm:w-full min-w-min py-4 dark:bg-dark-gray">
       <div class="flow-root shadow-lg rounded-2xl p-4 bg-white relative overflow-hidden dark:bg-dark-gray-lighter">
         <div className="sm:min-w-0">
-          <p class="text-gray-800 dark:text-gray-50 text-lg font-medium mb-2">#3195</p>
+          <p class="text-gray-800 dark:text-gray-50 text-lg font-medium mb-2">#{itemData._id}</p>
           <p class="text-gray-600 dark:text-gray-200 text-sm">{itemData.text}</p>
           <div className="flex mt-4 justify-between">
             <a

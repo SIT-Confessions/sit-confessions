@@ -10,7 +10,3 @@ export const GetApprovedConfessions = async () => {
     });
   return res.data;
 };
-
-// export const GetApprovedConfessions = () => {
-//     return CallApprovedConfessions();
-// };

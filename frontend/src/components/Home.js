@@ -3,7 +3,6 @@ import ConfessionCardFeed from "./Confessions/ConfessionCardFeed";
 import { GetApprovedConfessions } from "../api";
 import { viewApprovedConfessions, setApprovedConfessions } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 
 const Home = () => {
   const confessions = useSelector((state) => state.approvedConfessions);
