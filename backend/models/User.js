@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import mongooseRole from "mongoose-role";
+import { MASTER, ADMIN } from "../constants/roles.js";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -17,6 +19,14 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now,
+  },
+});
+
+UserSchema.plugin(mongooseRole, {
+  roles: [MASTER, ADMIN],
+  accessLevels: {
+    master: [MASTER, ADMIN],
+    admin: [ADMIN],
   },
 });
 

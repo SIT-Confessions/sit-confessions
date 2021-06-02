@@ -2,6 +2,8 @@ import bcrypt from "bcryptjs";
 import config from "config";
 import express from "express";
 import jwt from "jsonwebtoken";
+import { MASTER, ADMIN } from "../../constants/roles.js";
+import { master } from "../../middleware/auth.js";
 import { check, validationResult } from "express-validator";
 
 import User from "../../models/User.js";
@@ -14,13 +16,17 @@ const router = express.Router();
 router.post(
   "/",
   [
-    check("name", "Name is required").not().isEmpty(),
-    check("email", "Please include a valid email").isEmail(),
-    check(
-      "password",
-      "Please enter a password with 6 or more characters"
-    ).isLength({ min: 6 }),
-    check("password2", "Please enter confirmation password").not().isEmpty(),
+    master,
+    [
+      check("name", "Name is required").not().isEmpty(),
+      check("email", "Please include a valid email").isEmail(),
+      check(
+        "password",
+        "Please enter a password with 6 or more characters"
+      ).isLength({ min: 6 }),
+      check("password2", "Please enter confirmation password").not().isEmpty(),
+      check("role").isIn([MASTER, ADMIN]),
+    ],
   ],
   async (req, res) => {
     // Validate input
@@ -29,7 +35,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password, password2 } = req.body;
+    const { name, email, password, password2, role } = req.body;
 
     if (password !== password2) {
       return res
@@ -51,6 +57,7 @@ router.post(
         name,
         email,
         password,
+        role,
       });
 
       // Encrypt password
@@ -63,6 +70,7 @@ router.post(
       const payload = {
         user: {
           id: user.id,
+          role: user.role,
         },
       };
 
