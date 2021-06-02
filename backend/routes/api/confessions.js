@@ -11,7 +11,7 @@ const router = express.Router();
 // @access  Public
 router.post(
   "/",
-  [[check("text", "Text is required").not().isEmpty()]],
+  [[check("text", "Text is required").notEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
