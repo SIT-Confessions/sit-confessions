@@ -29,7 +29,7 @@ router.post(
   "/",
   [
     check("email", "Please include a valid email").isEmail(),
-    check("password", "Password is required").exists(),
+    check("password", "Password is required").notEmpty(),
   ],
   async (req, res) => {
     // Validate input
@@ -63,6 +63,7 @@ router.post(
       const payload = {
         user: {
           id: user.id,
+          role: user.role,
         },
       };
 

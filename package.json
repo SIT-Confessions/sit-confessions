@@ -21,5 +21,5 @@
   "homepage": "https://github.com/gabrielkhh/sit-confessions#readme",
   "devDependencies": {
     "concurrently": "^6.2.0"
-  }        
+  }
 }

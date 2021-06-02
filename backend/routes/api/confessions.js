@@ -11,7 +11,7 @@ const router = express.Router();
 // @access  Public
 router.post(
   "/",
-  [[check("text", "Text is required").not().isEmpty()]],
+  [[check("text", "Text is required").notEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -37,7 +37,7 @@ router.post(
 // @access  Private
 router.get("/", auth, async (req, res) => {
   try {
-    const confessions = await Confession.find().sort({ date: -1 });
+    const confessions = await Confession.find().sort({ createdAt: -1 });
     res.json(confessions);
   } catch (err) {
     console.error(err.message);
@@ -51,7 +51,7 @@ router.get("/", auth, async (req, res) => {
 router.get("/approved", async (req, res) => {
   try {
     const confessions = await Confession.find({ approved: true }).sort({
-      date: -1,
+      createdAt: -1,
     });
     res.json(confessions);
   } catch (err) {
