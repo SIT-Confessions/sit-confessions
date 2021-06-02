@@ -1,6 +1,7 @@
 import cors from "cors";
 import connectDB from "./config/db.js";
 import express from "express";
+import rateLimit from "express-rate-limit";
 
 import authRoute from "./routes/auth.js";
 import confessionRoute from "./routes/confessions.js";
@@ -11,6 +12,13 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
+// 100 request per 15mins
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 15 * 60 * 1000, // 15mins
+  message: "Too many request from this IP",
+});
+app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
