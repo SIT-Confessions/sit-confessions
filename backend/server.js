@@ -2,9 +2,9 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import express from "express";
 
-import authRoute from "./routes/api/auth.js";
-import confessionRoute from "./routes/api/confessions.js";
-import usersRoute from "./routes/api/users.js";
+import authRoute from "./routes/auth.js";
+import confessionRoute from "./routes/confessions.js";
+import usersRoute from "./routes/users.js";
 
 const app = express();
 
