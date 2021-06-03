@@ -1,5 +1,6 @@
 import config from "config";
 import jwt from "jsonwebtoken";
+import rateLimit from "express-rate-limit";
 import { MASTER } from "../constants/roles.js";
 
 export default (req, res, next) => {
@@ -45,3 +46,10 @@ export const master = (req, res, next) => {
     res.status(401).json({ msg: "Token is not valid" });
   }
 };
+
+export const loginLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour window
+  max: 5, // start blocking after 5 requests
+  message:
+    "Too many login attempts from this IP, please try again after an hour",
+});

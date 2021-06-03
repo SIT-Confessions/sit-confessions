@@ -1,4 +1,3 @@
-import express from "express";
 import config from "config";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -69,6 +68,9 @@ export const authenticateUser = async (req, res) => {
         res.json({ token });
       }
     );
+
+    user.lastLogin = new Date().toISOString();
+    await user.save();
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
