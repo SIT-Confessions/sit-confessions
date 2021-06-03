@@ -46,6 +46,12 @@ const Navbar = (props) => {
     {
       className: styles.className,
       activeStyle: styles.activeStyle,
+      to: "/login",
+      name: "Temp Login Button",
+    },
+    {
+      className: styles.className,
+      activeStyle: styles.activeStyle,
       to: "/",
       name: "Home",
     },

@@ -11,6 +11,12 @@ const ConfessionForm = () => {
     enteredConfession: "",
   });
 
+  const clearInputs = () => {
+    setUserInput(() => {
+      return { enteredConfession: "" };
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     let data = userInput.enteredConfession;
@@ -18,6 +24,7 @@ const ConfessionForm = () => {
     let res = await api.post('/confessions', confessionJSON)
     console.log("sent confession to API")
     console.log(res)
+    clearInputs();
   };
 
   // const createConfession = async () => {
@@ -80,7 +87,7 @@ const ConfessionForm = () => {
                         rows={10}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md"
                         placeholder="Your wonderful story goes in here."
-                        defaultValue={""}
+                        value={userInput.enteredConfession}
                         onChange={confessionChangeHandler}
                       />
                     </div>

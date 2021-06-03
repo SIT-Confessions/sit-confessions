@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
 
 const Login = () => {
+  const [userInput, setUserInput] = useState({
+    enteredEmail: "",
+    enteredPassword: "",
+  });
+
+  const emailChangeHandler = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredEmail: event.target.value };
+    });
+  };
+
+  const passwordChangeHandler = (event) => {
+      setUserInput((prevState) => {
+          return { ...prevState, enteredPassword: event.target.value };
+      });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 dark:bg-dark-gray">
       <div className="max-w-md w-full space-y-8">
@@ -39,6 +56,8 @@ const Login = () => {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                 placeholder="Email address"
+                value={userInput.enteredEmail}
+                onChange={emailChangeHandler}
               />
             </div>
             <div>
@@ -53,6 +72,8 @@ const Login = () => {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                 placeholder="Password"
+                value={userInput.enteredPassword}
+                onChange={passwordChangeHandler}
               />
             </div>
           </div>
