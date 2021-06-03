@@ -1,6 +1,8 @@
 import cors from "cors";
 import connectDB from "./config/db.js";
 import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 
 import authRoute from "./routes/auth.js";
@@ -12,7 +14,7 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// 100 request per 15mins
+// Limit to 100 request per 15mins per IP address
 const limiter = rateLimit({
   max: 100,
   windowMs: 15 * 60 * 1000, // 15mins
@@ -22,6 +24,8 @@ app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(helmet());
+app.use(morgan("combined"));
 
 app.get("/", (req, res) => res.send("API Running"));
 
