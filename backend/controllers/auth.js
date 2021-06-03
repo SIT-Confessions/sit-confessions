@@ -1,4 +1,3 @@
-import express from "express";
 import config from "config";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
