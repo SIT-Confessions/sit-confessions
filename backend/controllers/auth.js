@@ -5,6 +5,7 @@ import { validationResult } from "express-validator";
 
 import User from "../models/User.js";
 
+// @desc Retrieve a user detail from db
 export const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
@@ -15,6 +16,7 @@ export const getUser = async (req, res) => {
   }
 };
 
+// @desc Retrieve all users from db
 export const getAllUsers = async (req, res) => {
   try {
     const user = await User.find({ _id: { $ne: req.user.id } }).select(
@@ -27,6 +29,7 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
+// @desc Check user authentication and return jwt token
 export const authenticateUser = async (req, res) => {
   // Validate input
   const errors = validationResult(req);
