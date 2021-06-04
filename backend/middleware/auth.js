@@ -16,7 +16,7 @@ export default (req, res, next) => {
   try {
     jwt.verify(token, config.get("jwtSecret"), (err, decoded) => {
       if (err) {
-        return res.status(401).json(err);
+        return res.status(401).json({ msg: err.message });
       }
       req.user = decoded.user;
     });
