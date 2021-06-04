@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import PropTypes from "prop-types";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   BellIcon,
@@ -9,6 +10,8 @@ import {
 } from "@heroicons/react/outline";
 import { MoonIcon as MoonIconSolid } from "@heroicons/react/solid";
 import { NavLink } from "react-router-dom";
+import { logout } from "../../actions/auth";
+import { connect } from "react-redux";
 // import { style } from "../../../craco.config";
 
 const navigation = [
@@ -25,7 +28,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Navbar = (props) => {
+const Navbar = ({
+  toggleDarkMode,
+  isDark,
+  auth: { isAuthenticated },
+  logout,
+}) => {
   const [isShown, setIsShown] = useState("hidden");
   const toggleHamburger = () => {
     let nextState = "";
@@ -42,19 +50,7 @@ const Navbar = (props) => {
       "bg-gray-900 hover:bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium",
   };
 
-  const links = [
-    {
-      className: styles.className,
-      activeStyle: styles.activeStyle,
-      to: "/login",
-      name: "Temp Login Button",
-    },
-    {
-      className: styles.className,
-      activeStyle: styles.activeStyle,
-      to: "/",
-      name: "Home",
-    },
+  const authLinks = [
     {
       className: styles.className,
       activeStyle: styles.activeStyle,
@@ -63,11 +59,35 @@ const Navbar = (props) => {
     },
     {
       className: styles.className,
+      to: "#",
+      name: "Logout",
+      onClick: logout,
+    },
+  ];
+
+  const guestLinks = [
+    {
+      className: styles.className,
+      activeStyle: styles.activeStyle,
+      to: "/",
+      name: "Home",
+    },
+
+    {
+      className: styles.className,
       activeStyle: styles.activeStyle,
       to: "/post-confession",
       name: "Post Confession",
     },
+    {
+      className: styles.className,
+      activeStyle: styles.activeStyle,
+      to: "/login",
+      name: "Login",
+    },
   ];
+
+  const links = isAuthenticated ? authLinks : guestLinks;
 
   useEffect(() => {
     console.log("Work In Progress Moon Icon");
@@ -94,10 +114,12 @@ const Navbar = (props) => {
                     <div className="ml-10 flex items-baseline space-x-4">
                       {links.map((link, linkIdx) => (
                         <NavLink
+                          key={linkIdx}
                           exact
                           className={link.className}
                           activeClassName={link.activeStyle}
                           to={link.to}
+                          onClick={link.onClick}
                         >
                           {link.name}
                         </NavLink>
@@ -106,11 +128,11 @@ const Navbar = (props) => {
                   </div>
                   <div className="ml-10 flex items-baseline space-x-4">
                     <button
-                      onClick={props.toggleDarkMode}
+                      onClick={toggleDarkMode}
                       className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none"
                     >
                       <span className="sr-only">Dark Mode Toggle</span>
-                      {props.isDark === false ? (
+                      {isDark === false ? (
                         <MoonIcon className="h-6 w-6" aria-hidden="true" />
                       ) : (
                         <MoonIconSolid className="h-6 w-6" aria-hidden="true" />
@@ -135,7 +157,7 @@ const Navbar = (props) => {
 
             <Disclosure.Panel className="md:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                {links.map((link, linkIdx) => (
+                {/* {links.map((link, linkIdx) => (
                   <NavLink
                     exact
                     className={link.className}
@@ -144,7 +166,7 @@ const Navbar = (props) => {
                   >
                     {link.name}
                   </NavLink>
-                ))}
+                ))} */}
               </div>
               {/* <div className="pt-4 pb-3 border-t border-gray-700">
                 <div className="flex items-center px-5">
@@ -188,4 +210,13 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);

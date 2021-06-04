@@ -11,9 +11,9 @@ const Home = () => {
 
   useEffect(() => {
     let getData = async () => {
-        let resultData = await GetApprovedConfessions();
-        dispatch(setApprovedConfessions(resultData))
-    }
+      let resultData = await GetApprovedConfessions();
+      dispatch(setApprovedConfessions(resultData));
+    };
     getData();
   }, []);
 
