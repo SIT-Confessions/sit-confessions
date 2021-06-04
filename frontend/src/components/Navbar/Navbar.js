@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import PropTypes from "prop-types";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   BellIcon,
@@ -9,6 +10,8 @@ import {
 } from "@heroicons/react/outline";
 import { MoonIcon as MoonIconSolid } from "@heroicons/react/solid";
 import { NavLink } from "react-router-dom";
+import { logout } from "../../actions/auth";
+import { connect } from "react-redux";
 // import { style } from "../../../craco.config";
 
 const navigation = [
@@ -25,7 +28,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Navbar = (props) => {
+const Navbar = ({
+  toggleDarkMode,
+  isDark,
+  auth: { isAuthenticated },
+  logout,
+}) => {
   const [isShown, setIsShown] = useState("hidden");
   const toggleHamburger = () => {
     let nextState = "";
@@ -46,12 +54,6 @@ const Navbar = (props) => {
     {
       className: styles.className,
       activeStyle: styles.activeStyle,
-      to: "/login",
-      name: "Temp Login Button",
-    },
-    {
-      className: styles.className,
-      activeStyle: styles.activeStyle,
       to: "/",
       name: "Home",
     },
@@ -67,12 +69,21 @@ const Navbar = (props) => {
       to: "/post-confession",
       name: "Post Confession",
     },
+    {
+      className: styles.className,
+      activeStyle: styles.activeStyle,
+      to: "/login",
+      name: "Login",
+    },
   ];
 
   useEffect(() => {
     console.log("Work In Progress Moon Icon");
   });
 
+  if (isAuthenticated) {
+    links.filter((link) => link.name !== "Login");
+  }
   return (
     <div>
       <Disclosure as="nav" className="bg-gray-800 dark:bg-gray-800">
@@ -102,15 +113,24 @@ const Navbar = (props) => {
                           {link.name}
                         </NavLink>
                       ))}
+                      {isAuthenticated && (
+                        <a
+                          className={styles.className}
+                          href="#"
+                          onClick={logout}
+                        >
+                          Logout
+                        </a>
+                      )}
                     </div>
                   </div>
                   <div className="ml-10 flex items-baseline space-x-4">
                     <button
-                      onClick={props.toggleDarkMode}
+                      onClick={toggleDarkMode}
                       className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none"
                     >
                       <span className="sr-only">Dark Mode Toggle</span>
-                      {props.isDark === false ? (
+                      {isDark === false ? (
                         <MoonIcon className="h-6 w-6" aria-hidden="true" />
                       ) : (
                         <MoonIconSolid className="h-6 w-6" aria-hidden="true" />
@@ -188,4 +208,14 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  props: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);

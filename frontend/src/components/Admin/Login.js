@@ -100,12 +100,12 @@ const Login = ({ login, isAuthenticated }) => {
             </div>
 
             <div className="text-sm">
-              <a
-                href="#"
+              <Link
+                to="#"
                 className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-500 dark:hover:text-indigo-400"
               >
                 Forgot your password?
-              </a>
+              </Link>
             </div>
           </div>
 

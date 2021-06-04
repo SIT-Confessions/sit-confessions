@@ -25,3 +25,8 @@ export const login = (formData) => async (dispatch) => {
     });
   }
 };
+
+export const logout = () => async (dispatch) => {
+  console.log("hi");
+  dispatch({ type: LOGOUT });
+};
