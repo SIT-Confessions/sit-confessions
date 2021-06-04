@@ -10,9 +10,9 @@ const Home = () => {
 
   useEffect(() => {
     let getData = async () => {
-        let resultData = await GetApprovedConfessions();
-        dispatch(setApprovedConfessions(resultData))
-    }
+      let resultData = await GetApprovedConfessions();
+      dispatch(setApprovedConfessions(resultData));
+    };
     getData();
   }, []);
 
@@ -21,7 +21,7 @@ const Home = () => {
       <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-5">
         Latest Confessions
       </h1>
-      <ConfessionCardFeed confessions={confessions}/>
+      <ConfessionCardFeed confessions={confessions} />
     </div>
   );
 };

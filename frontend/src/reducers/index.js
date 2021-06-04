@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import approvedConfessionsReducer from './approvedConfessions';
+import auth from "./auth";
+import approvedConfessionsReducer from "./approvedConfessions";
 
 const baseReducer = combineReducers({
-    approvedConfessions : approvedConfessionsReducer
-})
+  approvedConfessions: approvedConfessionsReducer,
+  auth,
+});
 
 export default baseReducer;
