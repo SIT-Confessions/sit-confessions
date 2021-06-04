@@ -1,24 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { login } from "../../actions/auth";
+import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
 
-const Login = () => {
-  const [userInput, setUserInput] = useState({
-    enteredEmail: "",
-    enteredPassword: "",
+const Login = ({ login, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
   });
 
-  const emailChangeHandler = (event) => {
-    setUserInput((prevState) => {
-      return { ...prevState, enteredEmail: event.target.value };
-    });
+  const { email, password } = formData;
+
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(formData);
   };
 
-  const passwordChangeHandler = (event) => {
-      setUserInput((prevState) => {
-          return { ...prevState, enteredPassword: event.target.value };
-      });
-  };
-
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 dark:bg-dark-gray">
       <div className="max-w-md w-full space-y-8">
@@ -33,15 +38,15 @@ const Login = () => {
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{" "}
-            <a
-              href="#"
+            <Link
+              to="#"
               className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-500 dark:hover:text-indigo-400"
             >
               Request Access
-            </a>
+            </Link>
           </p>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -56,8 +61,8 @@ const Login = () => {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                 placeholder="Email address"
-                value={userInput.enteredEmail}
-                onChange={emailChangeHandler}
+                value={email}
+                onChange={(e) => handleChange(e)}
               />
             </div>
             <div>
@@ -72,8 +77,8 @@ const Login = () => {
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                 placeholder="Password"
-                value={userInput.enteredPassword}
-                onChange={passwordChangeHandler}
+                value={password}
+                onChange={(e) => handleChange(e)}
               />
             </div>
           </div>
@@ -118,4 +123,13 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);
