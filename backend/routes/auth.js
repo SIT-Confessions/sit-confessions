@@ -22,7 +22,7 @@ router.post(
   "/",
   loginLimiter,
   [
-    check("email", "Please include a valid email").isEmail(),
+    check("email", "Please include a valid email").isEmail().normalizeEmail(),
     check("password", "Password is required").notEmpty(),
   ],
   authenticateUser

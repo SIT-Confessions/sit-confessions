@@ -19,7 +19,7 @@ router.post(
     master,
     [
       check("name", "Name is required").notEmpty(),
-      check("email", "Please include a valid email").isEmail(),
+      check("email", "Please include a valid email").isEmail().normalizeEmail(),
       check(
         "password",
         "Please enter a password with 6 or more characters"
