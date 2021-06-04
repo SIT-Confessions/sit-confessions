@@ -10,9 +10,12 @@ import {
 
 const router = express.Router();
 
-// @route   POST api/users
-// @desc    Register user
-// @access  Master
+/**
+ * Register user
+ *
+ * @route POST api/users
+ * @access Master
+ */
 router.post(
   "/",
   [
@@ -31,9 +34,12 @@ router.post(
   registerUser
 );
 
-// @route   PUT api/users/password
-// @desc    Register user
-// @access  Private
+/**
+ * Change user password
+ *
+ * @route PUT api/users/password
+ * @access Private
+ */
 router.put(
   "/password",
   [
@@ -50,9 +56,12 @@ router.put(
   changePassword
 );
 
-// @route   PUT api/users/role
-// @desc    Register user
-// @access  Private
+/**
+ * Change user role
+ *
+ * @route PUT api/users/role
+ * @access Master
+ */
 router.put(
   "/role",
   [

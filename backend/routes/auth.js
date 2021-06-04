@@ -5,19 +5,28 @@ import { getAllUsers, getUser, authenticateUser } from "../controllers/auth.js";
 
 const router = express.Router();
 
-// @route   GET api/auth/users
-// @desc    Get all auth users
-// @access  Master
+/**
+ * Get all auth users
+ *
+ * @route GET api/auth/users
+ * @access Master
+ */
 router.get("/users", master, getAllUsers);
 
-// @route   GET api/auth
-// @desc    Get auth user
-// @access  Private
+/**
+ * Get auth user
+ *
+ * @route GET api/auth
+ * @access Private
+ */
 router.get("/", auth, getUser);
 
-// @route   POST api/auth
-// @desc    Authenticate user and get token
-// @access  Public
+/**
+ * Authenticate user and get token
+ *
+ * @route POST api/auth
+ * @access Public
+ */
 router.post(
   "/",
   loginLimiter,
