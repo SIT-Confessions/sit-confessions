@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import { Helmet } from "react-helmet";
 import Login from "./components/Admin/Login";
 import PrivateRoute from "./components/Routing/PrivateRoute";
+import AdminHome from "./components/Admin";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -38,7 +39,7 @@ function App() {
             exact
             component={ConfessionForm}
           ></Route>
-          <PrivateRoute path="/dashboard" exact component={Home}></PrivateRoute>
+          <PrivateRoute path="/dashboard" exact component={AdminHome}></PrivateRoute>
           <Route path="/login" exact component={Login}></Route>
           <Route component={NotFound}></Route>
         </Switch>
