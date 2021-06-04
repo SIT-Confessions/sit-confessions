@@ -39,7 +39,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(helmet());
-// app.use(morgan("combined"));
 app.use(morgan("combined", { stream: accessLogStream }));
 
 app.get("/", (req, res) => res.send("API Running"));
