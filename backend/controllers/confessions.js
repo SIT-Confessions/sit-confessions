@@ -1,9 +1,12 @@
-import auth from "../middleware/auth.js";
-import express from "express";
-import { check, validationResult } from "express-validator";
+import { validationResult } from "express-validator";
 
 import Confession from "../models/Confession.js";
 
+/**
+ * Create a new confession post into db.
+ *
+ * @returns {json} New post details
+ */
 export const createConfession = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -23,6 +26,11 @@ export const createConfession = async (req, res) => {
   }
 };
 
+/**
+ * Retrieve all confessions from db.
+ *
+ * @returns {json} All confessions
+ */
 export const getAllConfessions = async (req, res) => {
   try {
     const confessions = await Confession.find().sort({ createdAt: -1 });
@@ -33,6 +41,11 @@ export const getAllConfessions = async (req, res) => {
   }
 };
 
+/**
+ * Retrieve all approved confessions.
+ *
+ * @returns {json} All approved confessions
+ */
 export const getApprovedConfessions = async (req, res) => {
   try {
     const confessions = await Confession.find({ approved: true }).sort({
@@ -45,6 +58,11 @@ export const getApprovedConfessions = async (req, res) => {
   }
 };
 
+/**
+ * Retrieve a confession based on id from db.
+ *
+ * @returns {json} Confession post details
+ */
 export const getConfession = async (req, res) => {
   try {
     const confession = await Confession.findById(req.params.id);
@@ -63,6 +81,13 @@ export const getConfession = async (req, res) => {
   }
 };
 
+/**
+ * Approve a confession post.
+ *
+ * Set the approved attribute to true.
+ *
+ * @returns {json} Message of update results
+ */
 export const approveConfession = async (req, res) => {
   try {
     const confession = await Confession.findById(req.params.id);
@@ -85,6 +110,13 @@ export const approveConfession = async (req, res) => {
   }
 };
 
+/**
+ * Reject a confession.
+ *
+ * Set approved attribute to false
+ *
+ * @returns {json} Message of update results
+ */
 export const rejectConfession = async (req, res) => {
   try {
     const confession = await Confession.findById(req.params.id);

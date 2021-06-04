@@ -1,5 +1,5 @@
 import express from "express";
-import auth, { master } from "../middleware/auth.js";
+import auth, { master, loginLimiter } from "../middleware/auth.js";
 import { check } from "express-validator";
 import { getAllUsers, getUser, authenticateUser } from "../controllers/auth.js";
 
@@ -20,6 +20,7 @@ router.get("/", auth, getUser);
 // @access  Public
 router.post(
   "/",
+  loginLimiter,
   [
     check("email", "Please include a valid email").isEmail(),
     check("password", "Password is required").notEmpty(),

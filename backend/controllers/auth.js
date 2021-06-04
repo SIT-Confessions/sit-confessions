@@ -1,4 +1,3 @@
-import express from "express";
 import config from "config";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -6,6 +5,11 @@ import { validationResult } from "express-validator";
 
 import User from "../models/User.js";
 
+/**
+ * Find user by user id in db.
+ *
+ * @return {json} User details excluding password field.
+ */
 export const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
@@ -16,6 +20,11 @@ export const getUser = async (req, res) => {
   }
 };
 
+/**
+ * Retrieve all users from db.
+ *
+ * @return {json} All user details excluding password field
+ */
 export const getAllUsers = async (req, res) => {
   try {
     const user = await User.find({ _id: { $ne: req.user.id } }).select(
@@ -28,6 +37,15 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
+/**
+ * Check user authentication details.
+ *
+ * Validate user email and password by checking
+ * hash values of input and password from db, and
+ * create a jwt for the user to login.
+ *
+ * @returns {json} Signed Json Web Token
+ */
 export const authenticateUser = async (req, res) => {
   // Validate input
   const errors = validationResult(req);
@@ -51,6 +69,9 @@ export const authenticateUser = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
     }
+
+    user.lastLogin = new Date().toISOString();
+    await user.save();
 
     // Return jsonwebtoken
     const payload = {
