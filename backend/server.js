@@ -4,8 +4,9 @@ import express from "express";
 import fs from "fs";
 import helmet from "helmet";
 import morgan from "morgan";
-import path from "path";
 import rateLimit from "express-rate-limit";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 import authRoute from "./routes/auth.js";
 import confessionRoute from "./routes/confessions.js";
@@ -23,17 +24,23 @@ const limiter = rateLimit({
   message: "Too many request from this IP",
 });
 
-// const accessLogStream = fs.createWriteStream(path.join("./", "access.log"), {
-//   flags: "a",
-// });
+// Log api requests to log file
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, "access.log"),
+  {
+    flags: "a",
+  }
+);
 
 app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(helmet());
-app.use(morgan("combined"));
-// app.use(morgan("combined", { stream: accessLogStream }));
+// app.use(morgan("combined"));
+app.use(morgan("combined", { stream: accessLogStream }));
 
 app.get("/", (req, res) => res.send("API Running"));
 
