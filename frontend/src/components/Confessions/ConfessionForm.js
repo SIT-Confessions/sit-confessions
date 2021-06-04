@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 const api = axios.create({
   baseURL: `http://localhost:5000/api/`,
@@ -40,7 +41,7 @@ const ConfessionForm = () => {
 
   return (
     <>
-      <div>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
@@ -123,7 +124,7 @@ const ConfessionForm = () => {
             </form>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
