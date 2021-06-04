@@ -12,38 +12,56 @@ import {
 
 const router = express.Router();
 
-// @route   POST api/confessions
-// @desc    Create a confession
-// @access  Public
+/**
+ * Create a confession
+ *
+ * @route POST api/confessions
+ * @access Public
+ */
 router.post(
   "/",
   [[check("text", "Text is required").notEmpty().escape()]],
   createConfession
 );
 
-// @route   GET api/confessions
-// @desc    Get all confessions
-// @access  Private
+/**
+ * Get all confessions
+ *
+ * @route GET api/confessions
+ * @access Private
+ */
 router.get("/", auth, getAllConfessions);
 
-// @route   GET api/confessions/approved
-// @desc    Get all approved confessions
-// @access  Public
+/**
+ * Get all approved confessions
+ *
+ * @route GET api/confessions/approved
+ * @access Public
+ */
 router.get("/approved", getApprovedConfessions);
 
-// @route   GET api/confessions/:id
-// @desc    Get confession by id
-// @access  Private
+/**
+ * Get confession by id
+ *
+ * @route GET api/confessions/:id
+ * @access Private
+ */
 router.get("/:id", auth, getConfession);
 
-// @route   PUT api/confessions/approve/:id
-// @desc    Approve confession by id
-// @access  Private
+/**
+ * Approve confession by id
+ *
+ * @route PUT api/confessions/approve/:id
+ * @access Private
+ */
 router.put("/approve/:id", auth, approveConfession);
 
-// @route   PUT api/confessions/reject/:id
-// @desc    Reject confession by id
-// @access  Private
+/**
+ * Reject confession by id
+ *
+ * @route PUT api/confessions/reject/:id
+ * @access Private
+ */
 router.put("/reject/:id", auth, rejectConfession);
 
 export default router;
