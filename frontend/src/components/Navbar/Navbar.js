@@ -50,19 +50,29 @@ const Navbar = ({
       "bg-gray-900 hover:bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium",
   };
 
-  const links = [
-    {
-      className: styles.className,
-      activeStyle: styles.activeStyle,
-      to: "/",
-      name: "Home",
-    },
+  const authLinks = [
     {
       className: styles.className,
       activeStyle: styles.activeStyle,
       to: "/dashboard",
       name: "Dashboard",
     },
+    {
+      className: styles.className,
+      to: "#",
+      name: "Logout",
+      onClick: logout,
+    },
+  ];
+
+  const guestLinks = [
+    {
+      className: styles.className,
+      activeStyle: styles.activeStyle,
+      to: "/",
+      name: "Home",
+    },
+
     {
       className: styles.className,
       activeStyle: styles.activeStyle,
@@ -77,13 +87,12 @@ const Navbar = ({
     },
   ];
 
+  const links = isAuthenticated ? authLinks : guestLinks;
+
   useEffect(() => {
     console.log("Work In Progress Moon Icon");
   });
 
-  if (isAuthenticated) {
-    links.filter((link) => link.name !== "Login");
-  }
   return (
     <div>
       <Disclosure as="nav" className="bg-gray-800 dark:bg-gray-800">
@@ -105,23 +114,16 @@ const Navbar = ({
                     <div className="ml-10 flex items-baseline space-x-4">
                       {links.map((link, linkIdx) => (
                         <NavLink
+                          key={linkIdx}
                           exact
                           className={link.className}
                           activeClassName={link.activeStyle}
                           to={link.to}
+                          onClick={link.onClick}
                         >
                           {link.name}
                         </NavLink>
                       ))}
-                      {isAuthenticated && (
-                        <a
-                          className={styles.className}
-                          href="#"
-                          onClick={logout}
-                        >
-                          Logout
-                        </a>
-                      )}
                     </div>
                   </div>
                   <div className="ml-10 flex items-baseline space-x-4">
@@ -155,7 +157,7 @@ const Navbar = ({
 
             <Disclosure.Panel className="md:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                {links.map((link, linkIdx) => (
+                {/* {links.map((link, linkIdx) => (
                   <NavLink
                     exact
                     className={link.className}
@@ -164,7 +166,7 @@ const Navbar = ({
                   >
                     {link.name}
                   </NavLink>
-                ))}
+                ))} */}
               </div>
               {/* <div className="pt-4 pb-3 border-t border-gray-700">
                 <div className="flex items-center px-5">
@@ -211,7 +213,6 @@ const Navbar = ({
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  props: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

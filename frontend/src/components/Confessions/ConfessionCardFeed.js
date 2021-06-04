@@ -36,12 +36,10 @@ const ConfessionCard = (props) => {
 };
 
 const ConfessionCardFeed = (props) => {
-  let confessionsData = props.confessions;
-  // console.log(confessionsData);
-
+  let confessionsData = props.confessions.posts;
   return (
     <>
-      {confessionsData.map((item, itemIDx) => (
+      {confessionsData?.map((item, itemIDx) => (
         <Fragment key={itemIDx}>
           <ConfessionCard data={item} />
         </Fragment>
