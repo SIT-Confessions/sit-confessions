@@ -5,6 +5,15 @@ import { validationResult } from "express-validator";
 
 import User from "../models/User.js";
 
+/**
+ * Register a user in db.
+ *
+ * Checks if email is unique and
+ * encrypts the user password to be
+ * inserted into the db.
+ *
+ * @returns {json} Signed jwt token
+ */
 export const registerUser = async (req, res) => {
   // Validate input
   const errors = validationResult(req);
@@ -64,6 +73,15 @@ export const registerUser = async (req, res) => {
   }
 };
 
+/**
+ * Change user password.
+ *
+ * Checks if old password is the correct one
+ * and encrypt the new password to be inserted
+ * into db.
+ *
+ * @returns {json} Message of status result
+ */
 export const changePassword = async (req, res) => {
   // Validate input
   const errors = validationResult(req);
@@ -106,6 +124,11 @@ export const changePassword = async (req, res) => {
   }
 };
 
+/**
+ * Change role of a user.
+ *
+ * @returns {json} Message of status result
+ */
 export const changeRole = async (req, res) => {
   // Validate input
   const errors = validationResult(req);
