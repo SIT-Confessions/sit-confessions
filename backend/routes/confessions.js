@@ -17,7 +17,7 @@ const router = express.Router();
 // @access  Public
 router.post(
   "/",
-  [[check("text", "Text is required").notEmpty()]],
+  [[check("text", "Text is required").notEmpty().escape()]],
   createConfession
 );
 
