@@ -23,11 +23,9 @@ const ConfessionForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // let data = userInput.enteredConfession;
-    // let confessionJSON = { text: data };
-    // let res = await api.post('/confessions', confessionJSON)
-    // console.log("sent confession to API")
-    // console.log(res)
+    let data = userInput.enteredConfession;
+    let confessionJSON = { text: data };
+    let res = await api.post('/confessions', confessionJSON)
     clearInputs();
     ShowNotification({
       id: 1,
@@ -36,11 +34,6 @@ const ConfessionForm = () => {
       type: "success",
     });
   };
-
-  // const createConfession = async () => {
-  //   let res = await api.post("/confessions", { text: "Test" });
-  //   console.log("sent confession to API");
-  // };
 
   const ShowNotification = (data) => {
     dispatch(addNotification(data));
