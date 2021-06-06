@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { addNotification } from "../../actions";
+
 
 const api = axios.create({
   baseURL: `http://localhost:5000/api/`,
 });
 
 const ConfessionForm = () => {
+  const dispatch = useDispatch();
 
   const [userInput, setUserInput] = useState({
     enteredConfession: "",
@@ -20,18 +24,23 @@ const ConfessionForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let data = userInput.enteredConfession;
-    let confessionJSON = { text: data };
-    let res = await api.post('/confessions', confessionJSON)
-    console.log("sent confession to API")
-    console.log(res)
+    // let data = userInput.enteredConfession;
+    // let confessionJSON = { text: data };
+    // let res = await api.post('/confessions', confessionJSON)
+    // console.log("sent confession to API")
+    // console.log(res)
     clearInputs();
+    ShowNotification({ id: 1, title: "Success", message: "Test message", type: "success" })
   };
 
   // const createConfession = async () => {
   //   let res = await api.post("/confessions", { text: "Test" });
   //   console.log("sent confession to API");
   // };
+
+  const ShowNotification = (data) => {
+    dispatch(addNotification(data))
+  };
 
   const confessionChangeHandler = (event) => {
     setUserInput((prevState) => {

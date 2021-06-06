@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux"
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
@@ -13,6 +14,8 @@ import AdminHome from "./components/Admin";
 import Toast from "./components/UI/Toast";
 
 function App() {
+  const notificationsData = useSelector((state) => state.notifications);
+
   const [isDark, setIsDark] = useState(false);
 
   const toggleDarkMode = () => {
@@ -33,7 +36,7 @@ function App() {
       </Helmet>
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode}></Navbar>
       <div className="container mx-auto py-10">
-        <Toast />
+        <Toast data={ notificationsData.notifications } />
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route
