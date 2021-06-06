@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet";
 import Login from "./components/Admin/Login";
 import PrivateRoute from "./components/Routing/PrivateRoute";
 import AdminHome from "./components/Admin";
+import Toast from "./components/UI/Toast";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -32,6 +33,7 @@ function App() {
       </Helmet>
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode}></Navbar>
       <div className="container mx-auto py-10">
+        <Toast />
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route
