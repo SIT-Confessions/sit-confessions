@@ -11,11 +11,10 @@ const Toast = (props) => {
 
   return (
     <>
-      <div className="flex flex-col max-h-max fixed">
-      { notifications > 0 && (
-        
-            notifications.map((item) => (
-                <div className="flex-shrink-0 items-center bg-gray-50 items-start sm:w-full max-w-max dark:bg-dark-gray">
+    { notifications.length > 0 && (
+      <div className="flex flex-col max-h-max fixed z-50">
+            { notifications.map((item) => (
+                <div className="flex-shrink-0 items-center bg-gray-50 items-start sm:w-full max-w-max dark:bg-dark-gray mb-3">
                 <div class="flow-root shadow-lg border border-opacity-50 rounded-xl p-4 dark:border-gray-600 bg-white relative overflow-hidden dark:bg-dark-gray-lightest flex-row grid grid-flow-col">
                   <div className="max-w-min mr-2 flex-none">
                     <svg
@@ -41,7 +40,7 @@ const Toast = (props) => {
                     </div>
     
                     <p class="text-gray-600 dark:text-gray-200 text-sm">
-                      Your confession has been submitted for approval!
+                      {item.message}
                     </p>
                   </div>
                   <div className="flex-none max-w-min">
@@ -62,10 +61,9 @@ const Toast = (props) => {
                   </div>
                 </div>
               </div>
-            ))
-          
-        )}
+            ))}
       </div>
+    )}
     </>
   );
 };

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { addNotification } from "../../actions";
 
-
 const api = axios.create({
   baseURL: `http://localhost:5000/api/`,
 });
@@ -30,7 +29,12 @@ const ConfessionForm = () => {
     // console.log("sent confession to API")
     // console.log(res)
     clearInputs();
-    ShowNotification({ id: 1, title: "Success", message: "Test message", type: "success" })
+    ShowNotification({
+      id: 1,
+      title: "Successfully Submitted!",
+      message: "Your confession has been submitted for approval!",
+      type: "success",
+    });
   };
 
   // const createConfession = async () => {
@@ -39,7 +43,7 @@ const ConfessionForm = () => {
   // };
 
   const ShowNotification = (data) => {
-    dispatch(addNotification(data))
+    dispatch(addNotification(data));
   };
 
   const confessionChangeHandler = (event) => {
