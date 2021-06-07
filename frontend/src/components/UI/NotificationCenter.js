@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Toast from "toast"
 import { deleteNotification } from "../../actions";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -16,18 +17,6 @@ const Toast = (props) => {
   // useEffect(() => {
   //   console.log("from Toast.js", props);
   // });
-
-  useEffect(() => {
-    const interval = setTimeout(() => {
-      console.log(notifications);
-      if (notifications.length) {
-        delNotification(notifications[0].id);
-      }
-    }, 4000);
-    return () => {
-      clearTimeout(interval);
-    };
-  });
 
   return (
     <>
