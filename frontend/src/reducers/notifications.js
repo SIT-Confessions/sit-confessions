@@ -9,9 +9,17 @@ const notificationsReducer = (state = initialState, action) => {
     case "GETNOTIFICATIONS":
       return state;
     case "ADDNOTIFICATION":
-      return { ...state, notifications: [ ...state.notifications, action.payload ] };
+      return {
+        ...state,
+        notifications: [...state.notifications, action.payload],
+      };
     case "DELETENOTIFICATION":
-      return { ...state, notifications: action.payload };
+      return {
+        ...state,
+        notifications:
+          state.notifications.filter((notification) => notification.id !== action.payload)
+        ,
+      };
     default:
       return state;
   }
