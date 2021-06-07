@@ -11,7 +11,7 @@ const notificationsReducer = (state = initialState, action) => {
     case "ADDNOTIFICATION":
       return { ...state, notifications: [ ...state.notifications, action.payload ] };
     case "DELETENOTIFICATION":
-      return { ...state, notifications: [ ...state.notifications, action.payload ] };
+      return { ...state, notifications: action.payload };
     default:
       return state;
   }

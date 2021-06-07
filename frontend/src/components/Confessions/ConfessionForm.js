@@ -3,6 +3,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { addNotification } from "../../actions";
+import { v4 as uuidv4 } from 'uuid';
 
 const api = axios.create({
   baseURL: `http://localhost:5000/api/`,
@@ -23,12 +24,12 @@ const ConfessionForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let data = userInput.enteredConfession;
-    let confessionJSON = { text: data };
-    let res = await api.post('/confessions', confessionJSON)
+    // let data = userInput.enteredConfession;
+    // let confessionJSON = { text: data };
+    // let res = await api.post('/confessions', confessionJSON)
     clearInputs();
     ShowNotification({
-      id: 1,
+      id: uuidv4(),
       title: "Successfully Submitted!",
       message: "Your confession has been submitted for approval!",
       type: "success",

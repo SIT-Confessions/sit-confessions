@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { deleteNotification } from "../../actions";
 
 const Toast = (props) => {
   let notifications = props.data;
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log("from Toast.js", props);
-  });
+  const delNotification = id => {
+    const index = notifications.findIndex(e => e.id === id);
+    notifications.splice(index, 1);
+    dispatch(deleteNotification(notifications));
+  };
+
+  // useEffect(() => {
+  //   console.log("from Toast.js", props);
+  // });
 
   return (
     <>
     { notifications.length > 0 && (
-      <div className="flex flex-col max-h-max fixed z-50">
+      <div className="flex flex-col max-h-max fixed z-50 top-30 right-10">
             { notifications.map((item) => (
-                <div className="flex-shrink-0 items-center bg-gray-50 items-start sm:w-full max-w-max dark:bg-dark-gray mb-3">
+                <div className="flex-shrink-0 items-center sm:w-full max-w-max mb-3">
                 <div class="flow-root shadow-lg border border-opacity-50 rounded-xl p-4 dark:border-gray-600 bg-white relative overflow-hidden dark:bg-dark-gray-lightest flex-row grid grid-flow-col">
                   <div className="max-w-min mr-2 flex-none">
                     <svg
@@ -44,7 +51,7 @@ const Toast = (props) => {
                     </p>
                   </div>
                   <div className="flex-none max-w-min">
-                    <button className="ml-2">
+                    <button className="ml-2" onClick={() => delNotification(item.id)}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5 fill-current text-gray-400"
