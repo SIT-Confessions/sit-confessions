@@ -50,7 +50,7 @@ const Toast = (props) => {
         <div className="sm:min-w-0 max-w-full flex-grow flex-wrap">
           <div className="flex">
             <p class="text-gray-800 dark:text-gray-50 text-sm font-medium mb-2">
-              {props.data.id}
+              {props.data.title}
             </p>
           </div>
 

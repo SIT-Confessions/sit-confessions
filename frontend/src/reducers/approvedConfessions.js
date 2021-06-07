@@ -7,7 +7,7 @@ const initialState = {
 const approvedConfessionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GETAPPROVEDCONFESSIONS":
-      return state;
+      return { ...state };
     case "SETAPPROVEDCONFESSIONS":
       return { ...state, posts: action.payload };
     default:
