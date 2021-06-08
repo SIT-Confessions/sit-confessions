@@ -226,6 +226,7 @@ const Index = () => {
       dispatch(setAllConfessions(resultData));
     };
     getData();
+    console.log("conf", confessions)
   }, []);
 
   const closeDescriptionCard = () => {
@@ -309,18 +310,16 @@ const Index = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {people.map((person) => (
-                      <tr key={person.email}>
+                    {confessions.posts.map((confession) => (
+                      <tr key="1">
                         <td className="px-6 py-4 whitespace-nowrap text-gray-600">
-                          #435
+                          #{confession._id}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">
-                            {person.title}
-                          </div>
-                          <div className="text-sm text-gray-500">
-                            {person.department}
-                          </div>
+                          <p className="text-sm text-gray-900 max-w-lg truncate">
+                            {confession.text}
+                          </p>
+
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm">
                           14 April 2021, 2.06PM
@@ -331,7 +330,7 @@ const Index = () => {
                           </span>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {person.role}
+                          
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <a
