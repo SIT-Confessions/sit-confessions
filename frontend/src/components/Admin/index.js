@@ -7,7 +7,8 @@ import { getAllConfessions, setAllConfessions } from "../../actions";
 import * as dayjs from "dayjs";
 
 const TestModal = (props) => {
-  let open = props.data.isOpen;
+  let open = props.isOpen;
+  let data = props.data;
 
   const setOpen = () => {
     props.closeModal();
@@ -62,7 +63,7 @@ const TestModal = (props) => {
                       Confession Details
                     </h3>
                     <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                      View information about confession #451
+                      View information about confession #{data._id}
                     </p>
                   </div>
                   <div className="border-t border-gray-200">
@@ -72,22 +73,7 @@ const TestModal = (props) => {
                           Confession Message
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          Fugiat ipsum ipsum deserunt culpa aute sint do nostrud
-                          anim incididunt cillum culpa consequat. Excepteur qui
-                          ipsum aliquip consequat sint. Sit id mollit nulla
-                          mollit nostrud in ea officia proident. Irure nostrud
-                          pariatur mollit ad adipisicing reprehenderit deserunt
-                          qui eu.Fugiat ipsum ipsum deserunt culpa aute sint do
-                          nostrud anim incididunt cillum culpa consequat.
-                          Excepteur qui ipsum aliquip consequat sint. Sit id
-                          mollit nulla mollit nostrud in ea officia proident.
-                          Irure nostrud pariatur mollit ad adipisicing
-                          reprehenderit deserunt qui eu.Fugiat ipsum ipsum
-                          deserunt culpa aute sint do nostrud anim incididunt
-                          cillum culpa consequat. Excepteur qui ipsum aliquip
-                          consequat sint. Sit id mollit nulla mollit nostrud in
-                          ea officia proident. Irure nostrud pariatur mollit ad
-                          adipisicing reprehenderit deserunt qui eu.
+                          {data.text}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b">
@@ -95,7 +81,9 @@ const TestModal = (props) => {
                           Submitted On
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          14 April 2021, 2.06PM
+                          {dayjs(data.createdAt).format(
+                            "D MMM YYYY, h:HH:ss A"
+                          )}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b">
@@ -103,9 +91,15 @@ const TestModal = (props) => {
                           Status
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            Active
-                          </span>
+                          {data.approved === true ? (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                              Approved
+                            </span>
+                          ) : (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                              Not Approved
+                            </span>
+                          )}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b">
@@ -152,71 +146,9 @@ const TestModal = (props) => {
   );
 };
 
-const DescriptionCard = () => {
-  return (
-    <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-      <div className="px-4 py-5 sm:px-6">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">
-          Applicant Information
-        </h3>
-        <p className="mt-1 max-w-2xl text-sm text-gray-500">
-          Personal details and application.
-        </p>
-      </div>
-      <div className="border-t border-gray-200">
-        <dl>
-          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">Full name</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              Margot Foster
-            </dd>
-          </div>
-          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">
-              Application for
-            </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              Backend Developer
-            </dd>
-          </div>
-          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">Email address</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              margotfoster@example.com
-            </dd>
-          </div>
-          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">
-              Salary expectation
-            </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              $120,000
-            </dd>
-          </div>
-          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">About</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-              incididunt cillum culpa consequat. Excepteur qui ipsum aliquip
-              consequat sint. Sit id mollit nulla mollit nostrud in ea officia
-              proident. Irure nostrud pariatur mollit ad adipisicing
-              reprehenderit deserunt qui eu.
-            </dd>
-          </div>
-          <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">Attachments</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <button>Approve</button>
-            </dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  );
-};
-
 const Index = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [confessionDetails, setConfessionDetails] = useState({});
   const confessions = useSelector((state) => state.allConfessions);
   const dispatch = useDispatch();
 
@@ -230,45 +162,24 @@ const Index = () => {
     console.log("conf", confessions);
   }, []);
 
+  const SetDetailsOnModal = (data) => {
+    setConfessionDetails((prevState) => {
+      return data;
+    });
+    setOpen(true);
+  };
+
   const closeDescriptionCard = () => {
     setOpen(false);
   };
 
-  const people = [
-    {
-      name: "Jane Cooper",
-      title: "Regional Paradigm Technician",
-      department: "Optimization",
-      email: "jane.cooper@example.com",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-    },
-    {
-      name: "Jane Cooper",
-      title: "Regional Paradigm Technician",
-      department: "Optimization",
-      email: "jane.cooper@example.com",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-    },
-    {
-      name: "Jane Cooper",
-      title: "Regional Paradigm Technician",
-      department: "Optimization",
-      email: "jane.cooper@example.com",
-      image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-    },
-    // More people...
-  ];
-
-  const viewMore = (id) => {
-    alert(id);
-  };
-
   return (
     <div className="px-4 sm:px-0">
-      <TestModal data={{ isOpen: open }} closeModal={closeDescriptionCard} />
+      <TestModal
+        isOpen={open}
+        data={confessionDetails}
+        closeModal={closeDescriptionCard}
+      />
       <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-5">
         Welcome to the dashboard, Admin!
       </h1>
@@ -312,7 +223,7 @@ const Index = () => {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {confessions.posts.map((confession) => (
-                      <tr key="1">
+                      <tr key={confession._id}>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-600">
                           #{confession._id}
                         </td>
@@ -322,7 +233,9 @@ const Index = () => {
                           </p>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm">
-                          {dayjs(confession.createdAt).format('D MMM YYYY, h:HH:ss A')}
+                          {dayjs(confession.createdAt).format(
+                            "D MMM YYYY, h:HH:ss A"
+                          )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           {confession.approved === true ? (
@@ -340,7 +253,7 @@ const Index = () => {
                           <a
                             href="#"
                             className="text-indigo-600 hover:text-indigo-900"
-                            onClick={() => viewMore(1)}
+                            onClick={() => SetDetailsOnModal(confession)}
                           >
                             View more
                           </a>
