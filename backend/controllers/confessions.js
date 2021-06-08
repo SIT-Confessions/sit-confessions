@@ -1,6 +1,7 @@
-import { validationResult } from "express-validator";
-
+import FB from "fb";
+import config from "config";
 import Confession from "../models/Confession.js";
+import { validationResult } from "express-validator";
 
 /**
  * Create a new confession post into db.
@@ -100,6 +101,9 @@ export const approveConfession = async (req, res) => {
       confession.approved = true;
       confession.approvedBy = req.user.id;
       confession.approvedDate = new Date().toISOString();
+      const result = await postToFB(`#${confession.id}: ${confession.text}`);
+      const ids = result.split("_");
+      confession.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
       await confession.save();
     }
 
@@ -135,4 +139,10 @@ export const rejectConfession = async (req, res) => {
     console.error(err.message);
     res.status(500).send("Server error");
   }
+};
+
+const postToFB = async (msg) => {
+  FB.setAccessToken(config.get("fbAccessToken"));
+  const res = await FB.api("/106073301704468/feed", "POST", { message: msg });
+  return res.id;
 };

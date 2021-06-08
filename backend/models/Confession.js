@@ -7,6 +7,9 @@ const ConfessionSchema = new Schema({
     type: String,
     required: true,
   },
+  fbURL: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
