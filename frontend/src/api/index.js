@@ -1,6 +1,6 @@
-import axios from "axios";
+import API from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000/api" });
+API.defaults.baseURL = "http://localhost:5000/api";
 
 export const GetApprovedConfessions = async () => {
   let res = await API.get("/confessions/approved")
@@ -20,4 +20,8 @@ export const login = (formData) => {
 
   const body = JSON.stringify(formData);
   return API.post("/auth", body, config);
+};
+
+export const getUser = () => {
+  return API.get("/auth");
 };

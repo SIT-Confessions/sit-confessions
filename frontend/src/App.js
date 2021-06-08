@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
@@ -12,6 +12,9 @@ import Login from "./components/Admin/Login";
 import PrivateRoute from "./components/Routing/PrivateRoute";
 import AdminHome from "./components/Admin";
 import NotificationCenter from "./components/UI/NotificationCenter";
+import setAuthToken from "./utils/setAuthToken";
+import { loadUser } from "./actions/auth";
+import store from "./store";
 
 function App() {
   const notificationsData = useSelector((state) => state.notifications);
@@ -25,8 +28,8 @@ function App() {
   };
 
   useEffect(() => {
-    //Do Something
-  });
+    store.dispatch(loadUser());
+  }, []);
 
   return (
     <Router>
@@ -36,7 +39,7 @@ function App() {
       </Helmet>
       <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode}></Navbar>
       <div className="container mx-auto py-10">
-        <NotificationCenter data={ notificationsData.notifications } />
+        <NotificationCenter data={notificationsData.notifications} />
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route
@@ -44,7 +47,11 @@ function App() {
             exact
             component={ConfessionForm}
           ></Route>
-          <PrivateRoute path="/dashboard" exact component={AdminHome}></PrivateRoute>
+          <PrivateRoute
+            path="/dashboard"
+            exact
+            component={AdminHome}
+          ></PrivateRoute>
           <Route path="/login" exact component={Login}></Route>
           <Route component={NotFound}></Route>
         </Switch>

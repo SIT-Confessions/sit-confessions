@@ -1,3 +1,4 @@
+import setAuthToken from "../utils/setAuthToken";
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -7,6 +8,27 @@ import {
 } from "../constants/types";
 import * as api from "../api";
 
+// Load User
+export const loadUser = () => async (dispatch) => {
+  if (localStorage.getItem("token")) {
+    setAuthToken(localStorage.getItem("token"));
+  }
+
+  try {
+    const res = await api.getUser();
+
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
+
+// Login User
 export const login = (formData) => async (dispatch) => {
   try {
     const res = await api.login(formData);
@@ -26,4 +48,5 @@ export const login = (formData) => async (dispatch) => {
   }
 };
 
+// Logout User
 export const logout = () => async (dispatch) => dispatch({ type: LOGOUT });
