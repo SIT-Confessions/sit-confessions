@@ -4,6 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import SummaryCard from "./SummaryCard.js";
 import { GetAllConfessions } from "../../api";
 import { getAllConfessions, setAllConfessions } from "../../actions";
+import * as dayjs from "dayjs";
 
 const TestModal = (props) => {
   let open = props.data.isOpen;
@@ -321,7 +322,7 @@ const Index = () => {
                           </p>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm">
-                          14 April 2021, 2.06PM
+                          {dayjs(confession.createdAt).format('D MMM YYYY, h:HH:ss A')}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           {confession.approved === true ? (
@@ -341,7 +342,7 @@ const Index = () => {
                             className="text-indigo-600 hover:text-indigo-900"
                             onClick={() => viewMore(1)}
                           >
-                            View More
+                            View more
                           </a>
                         </td>
                       </tr>
