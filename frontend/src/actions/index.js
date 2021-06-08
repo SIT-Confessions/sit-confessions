@@ -11,6 +11,19 @@ export const setApprovedConfessions = (data) => {
     };
 };
 
+export const getAllConfessions = () => {
+    return {
+        type: 'GETALLCONFESSIONS'
+    };
+};
+
+export const setAllConfessions = (data) => {
+    return {
+        type: 'SETALLCONFESSIONS',
+        payload: data
+    };
+};
+
 export const getNotifications = () => {
     return {
         type: 'GETNOTIFICATIONS'
