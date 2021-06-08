@@ -12,7 +12,6 @@ import Login from "./components/Admin/Login";
 import PrivateRoute from "./components/Routing/PrivateRoute";
 import AdminHome from "./components/Admin";
 import NotificationCenter from "./components/UI/NotificationCenter";
-import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import store from "./store";
 
