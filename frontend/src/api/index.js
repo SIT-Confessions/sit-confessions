@@ -11,6 +11,14 @@ export const GetApprovedConfessions = async () => {
   return res.data;
 };
 
+export const GetAllConfessions = async () => {
+  //let resultData;
+  let res = await API.get("/confessions")
+    .then((res) => res)
+    .catch((err) => err)
+  return res.data;
+};
+
 export const login = (formData) => {
   const config = {
     headers: {
