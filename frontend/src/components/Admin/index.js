@@ -222,11 +222,11 @@ const Index = () => {
   useEffect(() => {
     let getData = async () => {
       let resultData = await GetAllConfessions();
-      console.log("Test console from Admin", resultData)
+      console.log("Test console from Admin", resultData);
       dispatch(setAllConfessions(resultData));
     };
     getData();
-    console.log("conf", confessions)
+    console.log("conf", confessions);
   }, []);
 
   const closeDescriptionCard = () => {
@@ -319,19 +319,22 @@ const Index = () => {
                           <p className="text-sm text-gray-900 max-w-lg truncate">
                             {confession.text}
                           </p>
-
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm">
                           14 April 2021, 2.06PM
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            Active
-                          </span>
+                          {confession.approved === true ? (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                              Approved
+                            </span>
+                          ) : (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                              Not Approved
+                            </span>
+                          )}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          
-                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <a
                             href="#"
