@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import SummaryCard from "./SummaryCard.js";
 import { GetAllConfessions } from "../../api";
+import { getAllConfessions, setAllConfessions } from "../../actions";
 
 const TestModal = (props) => {
   let open = props.data.isOpen;
@@ -215,12 +216,14 @@ const DescriptionCard = () => {
 
 const Index = () => {
   const [open, setOpen] = useState(true);
+  const confessions = useSelector((state) => state.allConfessions);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let getData = async () => {
       let resultData = await GetAllConfessions();
       console.log("Test console from Admin", resultData)
-      //dispatch(setApprovedConfessions(resultData));
+      dispatch(setAllConfessions(resultData));
     };
     getData();
   }, []);
@@ -273,7 +276,7 @@ const Index = () => {
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
               <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
+                <table className="min-w-full divide-y divide-gray-200 table-auto">
                   <thead className="bg-gray-50">
                     <tr>
                       <th
@@ -318,6 +321,9 @@ const Index = () => {
                           <div className="text-sm text-gray-500">
                             {person.department}
                           </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                          14 April 2021, 2.06PM
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
