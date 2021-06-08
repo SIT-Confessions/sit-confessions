@@ -24,9 +24,9 @@ const ConfessionForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let data = userInput.enteredConfession;
-    let confessionJSON = { text: data };
-    let res = await api.post('/confessions', confessionJSON)
+    // let data = userInput.enteredConfession;
+    // let confessionJSON = { text: data };
+    // let res = await api.post('/confessions', confessionJSON)
     clearInputs();
     ShowNotification({
       id: uuidv4(),
