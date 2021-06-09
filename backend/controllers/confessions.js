@@ -2,6 +2,8 @@ import FB from "fb";
 import config from "config";
 import Confession from "../models/Confession.js";
 import { validationResult } from "express-validator";
+import { APPROVED, REJECTED } from "../constants/status.js";
+import { decode } from "html-entities";
 
 /**
  * Create a new confession post into db.
@@ -49,7 +51,7 @@ export const getAllConfessions = async (req, res) => {
  */
 export const getApprovedConfessions = async (req, res) => {
   try {
-    const confessions = await Confession.find({ approved: true }).sort({
+    const confessions = await Confession.find({ status: APPROVED }).sort({
       createdAt: -1,
     });
     res.json(confessions);
@@ -85,7 +87,7 @@ export const getConfession = async (req, res) => {
 /**
  * Approve a confession post.
  *
- * Set the approved attribute to true.
+ * Set the status attribute to approved.
  *
  * @returns {json} Message of update results
  */
@@ -97,16 +99,17 @@ export const approveConfession = async (req, res) => {
     }
 
     // Approve confession
-    if (!confession.approved) {
-      confession.approved = true;
+    if (confession.status !== APPROVED) {
+      confession.status = APPROVED;
       confession.approvedBy = req.user.id;
       confession.approvedDate = new Date().toISOString();
-      const result = await postToFB(`#${confession.id}: ${confession.text}`);
+      const result = await postToFB(
+        `#${confession.id}: ${decode(confession.text)}`
+      );
       const ids = result.split("_");
       confession.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
       await confession.save();
     }
-
     res.status(200).json({ msg: "Confession approved" });
   } catch (err) {
     console.error(err.message);
@@ -117,7 +120,7 @@ export const approveConfession = async (req, res) => {
 /**
  * Reject a confession.
  *
- * Set approved attribute to false
+ * Set status attribute to rejected
  *
  * @returns {json} Message of update results
  */
@@ -128,9 +131,11 @@ export const rejectConfession = async (req, res) => {
       return res.status(404).json({ msg: "Confession not found" });
     }
 
-    // Approve confession
-    if (confession.approved) {
-      confession.approved = false;
+    // Reject confession
+    if (confession.status !== REJECTED) {
+      confession.status = REJECTED;
+      confession.rejectedBy = req.user.id;
+      confession.rejectedDate = new Date().toISOString();
       await confession.save();
     }
 
