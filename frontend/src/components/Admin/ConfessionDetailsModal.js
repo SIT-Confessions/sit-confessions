@@ -81,7 +81,7 @@ const ConfessionDetailsModal = (props) => {
                         <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
                           Confession Message
                         </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100 whitespace-pre-line">
                           {data.text}
                         </dd>
                       </div>

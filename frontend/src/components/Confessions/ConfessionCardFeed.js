@@ -15,7 +15,7 @@ const ConfessionCard = (props) => {
           <p class="text-gray-800 dark:text-gray-50 text-lg font-medium mb-2">
             #{itemData._id}
           </p>
-          <p class="text-gray-600 dark:text-gray-200 text-sm">
+          <p class="text-gray-600 dark:text-gray-200 text-sm whitespace-pre-line">
             {itemData.text}
           </p>
           <div className="flex mt-4 justify-between">
