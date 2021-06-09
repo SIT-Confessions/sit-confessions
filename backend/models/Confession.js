@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import { MongooseAutoIncrementID } from "mongoose-auto-increment-reworked";
+import { PENDING } from "../constants/status.js";
+
 const Schema = mongoose.Schema;
 
 const ConfessionSchema = new Schema({
@@ -14,15 +16,22 @@ const ConfessionSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  approved: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    default: PENDING,
   },
   approvedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
   approvedDate: {
+    type: Date,
+  },
+  rejectedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
+  rejectedDate: {
     type: Date,
   },
 });
