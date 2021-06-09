@@ -1,152 +1,10 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Dialog, Transition } from "@headlessui/react";
-import SummaryCard from "./SummaryCard.js";
+import ConfessionDetailsModal from "./ConfessionDetailsModal";
+import SummaryCard from "./SummaryCard";
 import { GetAllConfessions } from "../../api";
 import { getAllConfessions, setAllConfessions } from "../../actions";
 import * as dayjs from "dayjs";
-
-const TestModal = (props) => {
-  let open = props.isOpen;
-  let data = props.data;
-
-  const setOpen = () => {
-    props.closeModal();
-  };
-
-  const cancelButtonRef = useRef(null);
-  const approveButtonRef = useRef(null)
-
-  return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        static
-        className="fixed z-10 inset-0 overflow-y-auto"
-        initialFocus={approveButtonRef}
-        open={open}
-        onClose={setOpen}
-      >
-        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-          </Transition.Child>
-
-          {/* This element is to trick the browser into centering the modal contents. */}
-          <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
-            aria-hidden="true"
-          >
-            &#8203;
-          </span>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            enterTo="opacity-100 translate-y-0 sm:scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          >
-            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle md:max-w-2xl lg:max-w-4xl sm:max-w-lg sm:w-full">
-              <div className="bg-white">
-                <div className="bg-white shadow overflow-hidden">
-                  <div className="px-4 py-5 sm:px-6">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900">
-                      Confession Details
-                    </h3>
-                    <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                      View information about confession #{data._id}
-                    </p>
-                  </div>
-                  <div className="border-t border-gray-200">
-                    <dl>
-                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b">
-                        <dt className="text-sm font-medium text-gray-500">
-                          Confession Message
-                        </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          {data.text}
-                        </dd>
-                      </div>
-                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b">
-                        <dt className="text-sm font-medium text-gray-500">
-                          Submitted On
-                        </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          {dayjs(data.createdAt).format(
-                            "D MMM YYYY, h:HH:ss A"
-                          )}
-                        </dd>
-                      </div>
-                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b">
-                        <dt className="text-sm font-medium text-gray-500">
-                          Status
-                        </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          {data.approved === true ? (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                              Approved
-                            </span>
-                          ) : (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                              Not Approved
-                            </span>
-                          )}
-                        </dd>
-                      </div>
-                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b">
-                        <dt className="text-sm font-medium text-gray-500">
-                          Reason for Rejection
-                        </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          Explicit Content
-                        </dd>
-                      </div>
-                    </dl>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button
-                  type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => setOpen(false)}
-                  ref={approveButtonRef}
-                >
-                  Approve
-                </button>
-                <button
-                  type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => setOpen(false)}
-                >
-                  Reject
-                </button>
-                <button
-                  type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => setOpen(false)}
-                  ref={cancelButtonRef}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </Transition.Child>
-        </div>
-      </Dialog>
-    </Transition.Root>
-  );
-};
 
 const Index = () => {
   const [open, setOpen] = useState(false);
@@ -171,16 +29,16 @@ const Index = () => {
     setOpen(true);
   };
 
-  const closeDescriptionCard = () => {
+  const closeDescriptionModal = () => {
     setOpen(false);
   };
 
   return (
     <div className="px-4 sm:px-0">
-      <TestModal
+      <ConfessionDetailsModal
         isOpen={open}
         data={confessionDetails}
-        closeModal={closeDescriptionCard}
+        closeModal={closeDescriptionModal}
       />
       <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-5">
         Welcome to the dashboard, Admin!
@@ -190,71 +48,74 @@ const Index = () => {
         <div className="flex flex-col">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 table-auto">
-                  <thead className="bg-gray-50">
-                    <tr>
+              <div className="shadow overflow-hidden border-b border-gray-200 dark:border-dark-gray-darkest sm:rounded-lg dark:bg-dark-gray-light">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
+                  <thead className="bg-gray-50 dark:bg-dark-gray-lighter">
+                    <tr className="">
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                       >
                         Confession ID
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                       >
                         Confession Preview
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                       >
                         Submitted
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                       >
                         Status
                       </th>
-                      <th scope="col" className="relative px-6 py-3">
-                        <span className="sr-only">Edit</span>
+                      <th scope="col" className="relative px-6 py-3 max-w-max">
+                        <span className="sr-only">View more</span>
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-dark-gray-dark">
                     {confessions.posts.map((confession) => (
                       <tr key={confession._id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-gray-600">
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-200">
                           #{confession._id}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <p className="text-sm text-gray-900 max-w-lg truncate">
+                          <p className="text-sm text-gray-900 max-w-lg truncate dark:text-gray-200">
                             {confession.text}
                           </p>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-200">
                           {dayjs(confession.createdAt).format(
                             "D MMM YYYY, h:HH:ss A"
                           )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          {confession.approved === true ? (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                          {confession.status === "APPROVED" ? (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
                               Approved
                             </span>
+                          ) : confession.status === "PENDING" ? (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
+                              Pending Approval
+                            </span>
                           ) : (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                              Not Approved
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-300 dark:text-red-900">
+                              Rejected
                             </span>
                           )}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <a
                             href="#"
-                            className="text-indigo-600 hover:text-indigo-900"
+                            className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-500 dark:hover:text-indigo-400"
                             onClick={() => SetDetailsOnModal(confession)}
                           >
                             View more
