@@ -29,7 +29,7 @@ const Index = () => {
     setOpen(true);
   };
 
-  const closeDescriptionCard = () => {
+  const closeDescriptionModal = () => {
     setOpen(false);
   };
 
@@ -38,7 +38,7 @@ const Index = () => {
       <ConfessionDetailsModal
         isOpen={open}
         data={confessionDetails}
-        closeModal={closeDescriptionCard}
+        closeModal={closeDescriptionModal}
       />
       <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-5">
         Welcome to the dashboard, Admin!
@@ -98,13 +98,17 @@ const Index = () => {
                           )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          {confession.approved === true ? (
+                          {confession.status === "APPROVED" ? (
                             <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                               Approved
                             </span>
-                          ) : (
+                          ) : confession.status === "PENDING" ? (
                             <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                              Not Approved
+                              Pending Approval
+                            </span>
+                          ) : (
+                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                              Rejected
                             </span>
                           )}
                         </td>
