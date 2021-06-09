@@ -20,7 +20,8 @@ const ConfessionCard = (props) => {
           </p>
           <div className="flex mt-4 justify-between">
             <a
-              href="#"
+              href={itemData.fbURL}
+              target="_blank"
               className="text-sm text-indigo-600 dark:text-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-400"
             >
               View on Facebook
