@@ -1,7 +1,7 @@
 import React, { Fragment, useRef } from "react";
 import * as dayjs from "dayjs";
 import { Dialog, Transition } from "@headlessui/react";
-import { ApproveConfession } from "../../api";
+import { ApproveConfession, RejectConfession } from "../../api";
 
 const ConfessionDetailsModal = (props) => {
   let open = props.isOpen;
@@ -14,6 +14,11 @@ const ConfessionDetailsModal = (props) => {
   const approveConfession = (id) => {
     const result = ApproveConfession(id);
     console.log("printed from confession Modal", result);
+    props.closeModal();
+  };
+
+  const rejectConfession = (id) => {
+    const result = RejectConfession(id);
     props.closeModal();
   };
 
@@ -128,7 +133,7 @@ const ConfessionDetailsModal = (props) => {
                     <button
                       type="button"
                       className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                      onClick={() => setOpen(false)}
+                      onClick={() => rejectConfession(data._id)}
                     >
                       Reject
                     </button>

@@ -28,6 +28,11 @@ export const ApproveConfession = async (id) => {
   return result.msg;
 };
 
+export const RejectConfession = async (id) => {
+  const result = await API.put("/confessions/reject/" + id)
+  return result.msg;
+};
+
 export const login = (formData) => {
   const config = {
     headers: {
