@@ -15,8 +15,22 @@ export const GetAllConfessions = async () => {
   //let resultData;
   let res = await API.get("/confessions")
     .then((res) => res)
-    .catch((err) => err)
+    .catch((err) => err);
   return res.data;
+};
+
+export const ApproveConfession = async (id) => {
+  // const res = await API.put("/confessions/approve/" + id)
+  //   .then((res) => res)
+  //   .catch((err) => err);
+  // return res.msg;
+  const result = await API.put("/confessions/approve/" + id)
+  return result.msg;
+};
+
+export const RejectConfession = async (id) => {
+  const result = await API.put("/confessions/reject/" + id)
+  return result.msg;
 };
 
 export const login = (formData) => {

@@ -1,12 +1,24 @@
 import React, { Fragment, useRef } from "react";
 import * as dayjs from "dayjs";
 import { Dialog, Transition } from "@headlessui/react";
+import { ApproveConfession, RejectConfession } from "../../api";
 
 const ConfessionDetailsModal = (props) => {
   let open = props.isOpen;
   let data = props.data;
 
   const setOpen = () => {
+    props.closeModal();
+  };
+
+  const approveConfession = (id) => {
+    const result = ApproveConfession(id);
+    console.log("printed from confession Modal", result);
+    props.closeModal();
+  };
+
+  const rejectConfession = (id) => {
+    const result = RejectConfession(id);
     props.closeModal();
   };
 
@@ -69,7 +81,7 @@ const ConfessionDetailsModal = (props) => {
                         <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
                           Confession Message
                         </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100 whitespace-pre-line">
                           {data.text}
                         </dd>
                       </div>
@@ -116,28 +128,37 @@ const ConfessionDetailsModal = (props) => {
                 </div>
               </div>
               <div className="bg-gray-50 dark:bg-dark-gray-lighter px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                {data.approved ? null : (
+                {data.status === "PENDING" ? (
                   <div>
                     <button
                       type="button"
                       className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                      onClick={() => setOpen(false)}
+                      onClick={() => rejectConfession(data._id)}
                     >
                       Reject
                     </button>
                     <button
                       type="button"
                       className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                      onClick={() => setOpen(false)}
+                      onClick={() => approveConfession(data._id)}
                       ref={approveButtonRef}
                     >
                       Approve
                     </button>
                   </div>
-                )}
+                ) : data.status === "REJECTED" ? (
+                  <button
+                    type="button"
+                    className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    onClick={() => approveConfession(data._id)}
+                    ref={approveButtonRef}
+                  >
+                    Approve
+                  </button>
+                ) : null}
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-200 dark:bg-dark-gray dark:hover:bg-dark-gray-lighter focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={() => setOpen(false)}
                   ref={cancelButtonRef}
                 >
