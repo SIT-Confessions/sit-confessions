@@ -12,6 +12,9 @@ const ConfessionSchema = new Schema({
   fbURL: {
     type: String,
   },
+  postedToFBAt: {
+    type: Date,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -161,6 +161,14 @@ export const rejectConfession = async (req, res) => {
   }
 };
 
+/**
+ * Post approved confessions to Facebook
+ *
+ * Retrieve a confession from the queue and
+ * post it to Facebook. Confession will be removed
+ * from queue once posted sucessfully
+ *
+ */
 export const postToFB = async () => {
   const session = await mongoose.startSession();
   try {
@@ -170,19 +178,16 @@ export const postToFB = async () => {
     if (!queue) return;
 
     const post = await Confession.findById(queue.post);
-    // Post to facebook
-    FB.setAccessToken(config.get("fbAccessToken"));
-    const res = await FB.api("/106073301704468/feed", "POST", {
-      message: `#${post.id}: ${decode(post.text)}`,
-    });
+    const res = await postFB(`#${post.id}: ${decode(post.text)}`);
 
     await queue.remove();
 
     // Get facebook post url
-    const ids = res.id.split("_");
+    const ids = res.split("_");
     post.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
-
+    post.postedToFBAt = new Date().toISOString();
     post.save();
+
     await session.commitTransaction();
 
     console.log(`Posting ${post.id} to facebook...`);
@@ -193,4 +198,19 @@ export const postToFB = async () => {
   } finally {
     session.endSession();
   }
+};
+
+/**
+ * Helper function to post a new status on Facebook page
+ *
+ * @param {*} msg
+ * @returns {int} Facebook post id
+ */
+const postFB = async (msg) => {
+  // Post to facebook
+  FB.setAccessToken(config.get("fbAccessToken"));
+  const res = await FB.api("/106073301704468/feed", "POST", {
+    message: msg,
+  });
+  return res.id;
 };
