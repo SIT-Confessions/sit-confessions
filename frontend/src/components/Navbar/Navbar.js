@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
@@ -12,6 +13,7 @@ import { MoonIcon as MoonIconSolid } from "@heroicons/react/solid";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../actions/auth";
 import { connect } from "react-redux";
+import { getThemePreference, setThemePreference } from "../../actions";
 // import { style } from "../../../craco.config";
 
 const navigation = [
@@ -29,18 +31,24 @@ function classNames(...classes) {
 }
 
 const Navbar = ({
-  toggleDarkMode,
   isDark,
   auth: { isAuthenticated },
   logout,
 }) => {
   const [isShown, setIsShown] = useState("hidden");
+  const dispatch = useDispatch();
+
   const toggleHamburger = () => {
     let nextState = "";
     setIsShown((prevState) => {
       if (prevState !== "hidden") nextState = "hidden";
       return nextState;
     });
+  };
+
+  const toggleDarkMode = () => {
+    localStorage.setItem('darkPreferred', !isDark);
+    dispatch(setThemePreference(!isDark));
   };
 
   const styles = {

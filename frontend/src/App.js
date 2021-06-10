@@ -17,14 +17,7 @@ import store from "./store";
 
 function App() {
   const notificationsData = useSelector((state) => state.notifications);
-
-  const [isDark, setIsDark] = useState(false);
-
-  const toggleDarkMode = () => {
-    setIsDark((prevState) => {
-      return !prevState;
-    });
-  };
+  const isDark = useSelector((state) => state.darkPreferred);
 
   useEffect(() => {
     store.dispatch(loadUser());
@@ -36,7 +29,7 @@ function App() {
         {isDark === false ? <html className="" /> : <html className="dark" />}
         <body className="bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
-      <Navbar isDark={isDark} toggleDarkMode={toggleDarkMode}></Navbar>
+      <Navbar isDark={isDark}></Navbar>
       <div className="container mx-auto py-10">
         <NotificationCenter data={notificationsData.notifications} />
         <Switch>

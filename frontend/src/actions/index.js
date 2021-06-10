@@ -43,3 +43,16 @@ export const deleteNotification = (data) => {
         payload: data
     }
 }
+
+export const getThemePreference = () => {
+    return {
+        type: 'GETTHEMEPREFERENCE'
+    }
+}
+
+export const setThemePreference = (data) => {
+    return {
+        type: 'SETTHEMEPREFERENCE',
+        payload: data
+    }
+}
