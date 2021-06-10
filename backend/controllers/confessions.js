@@ -151,3 +151,7 @@ const postToFB = async (msg) => {
   const res = await FB.api("/106073301704468/feed", "POST", { message: msg });
   return res.id;
 };
+
+export const postFBTest = () => {
+  console.log("Posting to facebook...");
+};
