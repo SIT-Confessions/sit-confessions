@@ -10,23 +10,29 @@ const api = axios.create({
 });
 
 const ConfessionForm = () => {
-  const [isValid, setIsValid] = useState(true);
+  const [textIsValid, setTextIsValid] = useState(true);
+  const [checkboxValid, setCheckboxValid] = useState(true);
   const dispatch = useDispatch();
 
   const [userInput, setUserInput] = useState({
     enteredConfession: "",
+    checkboxIsChecked: false,
   });
 
   const checkForm = () => {
-    if (userInput.enteredConfession === "") {
-      setIsValid(() => {
-        return false;
-      });
+    if (userInput.enteredConfession === "" || userInput.checkboxIsChecked === false) {
+      if (userInput.enteredConfession === "") {
+        setTextIsValid(() => {
+          return false;
+        });
+      }
+      if (userInput.checkboxIsChecked === false) {
+        setCheckboxValid(() => {
+          return false;
+        })
+      }
       return false;
     }
-    setIsValid(() => {
-      return true;
-    });
     return true;
   };
 
@@ -40,9 +46,9 @@ const ConfessionForm = () => {
     event.preventDefault();
     if (checkForm()) {
       // Passed validation
-      // let data = userInput.enteredConfession;
-      // let confessionJSON = { text: data };
-      // let res = await api.post('/confessions', confessionJSON)
+      let data = userInput.enteredConfession;
+      let confessionJSON = { text: data };
+      let res = await api.post('/confessions', confessionJSON)
       clearInputs();
       ShowNotification({
         id: uuidv4(),
@@ -63,9 +69,18 @@ const ConfessionForm = () => {
     });
   };
 
+  const checkBoxChangeHandler = (event) => {
+    setUserInput(prevState => {
+      return { ...prevState, checkboxIsChecked: event.target.checked };
+    })
+    setCheckboxValid(() => {
+      return event.target.checked;
+    })
+  }
+
   useEffect(() => {
     if (userInput.enteredConfession !== "") {
-      setIsValid(() => {
+      setTextIsValid(() => {
         return true;
       });
     }
@@ -118,15 +133,15 @@ const ConfessionForm = () => {
                         id="confession"
                         name="confession"
                         rows={10}
-                        className={"shadow-sm mt-1 block w-full sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md" + (isValid ? " focus:ring-indigo-500 focus:border-indigo-500" : " border-2 border-red-400 dark:border-red-400 focus:ring-red-500 focus:border-red-400")}
+                        className={"shadow-sm mt-1 block w-full sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md" + (textIsValid ? " focus:ring-indigo-500 focus:border-indigo-500" : " border-2 border-red-400 dark:border-red-400 focus:ring-red-500 focus:border-red-400")}
                         placeholder="Your wonderful story goes in here."
                         value={userInput.enteredConfession}
                         onChange={confessionChangeHandler}
                       />
                     </div>
-                    { isValid ? null : (<p className="mt-2 text-sm text-red-500">
+                    {textIsValid ? null : (<p className="mt-2 text-sm text-red-500">
                       Oh no, you cannot submit an empty confession!
-                    </p>) }
+                    </p>)}
                   </div>
 
                   <div className="flex items-start">
@@ -136,6 +151,7 @@ const ConfessionForm = () => {
                         name="agree"
                         type="checkbox"
                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        onChange={checkBoxChangeHandler}
                       />
                     </div>
                     <div className="ml-3 text-sm">
@@ -146,6 +162,23 @@ const ConfessionForm = () => {
                       </p>
                     </div>
                   </div>
+                  {checkboxValid ? null : (
+                  <div>
+                    <ul>
+                      <li class="flex items-center py-1">
+                        <div className="bg-red-200 text-red-700 rounded-full p-1 fill-current">
+                          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round"
+                              stroke-linejoin="round" stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </div>
+                        <span className="font-medium text-sm ml-3 text-red-500 dark:text-red-400">You need to confirm that you will not post hurtful or offensive content.</span>
+                      </li>
+                    </ul>
+                  </div>
+                  )}
+
                 </div>
                 <div className="px-4 py-3 bg-gray-100 dark:bg-dark-gray-lighter text-right sm:px-6">
                   <button
@@ -157,9 +190,9 @@ const ConfessionForm = () => {
                 </div>
               </div>
             </form>
-          </div>
-        </div>
-      </motion.div>
+          </div >
+        </div >
+      </motion.div >
     </>
   );
 };
