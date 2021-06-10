@@ -67,6 +67,21 @@ export const getApprovedConfessions = async (req, res) => {
 };
 
 /**
+ * Retrieve all queued confessions.
+ *
+ * @returns {json} All queued confessions
+ */
+export const getQueuedConfessions = async (req, res) => {
+  try {
+    const confessions = await Queue.find().sort({ date: "asc" });
+    res.json(confessions);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
+
+/**
  * Retrieve a confession based on id from db.
  *
  * @returns {json} Confession post details
@@ -111,6 +126,7 @@ export const approveConfession = async (req, res) => {
       confession.status = APPROVED;
       confession.approvedBy = req.user.id;
       confession.approvedDate = new Date().toISOString();
+      confession.isQueued = true;
 
       await confession.save();
       await Queue.create([{ post: confession._id }], {
@@ -186,11 +202,12 @@ export const postToFB = async () => {
     const ids = res.split("_");
     post.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
     post.postedToFBAt = new Date().toISOString();
+    post.isPostedToFB = true;
     post.save();
 
     await session.commitTransaction();
 
-    console.log(`Posting ${post.id} to facebook...`);
+    console.log(`Posting #${post.id} to facebook...`);
   } catch (err) {
     await session.abortTransaction();
 
@@ -209,7 +226,7 @@ export const postToFB = async () => {
 const postFB = async (msg) => {
   // Post to facebook
   FB.setAccessToken(config.get("fbAccessToken"));
-  const res = await FB.api("/106073301704468/feed", "POST", {
+  const res = await FB.api(`/${config.get("fbPageID")}/feed`, "POST", {
     message: msg,
   });
   return res.id;

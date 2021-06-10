@@ -9,6 +9,14 @@ const ConfessionSchema = new Schema({
     type: String,
     required: true,
   },
+  isQueued: {
+    type: Boolean,
+    default: false,
+  },
+  isPostedtoFB: {
+    type: Boolean,
+    default: false,
+  },
   fbURL: {
     type: String,
   },
