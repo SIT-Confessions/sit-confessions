@@ -26,7 +26,7 @@ function App() {
   return (
     <Router>
       <Helmet>
-        {isDark === false ? <html className="" /> : <html className="dark" />}
+        {isDark === false ? null : <html className="dark" />}
         <body className="bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
       <Navbar isDark={isDark}></Navbar>

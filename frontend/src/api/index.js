@@ -24,13 +24,13 @@ export const ApproveConfession = async (id) => {
   //   .then((res) => res)
   //   .catch((err) => err);
   // return res.msg;
-  const result = await API.put("/confessions/approve/" + id)
-  return result.msg;
+  const result = await API.put("/confessions/approve/" + id);
+  return result;
 };
 
 export const RejectConfession = async (id) => {
   const result = await API.put("/confessions/reject/" + id)
-  return result.msg;
+  return result;
 };
 
 export const login = (formData) => {

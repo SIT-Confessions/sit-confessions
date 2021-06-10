@@ -1,25 +1,44 @@
 import React, { Fragment, useRef } from "react";
+import { useDispatch } from "react-redux";
 import * as dayjs from "dayjs";
 import { Dialog, Transition } from "@headlessui/react";
 import { ApproveConfession, RejectConfession } from "../../api";
+import { addNotification } from "../../actions";
+import { v4 as uuidv4 } from 'uuid';
 
 const ConfessionDetailsModal = (props) => {
+  const dispatch = useDispatch();
   let open = props.isOpen;
   let data = props.data;
+
+  const ShowNotification = (data) => {
+    dispatch(addNotification(data));
+  };
 
   const setOpen = () => {
     props.closeModal();
   };
 
-  const approveConfession = (id) => {
-    const result = ApproveConfession(id);
-    console.log("printed from confession Modal", result);
+  const approveConfession = async (id) => {
+    const result = await ApproveConfession(id);
     props.closeModal();
+    ShowNotification({
+      id: uuidv4(),
+      title: "It's a Success!!",
+      message: result.data.msg,
+      type: "success",
+    });
   };
 
-  const rejectConfession = (id) => {
-    const result = RejectConfession(id);
+  const rejectConfession = async (id) => {
+    const result = await RejectConfession(id);
     props.closeModal();
+    ShowNotification({
+        id: uuidv4(),
+        title: "It's a Success!!",
+        message: result.data.msg,
+        type: "success",
+    });
   };
 
   const cancelButtonRef = useRef(null);
