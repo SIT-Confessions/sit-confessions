@@ -111,6 +111,7 @@ export const approveConfession = async (req, res) => {
       confession.status = APPROVED;
       confession.approvedBy = req.user.id;
       confession.approvedDate = new Date().toISOString();
+      confession.isQueued = true;
 
       await confession.save();
       await Queue.create([{ post: confession._id }], {
@@ -186,11 +187,12 @@ export const postToFB = async () => {
     const ids = res.split("_");
     post.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
     post.postedToFBAt = new Date().toISOString();
+    post.isPostedToFB = true;
     post.save();
 
     await session.commitTransaction();
 
-    console.log(`Posting ${post.id} to facebook...`);
+    console.log(`Posting #${post.id} to facebook...`);
   } catch (err) {
     await session.abortTransaction();
 
