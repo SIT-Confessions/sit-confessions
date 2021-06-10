@@ -6,6 +6,7 @@ import {
   createConfession,
   getAllConfessions,
   getApprovedConfessions,
+  getQueuedConfessions,
   getConfession,
   rejectConfession,
 } from "../controllers/confessions.js";
@@ -39,6 +40,14 @@ router.get("/", auth, getAllConfessions);
  * @access Public
  */
 router.get("/approved", getApprovedConfessions);
+
+/**
+ * Get all queued confessions
+ *
+ * @route GET api/confessions/queued
+ * @access Private
+ */
+router.get("/queued", auth, getQueuedConfessions);
 
 /**
  * Get confession by id

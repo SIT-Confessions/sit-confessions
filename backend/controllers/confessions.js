@@ -67,6 +67,21 @@ export const getApprovedConfessions = async (req, res) => {
 };
 
 /**
+ * Retrieve all queued confessions.
+ *
+ * @returns {json} All queued confessions
+ */
+export const getQueuedConfessions = async (req, res) => {
+  try {
+    const confessions = await Queue.find().sort({ date: "asc" });
+    res.json(confessions);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
+
+/**
  * Retrieve a confession based on id from db.
  *
  * @returns {json} Confession post details
