@@ -173,7 +173,7 @@ const ConfessionForm = () => {
                               d="M6 18L18 6M6 6l12 12" />
                           </svg>
                         </div>
-                        <span className="font-medium text-sm ml-3 text-red-500 dark:text-red-400">You need to confirm that you will not post hurtful or offensive content.</span>
+                        <span className="font-medium text-sm ml-3 text-red-500 dark:text-red-400">You need to agree that you will not post hurtful or offensive content.</span>
                       </li>
                     </ul>
                   </div>
