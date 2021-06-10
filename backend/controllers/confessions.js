@@ -185,8 +185,9 @@ export const postToFB = async () => {
     // Get facebook post url
     const ids = res.split("_");
     post.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
-
+    post.postedToFBAt = new Date().toISOString();
     post.save();
+
     await session.commitTransaction();
 
     console.log(`Posting ${post.id} to facebook...`);
