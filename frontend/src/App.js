@@ -35,7 +35,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route
-            path="/post-confession"
+            path="/post"
             exact
             component={ConfessionForm}
           ></Route>

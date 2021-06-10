@@ -10,11 +10,25 @@ const api = axios.create({
 });
 
 const ConfessionForm = () => {
+  const [isValid, setIsValid] = useState(true);
   const dispatch = useDispatch();
 
   const [userInput, setUserInput] = useState({
     enteredConfession: "",
   });
+
+  const checkForm = () => {
+    if (userInput.enteredConfession === "") {
+      setIsValid(() => {
+        return false;
+      });
+      return false;
+    }
+    setIsValid(() => {
+      return true;
+    });
+    return true;
+  };
 
   const clearInputs = () => {
     setUserInput(() => {
@@ -24,16 +38,19 @@ const ConfessionForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let data = userInput.enteredConfession;
-    let confessionJSON = { text: data };
-    let res = await api.post('/confessions', confessionJSON)
-    clearInputs();
-    ShowNotification({
-      id: uuidv4(),
-      title: "Successfully Submitted!",
-      message: "Your confession has been submitted for approval!",
-      type: "success",
-    });
+    if (checkForm()) {
+      // Passed validation
+      // let data = userInput.enteredConfession;
+      // let confessionJSON = { text: data };
+      // let res = await api.post('/confessions', confessionJSON)
+      clearInputs();
+      ShowNotification({
+        id: uuidv4(),
+        title: "Successfully Submitted!",
+        message: "Your confession has been submitted for approval!",
+        type: "success",
+      });
+    }
   };
 
   const ShowNotification = (data) => {
@@ -46,6 +63,14 @@ const ConfessionForm = () => {
     });
   };
 
+  useEffect(() => {
+    if (userInput.enteredConfession !== "") {
+      setIsValid(() => {
+        return true;
+      });
+    }
+  });
+
   return (
     <>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -53,7 +78,7 @@ const ConfessionForm = () => {
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
               <article className="prose dark:prose-dark">
-                <h2>Compose New Confession</h2>
+                <h2>Post Confession</h2>
                 <p>
                   Have an interesting story to share? Write it all down here!
                   Your post will be anonymous.
@@ -93,12 +118,15 @@ const ConfessionForm = () => {
                         id="confession"
                         name="confession"
                         rows={10}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md"
+                        className={"shadow-sm mt-1 block w-full sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md" + (isValid ? " focus:ring-indigo-500 focus:border-indigo-500" : " border-2 border-red-400 dark:border-red-400 focus:ring-red-500 focus:border-red-400")}
                         placeholder="Your wonderful story goes in here."
                         value={userInput.enteredConfession}
                         onChange={confessionChangeHandler}
                       />
                     </div>
+                    { isValid ? null : (<p className="mt-2 text-sm text-red-500">
+                      Oh no, you cannot submit an empty confession!
+                    </p>) }
                   </div>
 
                   <div className="flex items-start">

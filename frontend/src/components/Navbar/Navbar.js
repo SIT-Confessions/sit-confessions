@@ -88,7 +88,7 @@ const Navbar = ({
     {
       className: styles.className,
       activeStyle: styles.activeStyle,
-      to: "/post-confession",
+      to: "/post",
       name: "Post Confession",
     },
     {
