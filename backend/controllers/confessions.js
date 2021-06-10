@@ -53,7 +53,10 @@ export const getAllConfessions = async (req, res) => {
  */
 export const getApprovedConfessions = async (req, res) => {
   try {
-    const confessions = await Confession.find({ status: APPROVED }).sort({
+    const confessions = await Confession.find({
+      status: APPROVED,
+      fbURL: { $ne: null },
+    }).sort({
       createdAt: -1,
     });
     res.json(confessions);
