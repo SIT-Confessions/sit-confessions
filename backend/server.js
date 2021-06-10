@@ -8,7 +8,7 @@ import cron from "node-cron";
 import rateLimit from "express-rate-limit";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import { postFBTest } from "./controllers/confessions.js";
+import { postToFB } from "./controllers/confessions.js";
 
 import authRoute from "./routes/auth.js";
 import confessionRoute from "./routes/confessions.js";
@@ -44,7 +44,7 @@ app.use(helmet());
 app.use(morgan("combined", { stream: accessLogStream }));
 
 // Schedule task
-// cron.schedule("* * * * *", postFBTest);
+cron.schedule("*/15 * * * *", postToFB);
 
 app.get("/", (req, res) => res.send("API Running"));
 
