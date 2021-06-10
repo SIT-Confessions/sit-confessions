@@ -1,6 +1,8 @@
 import FB from "fb";
 import config from "config";
 import Confession from "../models/Confession.js";
+import Queue from "../models/Queue.js";
+import mongoose from "mongoose";
 import { validationResult } from "express-validator";
 import { APPROVED, REJECTED } from "../constants/status.js";
 import { decode } from "html-entities";
@@ -92,8 +94,11 @@ export const getConfession = async (req, res) => {
  * @returns {json} Message of update results
  */
 export const approveConfession = async (req, res) => {
+  const session = await mongoose.startSession();
   try {
+    session.startTransaction();
     const confession = await Confession.findById(req.params.id);
+
     if (!confession) {
       return res.status(404).json({ msg: "Confession not found" });
     }
@@ -103,17 +108,24 @@ export const approveConfession = async (req, res) => {
       confession.status = APPROVED;
       confession.approvedBy = req.user.id;
       confession.approvedDate = new Date().toISOString();
-      const result = await postToFB(
-        `#${confession.id}: ${decode(confession.text)}`
-      );
-      const ids = result.split("_");
-      confession.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
+
       await confession.save();
+      await Queue.create([{ post: confession._id }], {
+        session,
+      });
+
+      await session.commitTransaction();
     }
     res.status(200).json({ msg: "Confession approved" });
   } catch (err) {
+    // Rollback changes
+    console.log("Rolling back...");
+    await session.abortTransaction();
+
     console.error(err.message);
     res.status(500).send("Server error");
+  } finally {
+    session.endSession();
   }
 };
 
@@ -146,8 +158,36 @@ export const rejectConfession = async (req, res) => {
   }
 };
 
-const postToFB = async (msg) => {
-  FB.setAccessToken(config.get("fbAccessToken"));
-  const res = await FB.api("/106073301704468/feed", "POST", { message: msg });
-  return res.id;
+export const postToFB = async () => {
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+
+    const queue = await Queue.findOne();
+    if (!queue) return;
+
+    const post = await Confession.findById(queue.post);
+    // Post to facebook
+    FB.setAccessToken(config.get("fbAccessToken"));
+    const res = await FB.api("/106073301704468/feed", "POST", {
+      message: `#${post.id}: ${decode(post.text)}`,
+    });
+
+    await queue.remove();
+
+    // Get facebook post url
+    const ids = res.id.split("_");
+    post.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
+
+    post.save();
+    await session.commitTransaction();
+
+    console.log(`Posting ${post.id} to facebook...`);
+  } catch (err) {
+    await session.abortTransaction();
+
+    console.error(err.message);
+  } finally {
+    session.endSession();
+  }
 };
