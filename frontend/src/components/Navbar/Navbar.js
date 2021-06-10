@@ -47,7 +47,11 @@ const Navbar = ({
   };
 
   const toggleDarkMode = () => {
-    localStorage.setItem('darkPreferred', !isDark);
+    if (!isDark) {
+      localStorage.setItem('darkPreferred', 1);
+    } else {
+      localStorage.setItem('darkPreferred', 0);
+    }
     dispatch(setThemePreference(!isDark));
   };
 
