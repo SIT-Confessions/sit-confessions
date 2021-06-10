@@ -13,7 +13,6 @@ const Toast = (props) => {
   useEffect(() => {
     const interval = setTimeout(() => {
       //if (notifications.length) {
-      console.log("sam", notificationID)
       deleteBtn(notificationID);
       
     }, 4000);

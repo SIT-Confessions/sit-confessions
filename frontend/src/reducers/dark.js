@@ -4,7 +4,7 @@ const darkPreferred = localStorage.getItem('darkPreferred');
 
 if (!(darkPreferred === null || darkPreferred === undefined || darkPreferred.length === 0)) {
     //Initial Dark mode setting for existing users.
-    if (darkPreferred) {
+    if (parseInt(darkPreferred) === 1) {
         initialState = true;
     }
 }
