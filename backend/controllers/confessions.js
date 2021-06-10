@@ -211,7 +211,7 @@ export const postToFB = async () => {
 const postFB = async (msg) => {
   // Post to facebook
   FB.setAccessToken(config.get("fbAccessToken"));
-  const res = await FB.api("/106073301704468/feed", "POST", {
+  const res = await FB.api(`/${config.get("fbPageID")}/feed`, "POST", {
     message: msg,
   });
   return res.id;
