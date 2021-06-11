@@ -5,6 +5,7 @@ import SummaryCard from "./SummaryCard";
 import { GetAllConfessions } from "../../api";
 import { getAllConfessions, setAllConfessions } from "../../actions";
 import * as dayjs from "dayjs";
+import he from "he";
 
 const Index = () => {
   const [open, setOpen] = useState(false);
@@ -84,15 +85,15 @@ const Index = () => {
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-dark-gray-dark">
                     {confessions?.posts.map((confession) => (
                       <tr key={confession._id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-200">
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-200">
                           #{confession._id}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <p className="text-sm text-gray-900 max-w-lg truncate dark:text-gray-200">
-                            {confession.text}
+                          <p className="text-sm text-gray-700 max-w-lg truncate dark:text-gray-200">
+                            {he.decode(confession.text)}
                           </p>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-200">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
                           {dayjs(confession.createdAt).format(
                             "D MMM YYYY, h:HH:ss A"
                           )}
