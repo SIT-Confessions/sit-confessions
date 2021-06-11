@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import * as dayjs from "dayjs";
+import he from "he";
 
 let RelativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(RelativeTime);
@@ -16,7 +17,7 @@ const ConfessionCard = (props) => {
             #{itemData._id}
           </p>
           <p class="text-gray-600 dark:text-gray-200 text-md whitespace-pre-line font-medium">
-            {itemData.text}
+            {he.decode(itemData.text)}
           </p>
           <div className="flex mt-4 justify-between">
             <a

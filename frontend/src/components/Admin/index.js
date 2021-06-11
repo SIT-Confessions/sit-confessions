@@ -5,6 +5,7 @@ import SummaryCard from "./SummaryCard";
 import { GetAllConfessions } from "../../api";
 import { getAllConfessions, setAllConfessions } from "../../actions";
 import * as dayjs from "dayjs";
+import he from "he";
 
 const Index = () => {
   const [open, setOpen] = useState(false);
@@ -89,7 +90,7 @@ const Index = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <p className="text-sm text-gray-700 max-w-lg truncate dark:text-gray-200">
-                            {confession.text}
+                            {he.decode(confession.text)}
                           </p>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
