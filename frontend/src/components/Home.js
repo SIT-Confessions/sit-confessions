@@ -44,7 +44,7 @@ const Home = () => {
       animate={{ opacity: 1 }}
     >
       <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-5">
-        Latest Confessions
+        Latest Confessionss
       </h1>
       <ConfessionCardFeed confessions={confessions} />
     </motion.div>
