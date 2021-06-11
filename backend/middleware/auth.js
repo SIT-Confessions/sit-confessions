@@ -55,11 +55,12 @@ export const master = (req, res, next) => {
 
 /**
  * Limits the number of login attempts from the same ip
- * address to 5 within a 1 hour window
+ * address to 5 within a 15 min window
  */
 export const loginLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000,
+  windowMs: 15 * 60 * 1000,
+  skipSuccessfulRequests: true,
   max: 5,
   message:
-    "Too many login attempts from this IP, please try again after an hour",
+    "Too many login attempts from this IP, please try again after 15 mins.",
 });
