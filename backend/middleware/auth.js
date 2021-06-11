@@ -59,6 +59,7 @@ export const master = (req, res, next) => {
  */
 export const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
+  skipSuccessfulRequests: true,
   max: 5,
   message:
     "Too many login attempts from this IP, please try again after 15 mins.",

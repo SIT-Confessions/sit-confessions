@@ -47,6 +47,7 @@ export const getAllUsers = async (req, res) => {
  * @returns {json} Signed Json Web Token
  */
 export const authenticateUser = async (req, res) => {
+  console.log(req.rateLimit);
   // Validate input
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
