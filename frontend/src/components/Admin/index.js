@@ -12,14 +12,14 @@ const Index = () => {
   const confessions = useSelector((state) => state.allConfessions);
   const dispatch = useDispatch();
 
+  let getData = async () => {
+    let resultData = await GetAllConfessions();
+    console.log("Test console from Admin", resultData);
+    dispatch(setAllConfessions(resultData));
+  };
+
   useEffect(() => {
-    let getData = async () => {
-      let resultData = await GetAllConfessions();
-      console.log("Test console from Admin", resultData);
-      dispatch(setAllConfessions(resultData));
-    };
     getData();
-    console.log("conf", confessions);
   }, []);
 
   const SetDetailsOnModal = (data) => {
@@ -33,7 +33,7 @@ const Index = () => {
     setOpen(false);
   };
 
-  return (
+  return confessions.set ? (
     <div className="px-4 sm:px-0">
       <ConfessionDetailsModal
         isOpen={open}
@@ -82,7 +82,7 @@ const Index = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-dark-gray-dark">
-                    {confessions.posts.map((confession) => (
+                    {confessions?.posts.map((confession) => (
                       <tr key={confession._id}>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-600 dark:text-gray-200">
                           #{confession._id}
@@ -130,6 +130,34 @@ const Index = () => {
           </div>
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="max-w-max w-full text-center pb-4">
+        <p className="font-bold text-xl text-gray-500 dark:text-gray-400">Loading Content...</p>
+      </div>
+      <div>
+        <svg
+          class="animate-spin -ml-1 mr-3 h-24 w-24 text-gray-800 dark:text-gray-100"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          ></circle>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+        </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ const initialState = {
   posts: [],
   post: null,
   error: {},
+  set: false,
 };
 
 export const approvedConfessionsReducer = (state = initialState, action) => {
@@ -9,7 +10,7 @@ export const approvedConfessionsReducer = (state = initialState, action) => {
     case "GETAPPROVEDCONFESSIONS":
       return { ...state };
     case "SETAPPROVEDCONFESSIONS":
-      return { ...state, posts: action.payload };
+      return { ...state, posts: action.payload, set: true };
     default:
       return state;
   }
@@ -20,7 +21,7 @@ export const allConfessionsReducer = (state = initialState, action) => {
     case "GETALLCONFESSIONS":
       return { ...state };
     case "SETALLCONFESSIONS":
-      return { ...state, posts: action.payload };
+      return { ...state, posts: action.payload, set: true };
     default:
       return state;
   }

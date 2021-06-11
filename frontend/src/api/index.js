@@ -1,4 +1,5 @@
 import API from "axios";
+import setAuthToken from "../utils/setAuthToken";
 
 API.defaults.baseURL = "http://localhost:5000/api";
 
@@ -13,9 +14,12 @@ export const GetApprovedConfessions = async () => {
 
 export const GetAllConfessions = async () => {
   //let resultData;
+  if (localStorage.getItem("token")) {
+    setAuthToken(localStorage.getItem("token"));
+  }
   let res = await API.get("/confessions")
     .then((res) => res)
-    .catch((err) => err);
+    .catch((err) => console.log("from api All confessions", err));
   return res.data;
 };
 
@@ -29,7 +33,7 @@ export const ApproveConfession = async (id) => {
 };
 
 export const RejectConfession = async (id) => {
-  const result = await API.put("/confessions/reject/" + id)
+  const result = await API.put("/confessions/reject/" + id);
   return result;
 };
 
