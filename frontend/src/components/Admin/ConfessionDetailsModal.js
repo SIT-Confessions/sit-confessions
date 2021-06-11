@@ -5,6 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ApproveConfession, RejectConfession } from "../../api";
 import { addNotification } from "../../actions";
 import { v4 as uuidv4 } from 'uuid';
+import he from "he";
 
 const ConfessionDetailsModal = (props) => {
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ const ConfessionDetailsModal = (props) => {
                           Confession Message
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100 whitespace-pre-line">
-                          {data.text}
+                          {he.decode(data.text)}
                         </dd>
                       </div>
                       <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
