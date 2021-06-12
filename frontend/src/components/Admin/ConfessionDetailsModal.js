@@ -42,6 +42,14 @@ const ConfessionDetailsModal = (props) => {
     });
   };
 
+  const decodeData = (data) => {
+    if (data !== undefined) {
+        return he.decode(data);
+    } else {
+        return "";
+    }
+  }
+
   const cancelButtonRef = useRef(null);
   const approveButtonRef = useRef(null);
 
@@ -102,7 +110,7 @@ const ConfessionDetailsModal = (props) => {
                           Confession Message
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100 whitespace-pre-line">
-                          {he.decode(data.text)}
+                          {decodeData(data.text)}
                         </dd>
                       </div>
                       <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">

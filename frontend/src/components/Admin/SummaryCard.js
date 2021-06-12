@@ -9,7 +9,7 @@ const SummaryCard = () => {
           <p class="text-gray-800 dark:text-gray-50 text-lg font-medium mb-2">
             Confessions To Be Approved
           </p>
-          <p class="text-5xl text-gray-600 dark:text-gray-200 text-sm">
+          <p class="text-5xl text-gray-600 dark:text-gray-200">
             <CountUp end={100} />
           </p>
           <div className="flex mt-4 justify-center">

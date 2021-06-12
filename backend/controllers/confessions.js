@@ -5,7 +5,7 @@ import Queue from "../models/Queue.js";
 import mongoose from "mongoose";
 import { validationResult } from "express-validator";
 import { APPROVED, REJECTED } from "../constants/status.js";
-import { decode } from "html-entities";
+// import { decode } from "html-entities";
 
 /**
  * Create a new confession post into db.
