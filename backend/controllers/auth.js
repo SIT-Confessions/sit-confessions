@@ -47,7 +47,6 @@ export const getAllUsers = async (req, res) => {
  * @returns {json} Signed Json Web Token
  */
 export const authenticateUser = async (req, res) => {
-  console.log(req.rateLimit);
   // Validate input
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -61,14 +60,18 @@ export const authenticateUser = async (req, res) => {
 
     // See if user exist
     if (!user) {
-      return res.status(400).json({ errors: [{ msg: "Invalid Email or Password" }] });
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "Invalid Email or Password" }] });
     }
 
     // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(400).json({ errors: [{ msg: "Invalid Email or Password" }] });
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "Invalid Email or Password" }] });
     }
 
     user.lastLogin = new Date().toISOString();
