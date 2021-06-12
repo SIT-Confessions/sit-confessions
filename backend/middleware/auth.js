@@ -61,6 +61,13 @@ export const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   skipSuccessfulRequests: true,
   max: 5,
-  message:
-    "We have detected too many login attempts from this IP, please try again after 15 minutes.",
+  handler: (req, res) => {
+    res.status(429).json({
+      errors: [
+        {
+          msg: "We have detected too many login attempts from this IP, please try again after 15 minutes.",
+        },
+      ],
+    });
+  },
 });
