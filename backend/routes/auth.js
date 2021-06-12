@@ -35,6 +35,6 @@ router.post(
     check("password", "Password is required").notEmpty(),
   ],
   authenticateUser
-);
+  );
 
 export default router;

@@ -6,20 +6,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 
 const svgVariants = {
-  initial: {},
-  visible: {},
+  initial: { opacity: 0},
+  visible: { opacity: 1},
 };
 
 const pathVariants = {
   initial: {
     opacity: 1,
     pathLength: 0,
+    pathOffset: 1,
   },
   visible: {
     opacity: 1,
     pathLength: 1,
+    pathOffset: 0,
     transition: {
-      duration: 1,
+      duration: 2,
       ease: "easeInOut",
     },
   },
@@ -36,6 +38,8 @@ const Home = () => {
     };
     getData();
   }, []);
+
+  const transition = { duration: 4, yoyo: Infinity, ease: "easeInOut" }
 
   return (
     <motion.div
