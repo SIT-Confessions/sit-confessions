@@ -134,7 +134,7 @@ export const approveConfession = async (req, res) => {
 
       await session.commitTransaction();
     }
-    res.status(200).json({ msg: "Confession approved" });
+    res.status(200).json({ msg: "The confession has been approved." });
   } catch (err) {
     // Rollback changes
     console.log("Rolling back...");
@@ -169,7 +169,7 @@ export const rejectConfession = async (req, res) => {
       await confession.save();
     }
 
-    res.status(200).json({ msg: "Confession rejected" });
+    res.status(200).json({ msg: "The confession has been marked as rejected." });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
