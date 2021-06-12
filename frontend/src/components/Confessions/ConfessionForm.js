@@ -3,7 +3,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { addNotification } from "../../actions";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const api = axios.create({
   baseURL: `http://localhost:5000/api/`,
@@ -20,7 +20,10 @@ const ConfessionForm = () => {
   });
 
   const checkForm = () => {
-    if (userInput.enteredConfession === "" || userInput.checkboxIsChecked === false) {
+    if (
+      userInput.enteredConfession === "" ||
+      userInput.checkboxIsChecked === false
+    ) {
       if (userInput.enteredConfession === "") {
         setTextIsValid(() => {
           return false;
@@ -29,7 +32,7 @@ const ConfessionForm = () => {
       if (userInput.checkboxIsChecked === false) {
         setCheckboxValid(() => {
           return false;
-        })
+        });
       }
       return false;
     }
@@ -48,7 +51,7 @@ const ConfessionForm = () => {
       // Passed validation
       let data = userInput.enteredConfession;
       let confessionJSON = { text: data };
-      let res = await api.post('/confessions', confessionJSON)
+      let res = await api.post("/confessions", confessionJSON);
       clearInputs();
       ShowNotification({
         id: uuidv4(),
@@ -70,13 +73,13 @@ const ConfessionForm = () => {
   };
 
   const checkBoxChangeHandler = (event) => {
-    setUserInput(prevState => {
+    setUserInput((prevState) => {
       return { ...prevState, checkboxIsChecked: event.target.checked };
-    })
+    });
     setCheckboxValid(() => {
       return event.target.checked;
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     if (userInput.enteredConfession !== "") {
@@ -89,14 +92,16 @@ const ConfessionForm = () => {
   return (
     <>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        <div className="md:grid md:grid-cols-3 md:gap-6">
+        <div className="md:grid md:grid-cols-3 md:gap-6 px-4 sm:px-0">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
+              <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-5">
+                Post Confession
+              </h1>
               <article className="prose dark:prose-dark">
-                <h2>Post Confession</h2>
                 <p>
-                  Have an interesting story to share? Write it all down here!
-                  Your post will be anonymous.
+                  Welcome to SIT Confessions! Do you have an interesting story
+                  to share? We'd love to hear about it! Your post will remain anonymous.
                 </p>
                 <h4>Some important notes:</h4>
                 <ul>
@@ -110,11 +115,13 @@ const ConfessionForm = () => {
                     inappropriate content is allowed.
                   </li>
                   <li>
-                    All submissions will be moderated before they are publicly
-                    viewable.
+                    All submissions are subjected to moderation before they are
+                    publicly viewable.
                   </li>
                 </ul>
+                <h4>Helpful Links</h4>
               </article>
+              <a className="text-indigo-600 dark:text-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-400" href="https://www.singaporetech.edu.sg/life-at-sit/student-wellness#counselling">SIT Counselling Service</a>
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
@@ -132,7 +139,7 @@ const ConfessionForm = () => {
                       <textarea
                         id="confession"
                         name="confession"
-                        rows={10}
+                        rows={15}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md"
                         placeholder="Your wonderful story goes in here."
                         value={userInput.enteredConfession}
@@ -164,30 +171,50 @@ const ConfessionForm = () => {
                       {textIsValid ? null : (
                         <li class="flex items-center py-1">
                           <div className="bg-red-200 text-red-700 rounded-full p-1 fill-current">
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <svg
+                              class="w-4 h-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              />
                             </svg>
                           </div>
-                          <span className="font-medium text-sm ml-3 text-red-500 dark:text-red-400">You cannot submit an empty confession!</span>
+                          <span className="font-medium text-sm ml-3 text-red-500 dark:text-red-400">
+                            You cannot submit an empty confession!
+                          </span>
                         </li>
                       )}
                       {checkboxValid ? null : (
                         <li class="flex items-center py-1">
                           <div className="bg-red-200 text-red-700 rounded-full p-1 fill-current">
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
+                            <svg
+                              class="w-4 h-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              />
                             </svg>
                           </div>
-                          <span className="font-medium text-sm ml-3 text-red-500 dark:text-red-400">You need to agree that you will not post hurtful or offensive content.</span>
+                          <span className="font-medium text-sm ml-3 text-red-500 dark:text-red-400">
+                            You need to agree that you will not post hurtful or
+                            offensive content.
+                          </span>
                         </li>
                       )}
                     </ul>
                   </div>
-
                 </div>
                 <div className="px-4 py-3 bg-gray-100 dark:bg-dark-gray-lighter text-right sm:px-6">
                   <button
@@ -199,9 +226,9 @@ const ConfessionForm = () => {
                 </div>
               </div>
             </form>
-          </div >
-        </div >
-      </motion.div >
+          </div>
+        </div>
+      </motion.div>
     </>
   );
 };

@@ -14,6 +14,7 @@ import { NavLink } from "react-router-dom";
 import { logout } from "../../actions/auth";
 import { connect } from "react-redux";
 import { getThemePreference, setThemePreference } from "../../actions";
+import { motion } from "framer-motion"; 
 // import { style } from "../../../craco.config";
 
 const navigation = [
@@ -30,11 +31,29 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Navbar = ({
-  isDark,
-  auth: { isAuthenticated },
-  logout,
-}) => {
+const svgVariants = {
+  initial: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
+const pathVariants = {
+  initial: {
+    opacity: 1,
+    pathLength: 0,
+    pathOffset: 1,
+  },
+  visible: {
+    opacity: 1,
+    pathLength: 1,
+    pathOffset: 0,
+    transition: {
+      duration: 2,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const Navbar = ({ isDark, auth: { isAuthenticated }, logout }) => {
   const [isShown, setIsShown] = useState("hidden");
   const dispatch = useDispatch();
 
@@ -48,9 +67,9 @@ const Navbar = ({
 
   const toggleDarkMode = () => {
     if (!isDark) {
-      localStorage.setItem('darkPreferred', 1);
+      localStorage.setItem("darkPreferred", 1);
     } else {
-      localStorage.setItem('darkPreferred', 0);
+      localStorage.setItem("darkPreferred", 0);
     }
     dispatch(setThemePreference(!isDark));
   };
@@ -146,8 +165,28 @@ const Navbar = ({
                       <span className="sr-only">Dark Mode Toggle</span>
                       {isDark === false ? (
                         <MoonIcon className="h-6 w-6" aria-hidden="true" />
+                        // <motion.svg
+                        //   xmlns="http://www.w3.org/2000/svg"
+                        //   initial="initial"
+                        //   animate="visible"
+                        //   class="h-6 w-6"
+                        //   fill="none"
+                        //   viewBox="0 0 24 24"
+                        //   stroke="currentColor"
+                        // >
+                        //   <motion.path
+                        //     variants={pathVariants}
+                        //     stroke-linecap="round"
+                        //     stroke-linejoin="round"
+                        //     stroke-width="2"
+                        //     d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                        //   />
+                        // </motion.svg>
                       ) : (
                         <MoonIconSolid className="h-6 w-6" aria-hidden="true" />
+                      //   <motion.svg variants={svgVariants} initial="initial" animate="visible" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      //   <motion.path variants={pathVariants} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                      // </motion.svg>
                       )}
                     </button>
                   </div>
@@ -169,7 +208,7 @@ const Navbar = ({
 
             <Disclosure.Panel className="md:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                {/* {links.map((link, linkIdx) => (
+                {links.map((link, linkIdx) => (
                   <NavLink
                     exact
                     className={link.className}
@@ -178,7 +217,7 @@ const Navbar = ({
                   >
                     {link.name}
                   </NavLink>
-                ))} */}
+                ))}
               </div>
               {/* <div className="pt-4 pb-3 border-t border-gray-700">
                 <div className="flex items-center px-5">

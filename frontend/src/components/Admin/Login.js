@@ -6,6 +6,7 @@ import { Link, Redirect } from "react-router-dom";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
 
 const Login = ({ login, isAuthenticated }) => {
+  const [serverMessages, setServerMessages] = useState([]);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,9 +17,15 @@ const Login = ({ login, isAuthenticated }) => {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const handleLoginFunc = async () => {
+    const result = await login(formData);
+    setServerMessages(result);
+    console.log("the result is ", result);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(formData);
+    handleLoginFunc();
   };
 
   if (isAuthenticated) {
@@ -45,6 +52,30 @@ const Login = ({ login, isAuthenticated }) => {
               Request Access
             </Link>
           </p>
+          <div className="mt-4">
+            {serverMessages?.map((message) => (
+              <div className="flex items-center py-1">
+                <div className="bg-red-200 text-red-700 rounded-full p-1 fill-current">
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </div>
+                <span className="font-medium text-sm ml-3 text-red-500 dark:text-red-400">
+                  {message.msg}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />

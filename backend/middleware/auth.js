@@ -62,5 +62,5 @@ export const loginLimiter = rateLimit({
   skipSuccessfulRequests: true,
   max: 5,
   message:
-    "Too many login attempts from this IP, please try again after 15 mins.",
+    "We have detected too many login attempts from this IP, please try again after 15 minutes.",
 });

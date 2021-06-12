@@ -39,13 +39,15 @@ export const login = (formData) => async (dispatch) => {
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
-      errors.forEach((error) => console.error(error.msg));
+      // errors.forEach((error) => console.error(error.msg));
+      return errors;
     }
 
     dispatch({
       type: LOGIN_FAIL,
     });
   }
+  return [];
 };
 
 // Logout User

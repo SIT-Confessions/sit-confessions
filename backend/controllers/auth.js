@@ -61,14 +61,14 @@ export const authenticateUser = async (req, res) => {
 
     // See if user exist
     if (!user) {
-      return res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
+      return res.status(400).json({ errors: [{ msg: "Invalid Email or Password" }] });
     }
 
     // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
+      return res.status(400).json({ errors: [{ msg: "Invalid Email or Password" }] });
     }
 
     user.lastLogin = new Date().toISOString();

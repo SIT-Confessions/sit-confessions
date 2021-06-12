@@ -7,7 +7,7 @@ dayjs.extend(RelativeTime);
 
 const ConfessionCard = (props) => {
   let itemData = props.data;
-  let relativeTimeStamp = dayjs(itemData.createdAt).fromNow();
+  let relativeTimeStamp = dayjs(itemData.approvedDate).fromNow();
 
   return (
     <div className="flex-shrink-0 items-center justify-center bg-gray-50 max-w-full sm:w-full min-w-min py-4 dark:bg-dark-gray">
