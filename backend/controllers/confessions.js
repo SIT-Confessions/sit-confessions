@@ -3,6 +3,7 @@ import config from "config";
 import Confession from "../models/Confession.js";
 import Queue from "../models/Queue.js";
 import mongoose from "mongoose";
+import he from "he";
 import { validationResult } from "express-validator";
 import { APPROVED, REJECTED } from "../constants/status.js";
 
@@ -169,7 +170,9 @@ export const rejectConfession = async (req, res) => {
       await confession.save();
     }
 
-    res.status(200).json({ msg: "The confession has been marked as rejected." });
+    res
+      .status(200)
+      .json({ msg: "The confession has been marked as rejected." });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -193,7 +196,7 @@ export const postToFB = async () => {
     if (!queue) return;
 
     const post = await Confession.findById(queue.post);
-    const res = await postFB(`#${post.id}: ${decode(post.text)}`);
+    const res = await postFB(`#${post.id}: ${he.decode(post.text)}`);
 
     await queue.remove();
 
