@@ -120,10 +120,6 @@ const Navbar = ({ isDark, auth: { isAuthenticated }, logout }) => {
 
   const links = isAuthenticated ? authLinks : guestLinks;
 
-  useEffect(() => {
-    console.log("Work In Progress Moon Icon");
-  });
-
   return (
     <div>
       <Disclosure as="nav" className="bg-gray-800 dark:bg-gray-800">
