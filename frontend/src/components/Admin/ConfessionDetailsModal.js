@@ -128,19 +128,50 @@ const ConfessionDetailsModal = (props) => {
                           Status
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          {data.status === "APPROVED" ? (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
-                              Approved
-                            </span>
-                          ) : data.status === "PENDING" ? (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
-                              Pending Approval
-                            </span>
-                          ) : (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-300 dark:text-red-900">
-                              Rejected
-                            </span>
-                          )}
+                        {(() => {
+                            if (data.status === "APPROVED") {
+                              if (data.isPostedtoFB) {
+                                return (
+                                  <>
+                                    <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                      Approved
+                                    </span>
+                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-300 dark:text-blue-900">
+                                      Posted
+                                    </span>
+                                  </>
+                                );
+                              } else if (data.isQueued) {
+                                return (
+                                  <>
+                                    <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                      Approved
+                                    </span>
+                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800 dark:bg-pink-300 dark:text-pink-900">
+                                      Queued
+                                    </span>
+                                  </>
+                                );
+                              } else {
+                                return (
+                                  <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                    Approved
+                                  </span>
+                                );
+                              }
+                            } else if (data.status === "PENDING")
+                              return (
+                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
+                                  Pending Approval
+                                </span>
+                              );
+                            else if (data.status === "REJECTED")
+                              return (
+                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-300 dark:text-red-900">
+                                  Rejected
+                                </span>
+                              );
+                          })()}
                         </dd>
                       </div>
                       <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
