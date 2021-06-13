@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs";
-import config from "config";
 import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
 
@@ -60,7 +59,7 @@ export const registerUser = async (req, res) => {
 
     jwt.sign(
       payload,
-      config.get("jwtSecret"),
+      process.env.JWTSECRET,
       { expiresIn: "1h" },
       (err, token) => {
         if (err) throw err;
