@@ -203,6 +203,7 @@ export const postToFB = async () => {
     const ids = res.split("_");
     post.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
     post.postedToFBAt = new Date().toISOString();
+    post.isQueued = false;
     post.isPostedToFB = true;
     post.save();
 
