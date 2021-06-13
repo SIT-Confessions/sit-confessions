@@ -99,19 +99,50 @@ const Index = () => {
                           )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          {confession.status === "APPROVED" ? (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
-                              Approved
-                            </span>
-                          ) : confession.status === "PENDING" ? (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
-                              Pending Approval
-                            </span>
-                          ) : (
-                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-300 dark:text-red-900">
-                              Rejected
-                            </span>
-                          )}
+                          {(() => {
+                            if (confession.status === "APPROVED") {
+                              if (confession.isPostedtoFB) {
+                                return (
+                                  <>
+                                    <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                      Approved
+                                    </span>
+                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-300 dark:text-blue-900">
+                                      Posted
+                                    </span>
+                                  </>
+                                );
+                              } else if (confession.isQueued) {
+                                return (
+                                  <>
+                                    <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                      Approved
+                                    </span>
+                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800 dark:bg-pink-300 dark:text-pink-900">
+                                      Queued
+                                    </span>
+                                  </>
+                                );
+                              } else {
+                                return (
+                                  <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                    Approved
+                                  </span>
+                                );
+                              }
+                            } else if (confession.status === "PENDING")
+                              return (
+                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
+                                  Pending Approval
+                                </span>
+                              );
+                            else if (confession.status === "REJECTED")
+                              return (
+                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-300 dark:text-red-900">
+                                  Rejected
+                                </span>
+                              );
+                          })()}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <a
@@ -135,7 +166,9 @@ const Index = () => {
   ) : (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <div className="max-w-max w-full text-center pb-4">
-        <p className="font-bold text-xl text-gray-500 dark:text-gray-400">Loading Content...</p>
+        <p className="font-bold text-xl text-gray-500 dark:text-gray-400">
+          Loading Content...
+        </p>
       </div>
       <div>
         <svg
@@ -158,7 +191,7 @@ const Index = () => {
             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
           ></path>
         </svg>
-        </div>
+      </div>
     </div>
   );
 };
