@@ -1,4 +1,3 @@
-import config from "config";
 import jwt from "jsonwebtoken";
 import rateLimit from "express-rate-limit";
 import { MASTER } from "../constants/roles.js";
@@ -17,7 +16,7 @@ export default (req, res, next) => {
 
   // Verify token
   try {
-    const decoded = jwt.verify(token, config.get("jwtSecret"));
+    const decoded = jwt.verify(token, process.env.JWTSECRET);
     req.user = decoded.user;
     next();
   } catch (err) {
@@ -39,7 +38,7 @@ export const master = (req, res, next) => {
 
   // Verify token
   try {
-    const decoded = jwt.verify(token, config.get("jwtSecret"));
+    const decoded = jwt.verify(token, process.env.JWTSECRET);
     req.user = decoded.user;
     console.log(decoded);
 

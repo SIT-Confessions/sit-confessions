@@ -7,6 +7,7 @@ import morgan from "morgan";
 import cron from "node-cron";
 import rateLimit from "express-rate-limit";
 import slowDown from "express-slow-down";
+import dotenv from "dotenv";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { postToFB } from "./controllers/confessions.js";
@@ -16,6 +17,7 @@ import confessionRoute from "./routes/confessions.js";
 import usersRoute from "./routes/users.js";
 
 const app = express();
+dotenv.config({ path: "../.env" });
 
 // Connect to MongoDB
 connectDB();

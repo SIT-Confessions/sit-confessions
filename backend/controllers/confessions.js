@@ -1,5 +1,4 @@
 import FB from "fb";
-import config from "config";
 import Confession from "../models/Confession.js";
 import Queue from "../models/Queue.js";
 import mongoose from "mongoose";
@@ -227,8 +226,8 @@ export const postToFB = async () => {
  */
 const postFB = async (msg) => {
   // Post to facebook
-  FB.setAccessToken(config.get("fbAccessToken"));
-  const res = await FB.api(`/${config.get("fbPageID")}/feed`, "POST", {
+  FB.setAccessToken(process.env.FBACCESSTOKEN);
+  const res = await FB.api(`/${process.env.FBPAGEID}/feed`, "POST", {
     message: msg,
   });
   return res.id;
