@@ -44,7 +44,12 @@ const Index = () => {
       <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-5">
         Welcome to the dashboard, Admin!
       </h1>
-      <SummaryCard />
+      <div className="flex flex-row md:space-x-5 lg:space-x-4 xl:space-x-10 flex-wrap">
+        <SummaryCard options={{key:1, colour:"yellow"}} data={{title: "Confessions Pending Approval", count: 100}}/>
+        <SummaryCard options={{key:2, colour:"yellow"}} data={{title: "Confessions Rejected", count: 69}}/>
+        <SummaryCard options={{key:3, colour:"yellow"}} data={{title: "Confessions Queued", count: 45}}/>
+        <SummaryCard options={{key:4, colour:"yellow"}} data={{title: "Confessions Posted", count: 100}}/>
+      </div>
       <div className="mt-5">
         <div className="flex flex-col">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
