@@ -209,7 +209,7 @@ export const postToFB = async () => {
 
     await session.commitTransaction();
 
-    console.log(`Posting #${post.id} to facebook...`);
+    console.log(`Posted #${post.id} to facebook.`);
   } catch (err) {
     await session.abortTransaction();
 
