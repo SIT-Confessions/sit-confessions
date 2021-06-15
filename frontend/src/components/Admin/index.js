@@ -11,6 +11,7 @@ const Index = () => {
   const [open, setOpen] = useState(false);
   const [confessionDetails, setConfessionDetails] = useState({});
   const confessions = useSelector((state) => state.allConfessions);
+  const authenticated = useSelector(state => state.auth.isAuthenticated);
   const dispatch = useDispatch();
 
   let getData = async () => {
@@ -20,7 +21,8 @@ const Index = () => {
   };
 
   useEffect(() => {
-    getData();
+    if (authenticated)
+      getData();
   }, []);
 
   const SetDetailsOnModal = (data) => {
