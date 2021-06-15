@@ -187,7 +187,7 @@ export const rejectConfession = async (req, res) => {
  *
  */
 export const postToFB = async () => {
-  const session = await mongoose.startSession();
+  // const session = await mongoose.startSession();
   try {
     session.startTransaction();
 
@@ -205,7 +205,7 @@ export const postToFB = async () => {
     post.postedToFBAt = new Date().toISOString();
     post.isQueued = false;
     post.isPostedToFB = true;
-    post.save();
+    await post.save();
 
     await session.commitTransaction();
 
