@@ -13,7 +13,7 @@ const ConfessionSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  isPostedtoFB: {
+  isPostedToFB: {
     type: Boolean,
     default: false,
   },

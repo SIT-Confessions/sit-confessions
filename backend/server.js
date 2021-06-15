@@ -57,7 +57,8 @@ app.use(helmet());
 app.use(morgan("combined", { stream: accessLogStream }));
 
 // Schedule task
-cron.schedule("*/15 * * * *", postToFB);
+// cron.schedule("*/15 * * * *", postToFB);
+postToFB();
 
 app.get("/", (req, res) => res.send("API Running"));
 

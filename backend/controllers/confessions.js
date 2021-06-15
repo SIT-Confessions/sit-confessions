@@ -187,7 +187,7 @@ export const rejectConfession = async (req, res) => {
  *
  */
 export const postToFB = async () => {
-  // const session = await mongoose.startSession();
+  const session = await mongoose.startSession();
   try {
     session.startTransaction();
 
