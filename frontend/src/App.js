@@ -11,6 +11,7 @@ import { Helmet } from "react-helmet";
 import Login from "./components/Admin/Login";
 import PrivateRoute from "./components/Routing/PrivateRoute";
 import AdminHome from "./components/Admin";
+import Account from "./components/Admin/Account";
 import NotificationCenter from "./components/UI/NotificationCenter";
 import { loadUser } from "./actions/auth";
 import store from "./store";
@@ -34,16 +35,19 @@ function App() {
         <NotificationCenter data={notificationsData.notifications} />
         <Switch>
           <Route path="/" exact component={Home}></Route>
-          <Route
-            path="/post"
-            exact
-            component={ConfessionForm}
-          ></Route>
+          <Route path="/post" exact component={ConfessionForm}></Route>
           <PrivateRoute
+            key="dashboard"
             path="/dashboard"
             exact
             component={AdminHome}
-          ></PrivateRoute>
+          />
+          <PrivateRoute
+            key="account"
+            path="/account"
+            exact
+            component={Account}
+          />
           <Route path="/login" exact component={Login}></Route>
           <Route component={NotFound}></Route>
         </Switch>

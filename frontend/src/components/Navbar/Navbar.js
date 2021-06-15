@@ -26,7 +26,6 @@ const navigation = [
   "Reports",
   "Post Confession",
 ];
-const profile = ["My Account", "Manage Users"];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -100,6 +99,17 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
       activeStyle: styles.activeStyle,
       to: "/dashboard",
       name: "Dashboard",
+    },
+  ];
+
+  const profile = [
+    {
+      to: "/account",
+      name: "My Account",
+    },
+    {
+      to: "/users",
+      name: "Manage Users",
     },
   ];
 
@@ -246,10 +256,10 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                               className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-dark-gray-lighter ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
                               {userLinks.map((item) => (
-                                <Menu.Item key={item}>
+                                <Menu.Item key={item.name}>
                                   {({ active }) => (
                                     <a
-                                      href="#"
+                                      href={item.to}
                                       className={classNames(
                                         active
                                           ? "bg-gray-100 dark:bg-dark-gray"
@@ -257,7 +267,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                                         "block px-4 py-2 text-sm text-gray-700 dark:bg-dark-gray-lighter dark:text-gray-200"
                                       )}
                                     >
-                                      {item}
+                                      {item.name}
                                     </a>
                                   )}
                                 </Menu.Item>
