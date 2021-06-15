@@ -11,7 +11,19 @@ const Index = () => {
   const [open, setOpen] = useState(false);
   const [confessionDetails, setConfessionDetails] = useState({});
   const confessions = useSelector((state) => state.allConfessions);
-  const authenticated = useSelector(state => state.auth.isAuthenticated);
+  const authenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => {
+    if (state.auth.isAuthenticated) return state.auth.user;
+    return {
+      _id: "",
+      name: "",
+      email: "",
+      role: "",
+      date: "",
+      __v: 0,
+      lastLogin: "",
+    };
+  });
   const dispatch = useDispatch();
 
   let getData = async () => {
@@ -21,8 +33,7 @@ const Index = () => {
   };
 
   useEffect(() => {
-    if (authenticated)
-      getData();
+    if (authenticated) getData();
   }, []);
 
   const SetDetailsOnModal = (data) => {
@@ -43,14 +54,31 @@ const Index = () => {
         data={confessionDetails}
         closeModal={closeDescriptionModal}
       />
-      <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-5">
-        Welcome to the dashboard, Admin!
-      </h1>
+      <div className="flex flex-col md:flex-row justify-start md:justify-between items-center mb-5">
+        <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100">
+          Welcome back, {user.name}!
+        </h1>
+        <p className="text-md font-semibold text-gray-500 dark:text-gray-400">
+          Last Login: { dayjs(user.lastLogin).format("D MMM YYYY, h:HH A") }
+        </p>
+      </div>
       <div className="flex flex-row md:space-x-5 lg:space-x-4 xl:space-x-10 flex-wrap">
-        <SummaryCard options={{key:1, colour:"yellow"}} data={{title: "Confessions Pending Approval", count: 100}}/>
-        <SummaryCard options={{key:2, colour:"yellow"}} data={{title: "Confessions Rejected", count: 69}}/>
-        <SummaryCard options={{key:3, colour:"yellow"}} data={{title: "Confessions Queued", count: 45}}/>
-        <SummaryCard options={{key:4, colour:"yellow"}} data={{title: "Confessions Posted", count: 100}}/>
+        <SummaryCard
+          options={{ key: 1, colour: "yellow" }}
+          data={{ title: "Confessions Pending Approval", count: 100 }}
+        />
+        <SummaryCard
+          options={{ key: 2, colour: "yellow" }}
+          data={{ title: "Confessions Rejected", count: 69 }}
+        />
+        <SummaryCard
+          options={{ key: 3, colour: "yellow" }}
+          data={{ title: "Confessions Queued", count: 45 }}
+        />
+        <SummaryCard
+          options={{ key: 4, colour: "yellow" }}
+          data={{ title: "Confessions Posted", count: 100 }}
+        />
       </div>
       <div className="mt-5">
         <div className="flex flex-col">
