@@ -130,7 +130,7 @@ const ConfessionDetailsModal = (props) => {
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                         {(() => {
                             if (data.status === "APPROVED") {
-                              if (data.isPostedtoFB) {
+                              if (data.isPostedToFB) {
                                 return (
                                   <>
                                     <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">

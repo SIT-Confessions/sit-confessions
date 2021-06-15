@@ -108,7 +108,7 @@ const Index = () => {
                         <td className="px-6 py-4 whitespace-nowrap">
                           {(() => {
                             if (confession.status === "APPROVED") {
-                              if (confession.isPostedtoFB) {
+                              if (confession.isPostedToFB) {
                                 return (
                                   <>
                                     <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
