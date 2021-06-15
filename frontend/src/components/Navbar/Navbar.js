@@ -8,6 +8,7 @@ import {
   XIcon,
   MoonIcon,
   SunIcon,
+  UserCircleIcon,
 } from "@heroicons/react/outline";
 import { MoonIcon as MoonIconSolid } from "@heroicons/react/solid";
 import { NavLink } from "react-router-dom";
@@ -25,7 +26,7 @@ const navigation = [
   "Reports",
   "Post Confession",
 ];
-const profile = ["Your Profile", "Settings", "Sign out"];
+const profile = ["My Account", "Manage Users"];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -53,7 +54,7 @@ const pathVariants = {
   },
 };
 
-const Navbar = ({ isDark, auth: { isAuthenticated }, logout }) => {
+const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
   const [isShown, setIsShown] = useState("hidden");
   const dispatch = useDispatch();
 
@@ -135,6 +136,10 @@ const Navbar = ({ isDark, auth: { isAuthenticated }, logout }) => {
 
   const links = isAuthenticated ? adminLinks : guestLinks;
   const authLink = isAuthenticated ? authLinks[1] : authLinks[0];
+  let userLinks = [];
+  if (isAuthenticated) {
+    userLinks = user?.role === "master" ? profile : Array(1).fill(profile[0]);
+  }
 
   return (
     <div>
@@ -212,6 +217,57 @@ const Navbar = ({ isDark, auth: { isAuthenticated }, logout }) => {
                       )}
                     </button>
                   </div>
+                  {/* Profile dropdown */}
+                  {isAuthenticated && (
+                    <Menu as="div" className="ml-3 relative">
+                      {({ open }) => (
+                        <>
+                          <div>
+                            <Menu.Button className="max-w-xs bg-gray-800 text-gray-400 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                              <span className="sr-only">Open user menu</span>
+                              <UserCircleIcon
+                                className="h-6 w-6"
+                                aria-hidden="true"
+                              />
+                            </Menu.Button>
+                          </div>
+                          <Transition
+                            show={open}
+                            as={Fragment}
+                            enter="transition ease-out duration-100"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
+                          >
+                            <Menu.Items
+                              static
+                              className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-dark-gray-lighter ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            >
+                              {userLinks.map((item) => (
+                                <Menu.Item key={item}>
+                                  {({ active }) => (
+                                    <a
+                                      href="#"
+                                      className={classNames(
+                                        active
+                                          ? "bg-gray-100 dark:bg-dark-gray"
+                                          : "",
+                                        "block px-4 py-2 text-sm text-gray-700 dark:bg-dark-gray-lighter dark:text-gray-200"
+                                      )}
+                                    >
+                                      {item}
+                                    </a>
+                                  )}
+                                </Menu.Item>
+                              ))}
+                            </Menu.Items>
+                          </Transition>
+                        </>
+                      )}
+                    </Menu>
+                  )}
                 </div>
 
                 <div className="-mr-2 flex md:hidden">
