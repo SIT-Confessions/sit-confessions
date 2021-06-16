@@ -19,6 +19,7 @@ import store from "./store";
 function App() {
   const notificationsData = useSelector((state) => state.notifications);
   const isDark = useSelector((state) => state.darkPreferred);
+  // const isDark = localStorage.getItem("darkPreferred")
 
   useEffect(() => {
     store.dispatch(loadUser());
@@ -28,7 +29,7 @@ function App() {
     <Router>
       <Helmet>
         {isDark === false ? null : <html className="dark" />}
-        <body className="bg-gray-50 dark:bg-dark-gray" />
+        <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
       <Navbar isDark={isDark}></Navbar>
       <div className="container mx-auto py-10">
