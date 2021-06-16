@@ -95,15 +95,15 @@ const ConfessionForm = () => {
         <div className="md:grid md:grid-cols-3 md:gap-6 px-4 sm:px-0">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
-              <h1 className="text-4xl font-bold transition-colors text-gray-800 dark:text-gray-100 mb-5">
+              <h1 className="text-4xl font-bold transition-colors duration-500 text-gray-800 dark:text-gray-100 mb-5">
                 Post Confession
               </h1>
-              <article className="prose transition-colors dark:prose-dark">
+              <article className="prose transition-colors duration-500 dark:prose-dark">
                 <p>
                   Welcome to SIT Confessions! Do you have an interesting story
                   to share? We'd love to hear about it! Your post will remain anonymous.
                 </p>
-                <h4>Some important notes:</h4>
+                <h4 className="duration-500">Some important notes:</h4>
                 <ul>
                   <li>
                     We are not affiliated with the Singapore Institute of
@@ -119,19 +119,19 @@ const ConfessionForm = () => {
                     publicly viewable.
                   </li>
                 </ul>
-                <h4>Helpful Links</h4>
+                <h4 className="duration-500">Helpful Links</h4>
               </article>
-              <a className="text-indigo-600 dark:text-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-400" href="https://www.singaporetech.edu.sg/life-at-sit/student-wellness#counselling">SIT Counselling Service</a>
+              <a className="transition-colors duration-500 text-indigo-600 dark:text-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-400" href="https://www.singaporetech.edu.sg/life-at-sit/student-wellness#counselling">SIT Counselling Service</a>
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
             <form onSubmit={handleSubmit}>
               <div className="shadow sm:rounded-md sm:overflow-hidden">
-                <div className="px-4 py-5 transition-colors bg-gray-50 dark:bg-dark-gray-light space-y-6 sm:p-6">
+                <div className="px-4 py-5 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light space-y-6 sm:p-6">
                   <div>
                     <label
                       htmlFor="Confession"
-                      className="block text-sm font-medium transition-colors transition-colors text-gray-700 dark:text-gray-300"
+                      className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
                     >
                       Write Your Confession
                     </label>
@@ -140,7 +140,7 @@ const ConfessionForm = () => {
                         id="confession"
                         name="confession"
                         rows={15}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm transition-colors border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md"
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm transition-colors duration-500 border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md"
                         placeholder="Your wonderful story goes in here."
                         value={userInput.enteredConfession}
                         onChange={confessionChangeHandler}
@@ -159,7 +159,7 @@ const ConfessionForm = () => {
                       />
                     </div>
                     <div className="ml-3 text-sm">
-                      <p className="transition-colors text-gray-500 dark:text-gray-100">
+                      <p className="transition-colors duration-500 text-gray-500 dark:text-gray-100">
                         I have read the important notes and agree to post
                         content that will not be offensive, hurtful and
                         insensitive.
@@ -216,7 +216,7 @@ const ConfessionForm = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="px-4 py-3 transition-colors bg-gray-100 dark:bg-dark-gray-lighter text-right sm:px-6">
+                <div className="px-4 py-3 transition-colors duration-500 bg-gray-100 dark:bg-dark-gray-lighter text-right sm:px-6">
                   <button
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

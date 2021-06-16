@@ -47,7 +47,7 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <h1 className="text-4xl font-bold transition-colors text-gray-800 dark:text-gray-100 mb-5">
+      <h1 className="text-4xl font-bold transition-colors duration-500 text-gray-800 dark:text-gray-100 mb-5">
         Latest Confessions
       </h1>
       <ConfessionCardFeed confessions={confessions} />

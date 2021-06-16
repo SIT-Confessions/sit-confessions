@@ -28,7 +28,7 @@ function App() {
     <Router>
       <Helmet>
         {isDark === false ? null : <html className="dark" />}
-        <body className="transition-colors bg-gray-50 dark:bg-dark-gray" />
+        <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
       <Navbar isDark={isDark}></Navbar>
       <div className="container mx-auto py-10">

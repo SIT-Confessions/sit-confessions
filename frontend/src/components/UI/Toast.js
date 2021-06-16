@@ -29,7 +29,7 @@ const Toast = (props) => {
       exit={{ opacity: 0 }}
       className="flex-shrink-0 items-center sm:w-full max-w-max mb-3"
     >
-      <div class="flow-root shadow-lg border border-opacity-50 rounded-xl p-4 dark:border-gray-600 bg-white relative overflow-hidden dark:bg-dark-gray-lightest flex-row grid grid-flow-col">
+      <div class="flow-root shadow-lg border border-opacity-50 rounded-xl p-4 transition-colors duration-500 dark:border-gray-600 bg-white relative overflow-hidden dark:bg-dark-gray-lightest flex-row grid grid-flow-col">
         <div className="max-w-min mr-2 flex-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -48,12 +48,12 @@ const Toast = (props) => {
         </div>
         <div className="sm:min-w-0 max-w-full flex-grow flex-wrap">
           <div className="flex">
-            <p class="text-gray-800 dark:text-gray-50 text-sm font-medium mb-2">
+            <p class="transition-colors duration-500 text-gray-800 dark:text-gray-50 text-sm font-medium mb-2">
               {props.data.title}
             </p>
           </div>
 
-          <p class="text-gray-600 dark:text-gray-200 text-sm">{props.data.message}</p>
+          <p class="transition-colors duration-500 text-gray-600 dark:text-gray-200 text-sm">{props.data.message}</p>
         </div>
         <div className="flex-none max-w-min">
           <button className="ml-2" onClick={() => deleteBtn(props.data.id)}>
