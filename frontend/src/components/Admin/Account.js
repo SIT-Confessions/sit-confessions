@@ -1,9 +1,10 @@
 import React from 'react'
+import Sidebar from "../UI/Settings/Sidebar";
 
 const Account = () => {
     return (
         <div>
-            Account Settings
+            <Sidebar></Sidebar>
         </div>
     )
 }
