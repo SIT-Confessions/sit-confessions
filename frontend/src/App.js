@@ -19,6 +19,7 @@ import store from "./store";
 function App() {
   const notificationsData = useSelector((state) => state.notifications);
   const isDark = useSelector((state) => state.darkPreferred);
+  // const isDark = localStorage.getItem("darkPreferred")
 
   useEffect(() => {
     store.dispatch(loadUser());

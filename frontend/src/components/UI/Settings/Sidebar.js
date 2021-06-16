@@ -2,9 +2,9 @@ import React from "react";
 
 const Sidebar = () => {
   return (
-    <div class="relative md:col-span-3 md:mr-6 bg-gray-100 rounded-xl dark:bg-dark-gray-light">
+    <div class="relative transition-colors duration-500 md:col-span-3 md:mr-6 bg-gray-50 rounded-xl dark:bg-dark-gray h-auto">
       <div class="flex flex-col sm:flex-row sm:justify-around">
-        <div class="w-72 h-screen">
+        <div class="">
           <div class="flex items-center justify-start mx-6 mt-10">
             <span class="text-gray-600 dark:text-gray-300 ml-4 text-2xl font-bold">
               Account Settings
