@@ -124,7 +124,7 @@ export const approveConfession = async (req, res) => {
     if (confession.status !== APPROVED) {
       confession.status = APPROVED;
       confession.approvedBy = req.user.id;
-      confession.approvedDate = new Date().toISOString();
+      confession.approvedDate = Date();
       confession.isQueued = true;
 
       await confession.save();
@@ -165,7 +165,7 @@ export const rejectConfession = async (req, res) => {
     if (confession.status !== REJECTED) {
       confession.status = REJECTED;
       confession.rejectedBy = req.user.id;
-      confession.rejectedDate = new Date().toISOString();
+      confession.rejectedDate = Date();
       await confession.save();
     }
 
@@ -202,7 +202,7 @@ export const postToFB = async () => {
     // Get facebook post url
     const ids = res.split("_");
     post.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
-    post.postedToFBAt = new Date().toISOString();
+    post.postedToFBAt = Date();
     post.isQueued = false;
     post.isPostedToFB = true;
     await post.save();
