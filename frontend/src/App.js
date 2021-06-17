@@ -13,6 +13,7 @@ import PrivateRoute from "./components/Routing/PrivateRoute";
 import AdminHome from "./components/Admin";
 import Account from "./components/Admin/Account";
 import Users from "./components/Admin/Users";
+import RegisterUser from "./components/Admin/RegisterUser";
 import NotificationCenter from "./components/UI/NotificationCenter";
 import { loadUser } from "./actions/auth";
 import store from "./store";
@@ -55,6 +56,12 @@ function App() {
             path="/users"
             exact
             component={Users}
+          />
+          <PrivateRoute
+            key="register"
+            path="/register-user"
+            exact
+            component={RegisterUser}
           />
           <Route path="/login" exact component={Login}></Route>
           <Route component={NotFound}></Route>

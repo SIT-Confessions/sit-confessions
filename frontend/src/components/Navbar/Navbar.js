@@ -11,7 +11,7 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/outline";
 import { MoonIcon as MoonIconSolid } from "@heroicons/react/solid";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { logout } from "../../actions/auth";
 import { connect } from "react-redux";
 import { getThemePreference, setThemePreference } from "../../actions";
@@ -258,17 +258,19 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                               {userLinks.map((item) => (
                                 <Menu.Item key={item.name}>
                                   {({ active }) => (
-                                    <a
-                                      href={item.to}
-                                      className={classNames(
-                                        active
-                                          ? "bg-gray-100 dark:bg-dark-gray"
-                                          : "",
-                                        "block px-4 py-2 text-sm text-gray-700 dark:bg-dark-gray-lighter dark:text-gray-200"
-                                      )}
-                                    >
-                                      {item.name}
-                                    </a>
+                                    <Link key={item.name} exact to={item.to}>
+                                      <a
+                                        href={item.to}
+                                        className={classNames(
+                                          active
+                                            ? "bg-gray-100 dark:bg-dark-gray"
+                                            : "",
+                                          "block px-4 py-2 text-sm text-gray-700 dark:bg-dark-gray-lighter dark:text-gray-200"
+                                        )}
+                                      >
+                                        {item.name}
+                                      </a>
+                                    </Link>
                                   )}
                                 </Menu.Item>
                               ))}

@@ -4,6 +4,7 @@ import { GetAllUsers } from "../../api";
 import { getAllUsers, setAllUsers } from "../../actions";
 import * as dayjs from "dayjs";
 import { UserAddIcon } from "@heroicons/react/outline";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,6 @@ const Users = () => {
 
   let getData = async () => {
     let resultData = await GetAllUsers();
-    console.log("USERSSSS", resultData);
     dispatch(setAllUsers(resultData));
   };
 
@@ -23,15 +23,18 @@ const Users = () => {
   return (
     <div>
       <div className="flex flex-row-reverse">
+        <Link to="/register-user" exact>
         <button
-          type="submit"
+          type="button"
           className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          
         >
           Add New User
           <span className="left-0 inset-y-0 flex items-center pl-2">
             <UserAddIcon className="h-5 w-5 text-white-500" />
           </span>
         </button>
+        </Link>
       </div>
       <div className="flex flex-col mt-5">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
