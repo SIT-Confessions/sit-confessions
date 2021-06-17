@@ -10,10 +10,6 @@ import * as api from "../api";
 
 // Load User
 export const loadUser = () => async (dispatch) => {
-  if (localStorage.getItem("token")) {
-    setAuthToken(localStorage.getItem("token"));
-  }
-
   try {
     const res = await api.getUser();
     dispatch({
@@ -35,17 +31,7 @@ export const login = (formData) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
-
-    if (localStorage.getItem("token")) {
-      setAuthToken(localStorage.getItem("token"));
-    }
-
-    const result = await api.getUser();
-    
-    dispatch({
-      type: USER_LOADED,
-      payload: result.data,
-    });
+    dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -61,4 +47,4 @@ export const login = (formData) => async (dispatch) => {
 };
 
 // Logout User
-export const logout = () => async (dispatch) => dispatch({ type: LOGOUT });
+export const logout = () => ({ type: LOGOUT });

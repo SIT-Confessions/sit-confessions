@@ -58,7 +58,7 @@ const Index = () => {
           Welcome back, {user.name}!
         </h1>
         <p className="text-md font-semibold text-gray-500 dark:text-gray-400">
-          Last Login: { dayjs(user.lastLogin).format("D MMM YYYY, h:HH A") }
+          Last Login: {dayjs(user.lastLogin).format("D MMM YYYY, h:HH A")}
         </p>
       </div>
       <div className="flex flex-row md:space-x-5 lg:space-x-4 xl:space-x-10 flex-wrap">
