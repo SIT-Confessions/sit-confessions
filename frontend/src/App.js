@@ -12,6 +12,7 @@ import Login from "./components/Admin/Login";
 import PrivateRoute from "./components/Routing/PrivateRoute";
 import AdminHome from "./components/Admin";
 import Account from "./components/Admin/Account";
+import Users from "./components/Admin/Users";
 import NotificationCenter from "./components/UI/NotificationCenter";
 import { loadUser } from "./actions/auth";
 import store from "./store";
@@ -48,6 +49,12 @@ function App() {
             path="/account"
             exact
             component={Account}
+          />
+          <PrivateRoute
+            key="users"
+            path="/users"
+            exact
+            component={Users}
           />
           <Route path="/login" exact component={Login}></Route>
           <Route component={NotFound}></Route>

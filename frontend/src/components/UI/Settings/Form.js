@@ -1,6 +1,28 @@
 import React from "react";
 
 const Form = () => {
+
+
+  const handleSave = async (event) => {
+    event.preventDefault();
+    alert("Work in Progress")
+    // if (checkForm()) {
+    //   // Passed validation
+    //   let data = userInput.enteredConfession;
+    //   let confessionJSON = { text: data };
+    //   let res = await api.post("/confessions", confessionJSON);
+    //   clearInputs();
+    //   ShowNotification({
+    //     id: uuidv4(),
+    //     title: "Successfully Submitted!",
+    //     message: "Your confession has been submitted for approval!",
+    //     type: "success",
+    //   });
+    // }
+  };
+
+
+
   return (
     <div className="md:col-span-9 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto sm:rounded-xl shadow-lg">
       {/* <div className="px-4 py-5 sm:px-6">
@@ -9,7 +31,7 @@ const Form = () => {
         </h3>
       </div> */}
       <div className="border-gray-200">
-        <form action="#" method="POST">
+        <form onSubmit={handleSave}>
           <div className="shadow sm:rounded-md sm:overflow-hidden">
             <div className="px-4 sm:p-6">
               <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-50">

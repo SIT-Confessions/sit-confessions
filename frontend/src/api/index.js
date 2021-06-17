@@ -51,3 +51,13 @@ export const login = (formData) => {
 export const getUser = () => {
   return API.get("/auth");
 };
+
+export const GetAllUsers = async () => {
+  if (localStorage.getItem("token")) {
+    setAuthToken(localStorage.getItem("token"));
+  }
+  let res = await API.get("/auth/users")
+    .then((res) => res)
+    .catch((err) => console.log("from api All Users call", err));
+  return res.data;
+}
