@@ -28,13 +28,12 @@ const Index = () => {
 
   let getData = async () => {
     let resultData = await GetAllConfessions();
-    console.log("Test console from Admin", resultData);
     dispatch(setAllConfessions(resultData));
   };
 
   useEffect(() => {
     if (authenticated) getData();
-  }, []);
+  }, [authenticated]);
 
   const SetDetailsOnModal = (data) => {
     setConfessionDetails((prevState) => {
