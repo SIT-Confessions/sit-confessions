@@ -131,7 +131,7 @@ const Index = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
                           {dayjs(confession.createdAt).format(
-                            "D MMM YYYY, h:HH:ss A"
+                            "D MMM YYYY, h:mm:ss A"
                           )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
