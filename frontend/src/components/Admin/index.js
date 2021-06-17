@@ -5,9 +5,11 @@ import SummaryCard from "./SummaryCard";
 import { GetAllConfessions } from "../../api";
 import { getAllConfessions, setAllConfessions } from "../../actions";
 import * as dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import he from "he";
 
 const Index = () => {
+  dayjs.extend(utc);
   const [open, setOpen] = useState(false);
   const [confessionDetails, setConfessionDetails] = useState({});
   const confessions = useSelector((state) => state.allConfessions);
@@ -58,7 +60,7 @@ const Index = () => {
           Welcome back, {user.name}!
         </h1>
         <p className="text-md font-semibold text-gray-500 dark:text-gray-400">
-          Last Login: { dayjs(user.lastLogin).format("D MMM YYYY, h:HH A") }
+          Last Login: {dayjs(Date(user.lastLogin)).format("D MMM YYYY, h:mm A")}
         </p>
       </div>
       <div className="flex flex-row md:space-x-5 lg:space-x-4 xl:space-x-10 flex-wrap">
@@ -129,7 +131,7 @@ const Index = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
                           {dayjs(confession.createdAt).format(
-                            "D MMM YYYY, h:HH:ss A"
+                            "D MMM YYYY, h:mm:ss A"
                           )}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">

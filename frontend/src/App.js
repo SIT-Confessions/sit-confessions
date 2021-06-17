@@ -17,6 +17,7 @@ import RegisterUser from "./components/Admin/RegisterUser";
 import NotificationCenter from "./components/UI/NotificationCenter";
 import { loadUser } from "./actions/auth";
 import store from "./store";
+import setAuthToken from "./utils/setAuthToken";
 
 function App() {
   const notificationsData = useSelector((state) => state.notifications);
@@ -24,6 +25,9 @@ function App() {
   // const isDark = localStorage.getItem("darkPreferred")
 
   useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
     store.dispatch(loadUser());
   }, []);
 

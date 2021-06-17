@@ -4,7 +4,7 @@ import * as dayjs from "dayjs";
 import { Dialog, Transition } from "@headlessui/react";
 import { ApproveConfession, RejectConfession } from "../../api";
 import { addNotification } from "../../actions";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import he from "he";
 
 const ConfessionDetailsModal = (props) => {
@@ -35,20 +35,20 @@ const ConfessionDetailsModal = (props) => {
     const result = await RejectConfession(id);
     props.closeModal();
     ShowNotification({
-        id: uuidv4(),
-        title: "It's a Success!!",
-        message: result.data.msg,
-        type: "success",
+      id: uuidv4(),
+      title: "It's a Success!!",
+      message: result.data.msg,
+      type: "success",
     });
   };
 
   const decodeData = (data) => {
     if (data !== undefined) {
-        return he.decode(data);
+      return he.decode(data);
     } else {
-        return "";
+      return "";
     }
-  }
+  };
 
   const cancelButtonRef = useRef(null);
   const approveButtonRef = useRef(null);
@@ -119,7 +119,7 @@ const ConfessionDetailsModal = (props) => {
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
                           {dayjs(data.createdAt).format(
-                            "D MMM YYYY, h:HH:ss A"
+                            "D MMM YYYY, h:mm:ss A"
                           )}
                         </dd>
                       </div>
@@ -128,7 +128,7 @@ const ConfessionDetailsModal = (props) => {
                           Status
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {(() => {
+                          {(() => {
                             if (data.status === "APPROVED") {
                               if (data.isPostedToFB) {
                                 return (
