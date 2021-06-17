@@ -73,7 +73,7 @@ export const authenticateUser = async (req, res) => {
         .json({ errors: [{ msg: "Invalid Email or Password" }] });
     }
 
-    user.lastLogin = new Date().toISOString();
+    user.lastLogin = Date();
     await user.save();
 
     // Return jsonwebtoken
