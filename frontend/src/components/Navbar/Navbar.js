@@ -18,15 +18,6 @@ import { getThemePreference, setThemePreference } from "../../actions";
 import { motion } from "framer-motion";
 // import { style } from "../../../craco.config";
 
-const navigation = [
-  "Dashboard",
-  "Team",
-  "Projects",
-  "Calendar",
-  "Reports",
-  "Post Confession",
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }

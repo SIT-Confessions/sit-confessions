@@ -1,7 +1,8 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 const ProfileForm = () => {
-
+  const user = useSelector(state => state.auth.user);
 
 
   const handleSave = async (event) => {
@@ -56,7 +57,7 @@ const ProfileForm = () => {
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-6">
-                <div className="col-span-2 sm:col-span-2">
+                <div className="col-span-2 sm:col-span-4">
                   <label
                     htmlFor="name"
                     className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
@@ -70,6 +71,7 @@ const ProfileForm = () => {
                       id="name"
                       className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                       placeholder="Karen"
+                      value={user.name}
                     />
                   </div>
                   <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
@@ -93,6 +95,7 @@ const ProfileForm = () => {
                     id="email"
                     className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                     placeholder="you@example.com"
+                    value={user.email}
                   />
                 </div>
               </div>
