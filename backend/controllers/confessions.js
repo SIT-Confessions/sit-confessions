@@ -104,6 +104,30 @@ export const getConfession = async (req, res) => {
 };
 
 /**
+ * Search confession from db
+ *
+ * Find substring for text and status fields
+ *
+ * @returns {json} All substring matched confessions
+ */
+export const searchConfessions = async (req, res) => {
+  try {
+    const confessions = await Confession.find({
+      $or: [
+        { text: { $regex: `${req.query.substring}`, $options: "i" } },
+        { status: { $regex: `${req.query.substring}`, $options: "i" } },
+      ],
+    }).sort({
+      createdAt: -1,
+    });
+    res.json(confessions);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
+
+/**
  * Approve a confession post.
  *
  * Set the status attribute to approved.

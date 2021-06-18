@@ -8,6 +8,7 @@ import {
   getApprovedConfessions,
   getQueuedConfessions,
   getConfession,
+  searchConfessions,
   rejectConfession,
 } from "../controllers/confessions.js";
 
@@ -40,6 +41,14 @@ router.get("/", auth, getAllConfessions);
  * @access Public
  */
 router.get("/approved", getApprovedConfessions);
+
+/**
+ * Search confession by substring
+ *
+ * @route GET api/confessions/search
+ * @access Public
+ */
+router.get("/search", searchConfessions);
 
 /**
  * Get all queued confessions
