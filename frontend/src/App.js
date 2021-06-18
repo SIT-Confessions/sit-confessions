@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet";
 import Login from "./components/Admin/Login";
 import PrivateRoute from "./components/Routing/PrivateRoute";
 import AdminHome from "./components/Admin";
-import Account from "./components/Admin/Account";
+import Account from "./components/Admin/Account/Account";
 import Users from "./components/Admin/Users";
 import RegisterUser from "./components/Admin/RegisterUser";
 import NotificationCenter from "./components/UI/NotificationCenter";
