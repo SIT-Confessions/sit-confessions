@@ -1,6 +1,7 @@
 import React from "react";
 
-const Form = () => {
+const SecurityForm = () => {
+
 
 
   const handleSave = async (event) => {
@@ -153,4 +154,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default SecurityForm;
