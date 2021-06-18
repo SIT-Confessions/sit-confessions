@@ -2,12 +2,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 const ProfileForm = () => {
-  const user = useSelector(state => state.auth.user);
-
+  const user = useSelector((state) => state.auth.user);
 
   const handleSave = async (event) => {
     event.preventDefault();
-    alert("Work in Progress")
+    alert("Work in Progress");
     // if (checkForm()) {
     //   // Passed validation
     //   let data = userInput.enteredConfession;
@@ -23,9 +22,11 @@ const ProfileForm = () => {
     // }
   };
 
+  // useEffect({
+  //   if (user !== null)
+  // }, [user]);
 
-
-  return (
+  return user !== null ? (
     <div className="md:col-span-9 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto sm:rounded-xl shadow-lg">
       {/* <div className="px-4 py-5 sm:px-6">
         <h3 className="text-lg leading-6 font-medium text-gray-800">
@@ -53,7 +54,9 @@ const ProfileForm = () => {
                   Joined Date
                 </label>
                 <div className="mt-1">
-                  <p className="text-sm transition-colors duration-500 text-gray-500 dark:text-gray-400">21 September 2020</p>
+                  <p className="text-sm transition-colors duration-500 text-gray-500 dark:text-gray-400">
+                    21 September 2020
+                  </p>
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-6">
@@ -152,6 +155,44 @@ const ProfileForm = () => {
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  ) : (
+    <div className="md:col-span-9 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto sm:rounded-xl shadow-lg">
+      <div className="border-gray-200 animate-pulse">
+        <div className="sm:rounded-md sm:overflow-hidden">
+          <div className="px-4 sm:p-6">
+            <div className="w-2/5 h-10 transition-colors duration-500 bg-gray-300 dark:bg-gray-700 rounded"></div>
+          </div>
+          <hr className="mx-6 transition-colors duration-500 dark:border-gray-700"></hr>
+          <div className="px-4 py-5 space-y-6 sm:p-6">
+            <div>
+              <div className="w-1/12 h-4 transition-colors duration-500 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              <div className="mt-1">
+                <div className="w-2/12 h-9 transition-colors duration-500 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              </div>
+            </div>
+            <div className="grid grid-cols-4 gap-6">
+              <div className="col-span-2 sm:col-span-4">
+                <div className="w-1/12 h-4 transition-colors duration-500 bg-gray-300 dark:bg-gray-700 rounded"></div>
+                <div className="mt-1">
+                  <div className="w-12/12 h-9 transition-colors duration-500 bg-gray-300 dark:bg-gray-700 rounded"></div>
+                </div>
+                <div className="mt-2 w-7/12 h-4 transition-colors duration-500 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              </div>
+            </div>
+
+            <div>
+              <div className="w-1/12 h-4 transition-colors duration-500 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              <div className="mt-1">
+                <div className="w-12/12 h-9 transition-colors duration-500 bg-gray-300 dark:bg-gray-700 rounded"></div>
+              </div>
+            </div>
+          </div>
+          <div className="px-4 py-3 transition-colors duration-500 text-right sm:px-6">
+            <div className="w-24 h-8 transition-colors duration-500 bg-gray-300 dark:bg-gray-700 rounded"></div>
+          </div>
+        </div>
       </div>
     </div>
   );
