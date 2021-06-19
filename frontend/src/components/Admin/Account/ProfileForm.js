@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import * as dayjs from "dayjs";
 
 const ProfileForm = () => {
   const user = useSelector((state) => state.auth.user);
@@ -55,7 +56,7 @@ const ProfileForm = () => {
                 </label>
                 <div className="mt-1">
                   <p className="text-sm transition-colors duration-500 text-gray-500 dark:text-gray-400">
-                    21 September 2020
+                    {dayjs(user.date).format("D MMMM YYYY")}
                   </p>
                 </div>
               </div>

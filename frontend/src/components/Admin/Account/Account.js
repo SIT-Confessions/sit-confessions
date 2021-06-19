@@ -21,9 +21,9 @@ const KeyIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6"
+      class="h-5 w-5"
       fill="none"
-      viewBox="0 0 26 26"
+      viewBox="0 0 24 24"
       stroke="currentColor"
     >
       <path
@@ -49,7 +49,7 @@ const Account = () => {
   const menuItems = [
     {
       key: 1,
-      title: "Profile",
+      title: "My Profile",
       icon: <ProfileIcon />,
     },
     {
@@ -81,71 +81,6 @@ const Account = () => {
                   <span class="flex-grow text-right"></span>
                 </button>
               ))}
-
-              <a
-                class="hover:text-gray-800 hover:bg-gray-200 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-800 dark:text-gray-100 rounded-lg bg-gray-200 dark:bg-gray-600"
-                href="#"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 26 26"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
-                  />
-                </svg>
-                <span class="mx-4 text-lg font-normal">
-                  Security & Password
-                </span>
-                <span class="flex-grow text-right"></span>
-              </a>
-              <a
-                class="hover:text-gray-800 hover:bg-gray-200 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg "
-                href="#"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="m-auto"
-                  viewBox="0 0 2048 1792"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M960 0l960 384v128h-128q0 26-20.5 45t-48.5 19h-1526q-28 0-48.5-19t-20.5-45h-128v-128zm-704 640h256v768h128v-768h256v768h128v-768h256v768h128v-768h256v768h59q28 0 48.5 19t20.5 45v64h-1664v-64q0-26 20.5-45t48.5-19h59v-768zm1595 960q28 0 48.5 19t20.5 45v128h-1920v-128q0-26 20.5-45t48.5-19h1782z"></path>
-                </svg>
-                <span class="mx-4 text-lg font-normal">Commerce</span>
-                <span class="flex-grow text-right">
-                  <button
-                    type="button"
-                    class="w-6 h-6 text-xs  rounded-full text-white bg-red-500"
-                  >
-                    <span class="p-1">7</span>
-                  </button>
-                </span>
-              </a>
-              <a
-                class="hover:text-gray-800 hover:bg-gray-200 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg "
-                href="#"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  class="m-auto"
-                  fill="currentColor"
-                  viewBox="0 0 2048 1792"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M1070 1178l306-564h-654l-306 564h654zm722-282q0 182-71 348t-191 286-286 191-348 71-348-71-286-191-191-286-71-348 71-348 191-286 286-191 348-71 348 71 286 191 191 286 71 348z"></path>
-                </svg>
-                <span class="mx-4 text-lg font-normal">Navigation</span>
-                <span class="flex-grow text-right"></span>
-              </a>
             </nav>
           </div>
         </div>
