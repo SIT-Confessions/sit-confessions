@@ -85,7 +85,7 @@ const Account = () => {
           </div>
         </div>
       </div>
-      <ProfileForm></ProfileForm>
+      {activeIndex === 0 ? (<ProfileForm></ProfileForm>) : (activeIndex === 1 ? (<SecurityForm></SecurityForm>) : null)}
     </div>
   );
 };

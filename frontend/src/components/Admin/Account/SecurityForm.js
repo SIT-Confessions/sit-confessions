@@ -36,24 +36,30 @@ const SecurityForm = () => {
           <div className="shadow sm:rounded-md sm:overflow-hidden">
             <div className="px-4 sm:p-6">
               <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-50">
-                Profile Information
+                Security & Password
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                View and edit your profile
+                Manage and change security settings like your password
               </p>
             </div>
             <hr className="mx-6 transition-colors duration-500 dark:border-gray-700"></hr>
             <div className="px-4 py-5 space-y-6 sm:p-6">
               <div>
                 <label
-                  htmlFor="joinDate"
+                  htmlFor="currentPassword"
                   className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
                 >
-                  Joined Date
+                  Current Password
                 </label>
                 <div className="mt-1">
-                  <p className="text-sm transition-colors duration-500 text-gray-500 dark:text-gray-400">21 September 2020</p>
-                </div>
+                    <input
+                      type="password"
+                      name="currentPassword"
+                      id="currentPassword"
+                      className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                      placeholder="password"
+                    />
+                  </div>
               </div>
               <div className="grid grid-cols-4 gap-6">
                 <div className="col-span-2 sm:col-span-2">
