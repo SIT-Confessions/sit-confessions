@@ -49,7 +49,7 @@ const Account = () => {
   const menuItems = [
     {
       key: 1,
-      title: "My Profile",
+      title: "Profile Information",
       icon: <ProfileIcon />,
     },
     {

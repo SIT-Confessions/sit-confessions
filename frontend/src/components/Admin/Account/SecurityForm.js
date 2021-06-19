@@ -25,7 +25,7 @@ const SecurityForm = () => {
 
 
   return (
-    <div className="md:col-span-9 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto sm:rounded-xl shadow-lg">
+    <div className="md:col-span-9 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-lg">
       {/* <div className="px-4 py-5 sm:px-6">
         <h3 className="text-lg leading-6 font-medium text-gray-800">
           Profile Information
@@ -34,7 +34,7 @@ const SecurityForm = () => {
       <div className="border-gray-200">
         <form onSubmit={handleSave}>
           <div className="shadow sm:rounded-md sm:overflow-hidden">
-            <div className="px-4 sm:p-6">
+            <div className="px-6 py-6">
               <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-50">
                 Security & Password
               </h2>
@@ -43,7 +43,7 @@ const SecurityForm = () => {
               </p>
             </div>
             <hr className="mx-6 transition-colors duration-500 dark:border-gray-700"></hr>
-            <div className="px-4 py-5 space-y-6 sm:p-6">
+            <div className="px-6 py-6 space-y-6 sm:p-6">
               <div>
                 <label
                   htmlFor="currentPassword"
@@ -150,7 +150,7 @@ const SecurityForm = () => {
                 type="submit"
                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Save Changes
+                Update Password
               </button>
             </div>
           </div>
