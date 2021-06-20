@@ -1,18 +1,40 @@
 import React, { useState, useEffect } from "react";
 
 const RegisterUser = () => {
-    const [registerFormData, setRegisterFormData] = useState({
-        name: "",
-        email: "",
-        role: "",
-        password: "",
-        confirmPassword: ""
-    })
+  const [registerFormData, setRegisterFormData] = useState({
+    name: "",
+    email: "",
+    role: "",
+    password: "",
+  });
 
+  const nameChangeHandler = (event) => {
+    setRegisterFormData = (prevState) => {
+      return { ...prevState, name: event.target.value };
+    };
+  };
+
+  const emailChangeHandler = () => {
+    setRegisterFormData = (prevState) => {
+      return { ...prevState, email: event.target.value };
+    };
+  };
+
+  const roleChangeHandler = () => {
+    setRegisterFormData = (prevState) => {
+      return { ...prevState, role: event.target.value };
+    };
+  };
+
+  const passwordChangeHandler = () => {
+    setRegisterFormData = (prevState) => {
+      return { ...prevState, password: event.target.value };
+    };
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    alert("To Do")
+    alert("To Do");
   };
 
   return (
@@ -67,7 +89,24 @@ const RegisterUser = () => {
                       name="email"
                       id="email"
                       className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
-                      placeholder="you@example.com"
+                      placeholder="karen@wheresyourbadge.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="w-full lg:w-3/4">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
+                  >
+                    Password
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      type="text"
+                      name="password"
+                      id="password"
+                      className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                     />
                   </div>
                 </div>
@@ -85,7 +124,9 @@ const RegisterUser = () => {
                     autoComplete="role"
                     className="transition-colors duration-500 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                   >
-                    <option value="" disabled selected>Select Role</option>
+                    <option value="" disabled selected>
+                      Select Role
+                    </option>
                     <option value="master">Master</option>
                     <option value="admin">Admin</option>
                   </select>
