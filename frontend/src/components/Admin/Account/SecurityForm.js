@@ -81,13 +81,16 @@ const SecurityForm = () => {
                 >
                   New Password
                 </label>
-                <div className="mt-1">
+                <div className="relative mt-1">
                   <input
-                    type="password"
+                    type={showNewPassword ? "text" : "password"}
                     name="newPassword"
                     id="newPassword"
                     className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                   />
+                  <button type="button" className="z-10 absolute inset-y-0 right-0 flex items-center mx-2 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none" onClick={toggleNewPwdVisibility}>
+                    {showNewPassword ? (<EyeOffIcon className="h-5 w-5"></EyeOffIcon>) : (<EyeIcon className="h-5 w-5"></EyeIcon>)}
+                  </button>
                 </div>
               </div>
 
@@ -100,7 +103,7 @@ const SecurityForm = () => {
                 </label>
                 <div className="mt-1">
                   <input
-                    type="password"
+                    type={showNewPassword ? "text" : "password"}
                     name="confirmNewPassword"
                     id="confirmNewPassword"
                     className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
