@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const RegisterUser = () => {
+    const [registerFormData, setRegisterFormData] = useState({
+        name: "",
+        email: "",
+        role: "",
+        password: "",
+        confirmPassword: ""
+    })
+
+
   const handleRegister = (e) => {
     e.preventDefault();
+    alert("To Do")
   };
 
   return (
@@ -26,44 +36,25 @@ const RegisterUser = () => {
               </div>
               <hr className="mx-6 transition-colors duration-500 dark:border-gray-700"></hr>
               <div className="px-4 py-5 space-y-6 sm:p-6">
-                <div>
+                <div className="w-full lg:w-3/4">
                   <label
-                    htmlFor="joinDate"
+                    htmlFor="name"
                     className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
                   >
-                    Joined Date
+                    Name
                   </label>
                   <div className="mt-1">
-                    <p className="text-sm transition-colors duration-500 text-gray-500 dark:text-gray-400">
-                      21 September 2020
-                    </p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-4 gap-6">
-                  <div className="col-span-2 sm:col-span-2">
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
-                    >
-                      Name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
-                        placeholder="Karen"
-                      />
-                    </div>
-                    <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                      Your name may appear when you access the Dashboard and to
-                      identify you when you perform an action on a confession.
-                    </p>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                      placeholder="Karen"
+                    />
                   </div>
                 </div>
 
-                <div>
+                <div className="w-full lg:w-3/4">
                   <label
                     htmlFor="email"
                     className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
@@ -79,6 +70,25 @@ const RegisterUser = () => {
                       placeholder="you@example.com"
                     />
                   </div>
+                </div>
+
+                <div className="w-full lg:w-1/2">
+                  <label
+                    htmlFor="role"
+                    className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
+                  >
+                    Role
+                  </label>
+                  <select
+                    id="role"
+                    name="role"
+                    autoComplete="role"
+                    className="transition-colors duration-500 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                  >
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="master">Master</option>
+                    <option value="admin">Admin</option>
+                  </select>
                 </div>
 
                 {/* <div>
