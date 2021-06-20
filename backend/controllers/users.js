@@ -5,6 +5,23 @@ import { validationResult } from "express-validator";
 import User from "../models/User.js";
 
 /**
+ * Retrieves all users in db.
+ *
+ * Get all users except for current logged in user.
+ *
+ * @returns {json} All Users
+ */
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({ _id: { $ne: req.user.id } });
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
+
+/**
  * Register a user in db.
  *
  * Checks if email is unique and
