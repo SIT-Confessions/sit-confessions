@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 
 const SecurityForm = () => {
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
 
+  const toggleOldPwdVisibility = () => {
+    setShowOldPassword((prevState) => {
+      return !prevState;
+    });
+  };
 
+  const toggleNewPwdVisibility = () => {
+    setShowNewPassword((prevState) => {
+      return !prevState;
+    });
+  };
 
-  const handleSave = async (event) => {
+  const handleSave = (event) => {
     event.preventDefault();
-    alert("Work in Progress")
+    alert("Work in Progress");
     // if (checkForm()) {
     //   // Passed validation
     //   let data = userInput.enteredConfession;
@@ -21,8 +34,6 @@ const SecurityForm = () => {
     //   });
     // }
   };
-
-
 
   return (
     <div className="md:col-span-9 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-lg">
@@ -44,61 +55,55 @@ const SecurityForm = () => {
             </div>
             <hr className="mx-6 transition-colors duration-500 dark:border-gray-700"></hr>
             <div className="px-6 py-6 space-y-6 sm:p-6">
-              <div>
+              <div className="lg:w-1/2">
                 <label
                   htmlFor="currentPassword"
                   className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
                 >
-                  Current Password
+                  Old Password
                 </label>
-                <div className="mt-1">
-                    <input
-                      type="password"
-                      name="currentPassword"
-                      id="currentPassword"
-                      className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
-                      placeholder="password"
-                    />
-                  </div>
-              </div>
-              <div className="grid grid-cols-4 gap-6">
-                <div className="col-span-2 sm:col-span-2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
-                  >
-                    Name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
-                      placeholder="Karen"
-                    />
-                  </div>
-                  <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                    Your name may appear when you access the Dashboard and to
-                    identify you when you perform an action on a confession.
-                  </p>
+                <div className="relative mt-1">
+                  <input
+                    type={showOldPassword ? "text" : "password"}
+                    name="currentPassword"
+                    id="currentPassword"
+                    className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                  />
+                  <button type="button" className="z-10 absolute inset-y-0 right-0 flex items-center mx-2 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none" onClick={toggleOldPwdVisibility}>
+                    {showOldPassword ? (<EyeOffIcon className="h-5 w-5"></EyeOffIcon>) : (<EyeIcon className="h-5 w-5"></EyeIcon>)}
+                  </button>
                 </div>
               </div>
-
-              <div>
+              <div className="lg:w-1/2">
                 <label
-                  htmlFor="email"
+                  htmlFor="newPassword"
                   className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
                 >
-                  Email
+                  New Password
                 </label>
                 <div className="mt-1">
                   <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
-                    placeholder="you@example.com"
+                    type="password"
+                    name="newPassword"
+                    id="newPassword"
+                    className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                  />
+                </div>
+              </div>
+
+              <div className="lg:w-1/2">
+                <label
+                  htmlFor="confirmNewPassword"
+                  className="block text-sm font-medium transition-colors duration-500 text-gray-700 dark:text-gray-300"
+                >
+                  Confirm New Password
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="password"
+                    name="confirmNewPassword"
+                    id="confirmNewPassword"
+                    className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                   />
                 </div>
               </div>

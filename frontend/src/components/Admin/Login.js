@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { AdjustmentsIcon } from "@heroicons/react/outline";
 
 const Login = ({ login, isAuthenticated }) => {
   const [serverMessages, setServerMessages] = useState([]);

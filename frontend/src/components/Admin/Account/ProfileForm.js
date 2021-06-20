@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as dayjs from "dayjs";
 
 const ProfileForm = () => {
   const user = useSelector((state) => state.auth.user);
+  const [formData, setFormData] = useState({
+    name: user.name,
+    email: user.email,
+  });
 
   const handleSave = async (event) => {
     event.preventDefault();
@@ -23,6 +27,17 @@ const ProfileForm = () => {
     // }
   };
 
+  const nameChangeHandler = (event) => {
+    setFormData((prevState) => {
+      return { ...prevState, name: event.target.value };
+    });
+  };
+
+  const emailChangeHandler = (event) => {
+    setFormData((prevState) => {
+      return { ...prevState, email: event.target.value };
+    });
+  };
   // useEffect({
   //   if (user !== null)
   // }, [user]);
@@ -75,7 +90,8 @@ const ProfileForm = () => {
                       id="name"
                       className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                       placeholder="Karen"
-                      value={user.name}
+                      value={formData.name}
+                      onChange={nameChangeHandler}
                     />
                   </div>
                   <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
@@ -99,7 +115,8 @@ const ProfileForm = () => {
                     id="email"
                     className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                     placeholder="you@example.com"
-                    value={user.email}
+                    value={formData.email}
+                    onChange={emailChangeHandler}
                   />
                 </div>
               </div>
