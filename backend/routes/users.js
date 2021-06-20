@@ -6,9 +6,18 @@ import {
   registerUser,
   changePassword,
   changeRole,
+  getAllUsers,
 } from "../controllers/users.js";
 
 const router = express.Router();
+
+/**
+ * Get all users
+ *
+ * @route GET api/users
+ * @access Master
+ */
+router.get("/", [master], getAllUsers);
 
 /**
  * Register user
