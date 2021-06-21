@@ -24,6 +24,9 @@ export const GetAllConfessions = async () => {
 };
 
 export const ApproveConfession = async (id) => {
+  if (localStorage.getItem("token")) {
+    setAuthToken(localStorage.getItem("token"));
+  }
   // const res = await API.put("/confessions/approve/" + id)
   //   .then((res) => res)
   //   .catch((err) => err);
@@ -33,7 +36,18 @@ export const ApproveConfession = async (id) => {
 };
 
 export const RejectConfession = async (id) => {
+  if (localStorage.getItem("token")) {
+    setAuthToken(localStorage.getItem("token"));
+  }
   const result = await API.put("/confessions/reject/" + id);
+  return result;
+};
+
+export const ChangePassword = async (data) => {
+  if (localStorage.getItem("token")) {
+    setAuthToken(localStorage.getItem("token"));
+  }
+  const result = await API.put("/users/password", data);
   return result;
 };
 
@@ -60,4 +74,4 @@ export const GetAllUsers = async () => {
     .then((res) => res)
     .catch((err) => console.log("from api All Users call", err));
   return res.data;
-}
+};

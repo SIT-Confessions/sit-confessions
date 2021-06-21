@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
+import { ChangePassword } from "../../../api";
+import { addNotification } from "../../../actions";
+import { v4 as uuidv4 } from "uuid";
 
 const SecurityForm = () => {
+  const dispatch = useDispatch();
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    oldpassword: "",
+    newpassword: "",
+    newpassword2: ""
+  })
 
   const toggleOldPwdVisibility = () => {
     setShowOldPassword((prevState) => {
@@ -17,9 +27,34 @@ const SecurityForm = () => {
     });
   };
 
-  const handleSave = (event) => {
+  const oldPasswordHandler = (event) => {
+    setFormData((prevState) => {
+      return { ...prevState, oldpassword: event.target.value };
+    });
+  };
+
+  const newPasswordHandler = (event) => {
+    setFormData((prevState) => {
+      return { ...prevState, newpassword: event.target.value };
+    });
+  };
+
+  const confirmNewPasswordHandler = (event) => {
+    setFormData((prevState) => {
+      return { ...prevState, newpassword2: event.target.value };
+    });
+  };
+
+  const handleSave = async (event) => {
     event.preventDefault();
-    alert("Work in Progress");
+    console.log(formData)
+    const result = await ChangePassword(formData);
+    dispatch(addNotification({
+      id: uuidv4(),
+      title: "It's a Success!!",
+      message: result.data.msg,
+      type: "success",
+    }));
     // if (checkForm()) {
     //   // Passed validation
     //   let data = userInput.enteredConfession;
@@ -68,6 +103,8 @@ const SecurityForm = () => {
                     name="currentPassword"
                     id="currentPassword"
                     className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                    value={formData.oldpassword}
+                    onChange={oldPasswordHandler}
                   />
                   <button type="button" className="z-10 absolute inset-y-0 right-0 flex items-center mx-2 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none" onClick={toggleOldPwdVisibility}>
                     {showOldPassword ? (<EyeOffIcon className="h-5 w-5"></EyeOffIcon>) : (<EyeIcon className="h-5 w-5"></EyeIcon>)}
@@ -87,6 +124,8 @@ const SecurityForm = () => {
                     name="newPassword"
                     id="newPassword"
                     className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                    value={formData.newpassword}
+                    onChange={newPasswordHandler}
                   />
                   <button type="button" className="z-10 absolute inset-y-0 right-0 flex items-center mx-2 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none" onClick={toggleNewPwdVisibility}>
                     {showNewPassword ? (<EyeOffIcon className="h-5 w-5"></EyeOffIcon>) : (<EyeIcon className="h-5 w-5"></EyeIcon>)}
@@ -107,6 +146,8 @@ const SecurityForm = () => {
                     name="confirmNewPassword"
                     id="confirmNewPassword"
                     className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                    value={formData.newpassword2}
+                    onChange={confirmNewPasswordHandler}
                   />
                 </div>
               </div>
