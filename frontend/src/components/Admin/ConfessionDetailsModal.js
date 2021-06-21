@@ -174,18 +174,44 @@ const ConfessionDetailsModal = (props) => {
                           })()}
                         </dd>
                       </div>
-                      {data.status === "APPROVED" && (
+                      {data.status === "APPROVED" ? (
                         <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
                           <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
                             Approved
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
-                            {data.approvedBy}<br/>
+                            {data.approvedBy}
+                            <br />
                             {dayjs(data.approvedDate).format(
-                            "D MMM YYYY, h:mm:ss A"
-                          )}
+                              "D MMM YYYY, h:mm:ss A"
+                            )}
                           </dd>
                         </div>
+                      ) : (
+                        data.status === "REJECTED" && (
+                          <>
+                            <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                Rejected
+                              </dt>
+                              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                {data.rejectedBy}
+                                <br />
+                                {dayjs(data.rejectedDate).format(
+                                  "D MMM YYYY, h:mm:ss A"
+                                )}
+                              </dd>
+                            </div>
+                            <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                Reason for Rejection
+                              </dt>
+                              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                Explicit Content
+                              </dd>
+                            </div>
+                          </>
+                        )
                       )}
                       {data.isPostedToFB && (
                         <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
@@ -203,14 +229,6 @@ const ConfessionDetailsModal = (props) => {
                           </dd>
                         </div>
                       )}
-                      <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                        <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                          Reason for Rejection
-                        </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
-                          Explicit Content
-                        </dd>
-                      </div>
                     </dl>
                   </div>
                 </div>
