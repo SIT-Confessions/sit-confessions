@@ -7,6 +7,7 @@ import { getAllConfessions, setAllConfessions } from "../../actions";
 import * as dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import he from "he";
+import { Redirect } from "react-router-dom";
 
 const Index = () => {
   dayjs.extend(utc);
@@ -34,7 +35,11 @@ const Index = () => {
   };
 
   useEffect(() => {
-    if (authenticated) getData();
+    if (authenticated) {
+      getData();
+    } else {
+      return <Redirect to="/dashboard" />;
+    }
   }, [authenticated]);
 
   const SetDetailsOnModal = (data) => {
@@ -182,7 +187,6 @@ const Index = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <button
-                            
                             className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-500 dark:hover:text-indigo-400 font-medium focus:outline-none"
                             onClick={() => SetDetailsOnModal(confession)}
                           >
