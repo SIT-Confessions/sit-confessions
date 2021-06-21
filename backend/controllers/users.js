@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
 
 import User from "../models/User.js";
@@ -66,23 +65,7 @@ export const registerUser = async (req, res) => {
 
     await user.save();
 
-    // Return jsonwebtoken
-    const payload = {
-      user: {
-        id: user.id,
-        role: user.role,
-      },
-    };
-
-    jwt.sign(
-      payload,
-      process.env.JWTSECRET,
-      { expiresIn: "1h" },
-      (err, token) => {
-        if (err) throw err;
-        res.json({ token });
-      }
-    );
+    res.status(200).json({ msg: `User ${name} registered` });
   } catch (error) {
     console.error(error.message);
     return res.status(500).send("Server error");
