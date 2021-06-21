@@ -12,15 +12,18 @@ export const GetApprovedConfessions = async () => {
   return res.data;
 };
 
-export const GetAllConfessions = async () => {
+export const GetAllConfessions = async (callback) => {
   //let resultData;
   if (localStorage.getItem("token")) {
     setAuthToken(localStorage.getItem("token"));
   }
-  let res = await API.get("/confessions")
-    .then((res) => res)
-    .catch((err) => console.log("from api All confessions", err));
-  return res.data;
+  API.get("/confessions")
+    .then((res) => { callback(res) })
+    .catch((err) => { 
+      if (err.response)
+        callback(err.response); 
+    });
+
 };
 
 export const ApproveConfession = async (id) => {

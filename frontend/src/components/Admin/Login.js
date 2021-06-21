@@ -19,7 +19,6 @@ const Login = ({ login, isAuthenticated }) => {
   const handleLoginFunc = async () => {
     const result = await login(formData);
     setServerMessages(result);
-    console.log("the result is ", result);
   };
 
   const handleSubmit = (e) => {

@@ -29,16 +29,28 @@ const Index = () => {
   });
   const dispatch = useDispatch();
 
-  let getData = async () => {
-    let resultData = await GetAllConfessions();
-    dispatch(setAllConfessions(resultData));
+  let getData = () => {
+    // let resultData = await GetAllConfessions();
+    // dispatch(setAllConfessions(resultData));
+    GetAllConfessions((response) => {
+      console.log(response)
+      if (response.status === 200) {
+        dispatch(setAllConfessions(response.data))
+        return false;
+      } else if (response.status === 401) {
+        return true;
+      }
+
+    })
   };
 
   useEffect(() => {
     if (authenticated) {
-      getData();
+      if (getData()) {
+        <Redirect push to="/" />;
+      }
     } else {
-      return <Redirect to="/login" />;
+      <Redirect push to="/login" />;
     }
   }, [authenticated]);
 
