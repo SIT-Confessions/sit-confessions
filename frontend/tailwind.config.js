@@ -89,6 +89,7 @@ module.exports = {
   variants: {
     extend: {
       typography: ["dark"],
+      opacity: ["disabled"],
     },
   },
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
