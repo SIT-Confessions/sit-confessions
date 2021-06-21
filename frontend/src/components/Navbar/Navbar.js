@@ -9,6 +9,8 @@ import {
   MoonIcon,
   SunIcon,
   UserCircleIcon,
+  StatusOnlineIcon,
+  PencilAltIcon,
 } from "@heroicons/react/outline";
 import { MoonIcon as MoonIconSolid } from "@heroicons/react/solid";
 import { Link, NavLink } from "react-router-dom";
@@ -67,9 +69,9 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
 
   const styles = {
     className:
-      "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium",
+      "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex",
     activeStyle:
-      "bg-gray-900 hover:bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium",
+      "bg-gray-900 hover:bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium flex",
   };
 
   const adminLinks = [
@@ -77,18 +79,21 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
       className: styles.className,
       activeStyle: styles.activeStyle,
       to: "/",
+      icon: <StatusOnlineIcon className="h-6 w-6" />,
       name: "Latest Confessions",
     },
     {
       className: styles.className,
       activeStyle: styles.activeStyle,
       to: "/post",
+      icon: <PencilAltIcon className="h-6 w-6" />,
       name: "Post Confession",
     },
     {
       className: styles.className,
       activeStyle: styles.activeStyle,
       to: "/dashboard",
+      icon: false,
       name: "Dashboard",
     },
   ];
@@ -109,6 +114,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
       className: styles.className,
       activeStyle: styles.activeStyle,
       to: "/",
+      icon: <StatusOnlineIcon className="h-6 w-6" />,
       name: "Latest Confessions",
     },
 
@@ -116,6 +122,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
       className: styles.className,
       activeStyle: styles.activeStyle,
       to: "/post",
+      icon: <PencilAltIcon className="h-6 w-6" />,
       name: "Post Confession",
     },
   ];
@@ -125,11 +132,13 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
       className: styles.className,
       activeStyle: styles.activeStyle,
       to: "/login",
+      icon: false,
       name: "Login",
     },
     {
       className: styles.className,
       to: "#",
+      icon: false,
       name: "Logout",
       onClick: logout,
     },
@@ -171,6 +180,11 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                           onClick={link.onClick}
                         >
                           {link.name}
+                          {link.icon && (
+                            <span className="relative right-0 inset-y-0 pl-2">
+                              {link.icon}
+                            </span>
+                          )}
                         </NavLink>
                       ))}
                       <NavLink

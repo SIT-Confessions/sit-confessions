@@ -123,112 +123,210 @@ const ConfessionDetailsModal = (props) => {
                           )}
                         </dd>
                       </div>
-                      <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                        <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                          Status
-                        </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          {(() => {
-                            if (data.status === "APPROVED") {
-                              if (data.isPostedToFB) {
-                                return (
-                                  <>
+                      {(() => {
+                        if (data.status === "APPROVED") {
+                          if (data.isPostedToFB) {
+                            return (
+                              <>
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    Status
+                                  </dt>
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                     <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
                                       Approved
                                     </span>
                                     <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-300 dark:text-blue-900">
                                       Posted
                                     </span>
-                                  </>
-                                );
-                              } else if (data.isQueued) {
-                                return (
-                                  <>
+                                  </dd>
+                                </div>
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    Approved
+                                  </dt>
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                    {data.approvedBy}
+                                    <br />
+                                    {dayjs(data.approvedDate).format(
+                                      "D MMM YYYY, h:mm:ss A"
+                                    )}
+                                  </dd>
+                                </div>
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    Facebook Post URL
+                                  </dt>
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                    <a
+                                      href={data.fbURL}
+                                      target="_blank"
+                                      className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-500 dark:hover:text-indigo-400"
+                                    >
+                                      {data.fbURL}
+                                    </a>
+                                  </dd>
+                                </div>
+                              </>
+                            );
+                          } else if (data.isQueued) {
+                            return (
+                              <>
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    Status
+                                  </dt>
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                     <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
                                       Approved
                                     </span>
                                     <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800 dark:bg-pink-300 dark:text-pink-900">
                                       Queued
                                     </span>
-                                  </>
-                                );
-                              } else {
-                                return (
-                                  <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                  </dd>
+                                </div>
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
                                     Approved
+                                  </dt>
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                    {data.approvedBy}
+                                    <br />
+                                    {dayjs(data.approvedDate).format(
+                                      "D MMM YYYY, h:mm:ss A"
+                                    )}
+                                  </dd>
+                                </div>
+                              </>
+                            );
+                          } else {
+                            return (
+                              <>
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    Status
+                                  </dt>
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                      Approved
+                                    </span>
+                                  </dd>
+                                </div>
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    Approved
+                                  </dt>
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                    {data.approvedBy}
+                                    <br />
+                                    {dayjs(data.approvedDate).format(
+                                      "D MMM YYYY, h:mm:ss A"
+                                    )}
+                                  </dd>
+                                </div>
+                              </>
+                            );
+                          }
+                        } else if (data.status === "PENDING")
+                          return (
+                            <>
+                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                  Status
+                                </dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
+                                    Pending Approval
                                   </span>
-                                );
-                              }
-                            } else if (data.status === "PENDING")
-                              return (
-                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
-                                  Pending Approval
-                                </span>
-                              );
-                            else if (data.status === "REJECTED")
-                              return (
-                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-300 dark:text-red-900">
+                                </dd>
+                              </div>
+                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                  Reject Reason
+                                </dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                  <div className="flex flex-col">
+                                    <div className="mb-1"><span className="text-red-400 dark:text-red-300">*Only required when rejecting a confession.</span></div>
+                                    <div>
+                                      <label>
+                                        <input
+                                          id="agree"
+                                          name="agree"
+                                          type="checkbox"
+                                          className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                        />
+                                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
+                                          Vulgar Language
+                                        </span>
+                                      </label>
+                                    </div>
+                                    <div>
+                                      <label>
+                                        <input
+                                          id="agree"
+                                          name="agree"
+                                          type="checkbox"
+                                          className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                        />
+                                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
+                                          Racist Remarks
+                                        </span>
+                                      </label>
+                                    </div>
+                                    <div>
+                                      <label>
+                                        <input
+                                          id="agree"
+                                          name="agree"
+                                          type="checkbox"
+                                          className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                        />
+                                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
+                                          Offensive Content/Cyber Bullying
+                                        </span>
+                                      </label>
+                                    </div>
+                                  </div>
+                                </dd>
+                              </div>
+                            </>
+                          );
+                        else if (data.status === "REJECTED")
+                          return (
+                            <>
+                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                  Status
+                                </dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-300 dark:text-red-900">
+                                    Rejected
+                                  </span>
+                                </dd>
+                              </div>
+                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
                                   Rejected
-                                </span>
-                              );
-                          })()}
-                        </dd>
-                      </div>
-                      {data.status === "APPROVED" ? (
-                        <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                            Approved
-                          </dt>
-                          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
-                            {data.approvedBy}
-                            <br />
-                            {dayjs(data.approvedDate).format(
-                              "D MMM YYYY, h:mm:ss A"
-                            )}
-                          </dd>
-                        </div>
-                      ) : (
-                        data.status === "REJECTED" && (
-                          <>
-                            <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                                Rejected
-                              </dt>
-                              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
-                                {data.rejectedBy}
-                                <br />
-                                {dayjs(data.rejectedDate).format(
-                                  "D MMM YYYY, h:mm:ss A"
-                                )}
-                              </dd>
-                            </div>
-                            <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                              <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                                Reason for Rejection
-                              </dt>
-                              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
-                                Explicit Content
-                              </dd>
-                            </div>
-                          </>
-                        )
-                      )}
-                      {data.isPostedToFB && (
-                        <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                          <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                            Facebook Post URL
-                          </dt>
-                          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
-                            <a
-                              href={data.fbURL}
-                              target="_blank"
-                              className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-500 dark:hover:text-indigo-400"
-                            >
-                              {data.fbURL}
-                            </a>
-                          </dd>
-                        </div>
-                      )}
+                                </dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                  {data.rejectedBy}
+                                  <br />
+                                  {dayjs(data.rejectedDate).format(
+                                    "D MMM YYYY, h:mm:ss A"
+                                  )}
+                                </dd>
+                              </div>
+                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                  Reason(s) for Rejection
+                                </dt>
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                  Explicit Content
+                                </dd>
+                              </div>
+                            </>
+                          );
+                      })()}
                     </dl>
                   </div>
                 </div>
