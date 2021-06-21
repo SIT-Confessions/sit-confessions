@@ -40,7 +40,6 @@ export const master = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWTSECRET);
     req.user = decoded.user;
-    console.log(decoded);
 
     if (req.user.role !== MASTER) {
       res.status(401).json({ msg: "Role not authorised" });
