@@ -4,7 +4,7 @@ import { GetAllUsers } from "../../api";
 import { getAllUsers, setAllUsers } from "../../actions";
 import * as dayjs from "dayjs";
 import { UserAddIcon } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const Users = () => {
   const dispatch = useDispatch();

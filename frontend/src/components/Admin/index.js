@@ -38,7 +38,7 @@ const Index = () => {
     if (authenticated) {
       getData();
     } else {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to="/login" />;
     }
   }, [authenticated]);
 
