@@ -17,7 +17,7 @@ const router = express.Router();
  * @route GET api/users
  * @access Master
  */
-router.get("/", [master], getAllUsers);
+router.get("/", master, getAllUsers);
 
 /**
  * Register user
