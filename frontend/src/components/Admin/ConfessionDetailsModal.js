@@ -35,7 +35,7 @@ const ConfessionDetailsModal = (props) => {
   };
 
   const rejectConfession = async (id) => {
-    const result = await RejectConfession(id, rejectReasons);
+    const result = await RejectConfession(id, { rejectedReason: rejectReasons });
     props.closeModal();
     ShowNotification({
       id: uuidv4(),
