@@ -8,12 +8,13 @@ import {
   changeRole,
   getAllUsers,
   deleteUser,
+  updateUser,
 } from "../controllers/users.js";
 
 const router = express.Router();
 
 /**
- * Get all users
+ * Get all users.
  *
  * @route GET api/users
  * @access Master
@@ -21,7 +22,7 @@ const router = express.Router();
 router.get("/", master, getAllUsers);
 
 /**
- * Register user
+ * Register user.
  *
  * @route POST api/users
  * @access Master
@@ -45,7 +46,25 @@ router.post(
 );
 
 /**
- * Change user password
+ * Updater user profile.
+ *
+ * @route PUT api/users/
+ * @access Master
+ */
+router.put(
+  "/",
+  [
+    auth,
+    [
+      check("name", "Name is required").notEmpty(),
+      check("email", "Please include a valid email").isEmail().normalizeEmail(),
+    ],
+  ],
+  updateUser
+);
+
+/**
+ * Change user password.
  *
  * @route PUT api/users/password
  * @access Private
@@ -67,7 +86,7 @@ router.put(
 );
 
 /**
- * Change user role
+ * Change user role.
  *
  * @route PUT api/users/role
  * @access Master
@@ -85,7 +104,7 @@ router.put(
 );
 
 /**
- * Delete a user
+ * Delete a user.
  *
  * @route DELETE api/users/
  * @access Master

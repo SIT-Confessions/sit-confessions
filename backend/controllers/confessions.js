@@ -189,6 +189,7 @@ export const rejectConfession = async (req, res) => {
     if (confession.status !== REJECTED) {
       confession.status = REJECTED;
       confession.rejectedBy = req.user.id;
+      confession.rejectedReason = req.body.rejectedReason;
       confession.rejectedDate = Date();
       await confession.save();
     }
