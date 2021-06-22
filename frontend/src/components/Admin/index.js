@@ -29,30 +29,43 @@ const Index = () => {
   });
   const dispatch = useDispatch();
 
-  let getData = () => {
+  let getData = async (authenticated) => {
     // let resultData = await GetAllConfessions();
-    // dispatch(setAllConfessions(resultData));
-    GetAllConfessions((response) => {
-      console.log(response)
-      if (response.status === 200) {
-        dispatch(setAllConfessions(response.data))
-        return false;
-      } else if (response.status === 401) {
-        return true;
-      }
+    // dispatch(setAllConfessions(resultData))
+    
+    //  GetAllConfessions((response) => {
+    //   console.log(response)
+    //   if (response.status === 200) {
+    //     dispatch(setAllConfessions(response.data))
+    //     return false;
+    //   } else if (response.status === 401) {
+    //     alert("nabuey");
+    //     <Redirect push to="/" />;
+    //   }
+    try {
+        let result = await GetAllConfessions()
+        console.log(result)
+        dispatch(setAllConfessions(result.data))
 
-    })
+    } catch (error) {
+      if (error.response)
+        console.log(error.response);
+        return <Redirect push to="/post" />;
+    }
+
   };
 
   useEffect(() => {
-    if (authenticated) {
-      if (getData()) {
-        <Redirect push to="/" />;
-      }
-    } else {
-      <Redirect push to="/login" />;
-    }
-  }, [authenticated]);
+    // if (authenticated) {
+    //   if (getData()) {
+    //     console.log("came in here");
+    //     <Redirect push to="/" />;
+    //   }
+    // } else {
+    //   <Redirect push to="/login" />;
+    // }
+    getData();
+  }, []);
 
   const SetDetailsOnModal = (data) => {
     setConfessionDetails((prevState) => {

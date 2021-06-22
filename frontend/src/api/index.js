@@ -12,17 +12,13 @@ export const GetApprovedConfessions = async () => {
   return res.data;
 };
 
-export const GetAllConfessions = async (callback) => {
+export const GetAllConfessions = () => {
   //let resultData;
   if (localStorage.getItem("token")) {
     setAuthToken(localStorage.getItem("token"));
   }
-  API.get("/confessions")
-    .then((res) => { callback(res) })
-    .catch((err) => { 
-      if (err.response)
-        callback(err.response); 
-    });
+  return API.get("/confessions");
+
 
 };
 
@@ -38,11 +34,11 @@ export const ApproveConfession = async (id) => {
   return result;
 };
 
-export const RejectConfession = async (id) => {
+export const RejectConfession = async (id, reasons) => {
   if (localStorage.getItem("token")) {
     setAuthToken(localStorage.getItem("token"));
   }
-  const result = await API.put("/confessions/reject/" + id);
+  const result = await API.put("/confessions/reject/" + id, reasons);
   return result;
 };
 

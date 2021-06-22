@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import * as dayjs from "dayjs";
 import { Dialog, Transition } from "@headlessui/react";
@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import he from "he";
 
 const ConfessionDetailsModal = (props) => {
+  const [rejectReasons, setRejectReasons] = useState([]);
   const dispatch = useDispatch();
   let open = props.isOpen;
   let data = props.data;
@@ -32,7 +33,7 @@ const ConfessionDetailsModal = (props) => {
   };
 
   const rejectConfession = async (id) => {
-    const result = await RejectConfession(id);
+    const result = await RejectConfession(id, rejectReasons);
     props.closeModal();
     ShowNotification({
       id: uuidv4(),
@@ -49,6 +50,27 @@ const ConfessionDetailsModal = (props) => {
       return "";
     }
   };
+
+  const checkBoxChangeHandler = (event, reason) => {
+    if (event.target.checked) {
+      setRejectReasons((prevState) => {
+        return [...prevState, reason];
+      })
+    } else {
+      var array = [...rejectReasons];
+      var index = array.indexOf(reason)
+      if (index !== -1) {
+        array.splice(index, 1);
+        setRejectReasons(() => {
+          return array;
+        })
+      }
+    }
+  };
+
+  // useEffect(() => {
+  //   console.log("from modal", rejectReasons);
+  // })
 
   const cancelButtonRef = useRef(null);
   const approveButtonRef = useRef(null);
@@ -254,6 +276,7 @@ const ConfessionDetailsModal = (props) => {
                                           name="agree"
                                           type="checkbox"
                                           className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                          onChange={(e) => checkBoxChangeHandler(e, "Vulgar Language")}
                                         />
                                         <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
                                           Vulgar Language
@@ -267,6 +290,7 @@ const ConfessionDetailsModal = (props) => {
                                           name="agree"
                                           type="checkbox"
                                           className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                          onChange={(e) => checkBoxChangeHandler(e, "Racist Remarks")}
                                         />
                                         <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
                                           Racist Remarks
@@ -280,6 +304,7 @@ const ConfessionDetailsModal = (props) => {
                                           name="agree"
                                           type="checkbox"
                                           className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                          onChange={(e) => checkBoxChangeHandler(e, "Offensive Content/Cyber Bullying")}
                                         />
                                         <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
                                           Offensive Content/Cyber Bullying
@@ -338,7 +363,7 @@ const ConfessionDetailsModal = (props) => {
                       type="button"
                       className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-30"
                       onClick={() => rejectConfession(data._id)}
-                      disabled
+                      disabled={rejectReasons.length === 0}
                     >
                       Reject
                     </button>
