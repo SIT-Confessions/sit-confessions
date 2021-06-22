@@ -45,9 +45,11 @@ const ConfessionSchema = new Schema({
   rejectedDate: {
     type: Date,
   },
-  rejectedReason: {
-    type: String,
-  },
+  rejectedReason: [
+    {
+      type: String,
+    },
+  ],
 });
 
 ConfessionSchema.plugin(MongooseAutoIncrementID.plugin, {
