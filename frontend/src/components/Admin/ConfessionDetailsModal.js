@@ -268,7 +268,7 @@ const ConfessionDetailsModal = (props) => {
                                 </dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                   <div className="flex flex-col">
-                                    <div className="mb-1"><span className="text-red-400 dark:text-red-300">*Only required when rejecting a confession.</span></div>
+                                    <div className="mb-1"><span className="text-red-500 dark:text-red-400">*Only required when rejecting a confession.</span></div>
                                     <div>
                                       <label>
                                         <input
@@ -278,7 +278,7 @@ const ConfessionDetailsModal = (props) => {
                                           className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                           onChange={(e) => checkBoxChangeHandler(e, "Vulgar Language")}
                                         />
-                                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
+                                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-600 dark:text-gray-100">
                                           Vulgar Language
                                         </span>
                                       </label>
@@ -292,7 +292,7 @@ const ConfessionDetailsModal = (props) => {
                                           className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                           onChange={(e) => checkBoxChangeHandler(e, "Racist Remarks")}
                                         />
-                                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
+                                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-600 dark:text-gray-100">
                                           Racist Remarks
                                         </span>
                                       </label>
@@ -306,7 +306,7 @@ const ConfessionDetailsModal = (props) => {
                                           className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                           onChange={(e) => checkBoxChangeHandler(e, "Offensive Content/Cyber Bullying")}
                                         />
-                                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
+                                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-600 dark:text-gray-100">
                                           Offensive Content/Cyber Bullying
                                         </span>
                                       </label>
