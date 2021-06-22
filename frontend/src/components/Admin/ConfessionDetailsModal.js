@@ -18,6 +18,7 @@ const ConfessionDetailsModal = (props) => {
   };
 
   const setOpen = () => {
+    clearCheckboxData();
     props.closeModal();
   };
 
@@ -30,6 +31,7 @@ const ConfessionDetailsModal = (props) => {
       message: result.data.msg,
       type: "success",
     });
+    clearCheckboxData();
   };
 
   const rejectConfession = async (id) => {
@@ -41,6 +43,7 @@ const ConfessionDetailsModal = (props) => {
       message: result.data.msg,
       type: "success",
     });
+    clearCheckboxData();
   };
 
   const decodeData = (data) => {
@@ -68,8 +71,12 @@ const ConfessionDetailsModal = (props) => {
     }
   };
 
+  const clearCheckboxData = () => {
+    setRejectReasons(() => { return [];});
+  };
+
   // useEffect(() => {
-  //   console.log("from modal", rejectReasons);
+  //   console.log(rejectReasons)
   // })
 
   const cancelButtonRef = useRef(null);
