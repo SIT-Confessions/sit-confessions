@@ -154,3 +154,28 @@ export const changeRole = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+
+/**
+ * Delete a user.
+ *
+ * @returns {json} Message of status result
+ */
+export const deleteUser = async (req, res) => {
+  const id = req.params.userid;
+
+  try {
+    const user = await User.findById(id);
+
+    // Check if user exist
+    if (!user) {
+      return res.status(400).json({ errors: [{ msg: "No user found" }] });
+    }
+
+    await user.deleteOne();
+
+    res.status(200).json({ msg: `User ${user.name} deleted` });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};

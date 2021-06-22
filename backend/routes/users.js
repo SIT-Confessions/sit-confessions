@@ -7,6 +7,7 @@ import {
   changePassword,
   changeRole,
   getAllUsers,
+  deleteUser,
 } from "../controllers/users.js";
 
 const router = express.Router();
@@ -82,5 +83,13 @@ router.put(
   ],
   changeRole
 );
+
+/**
+ * Delete a user
+ *
+ * @route DELETE api/users/
+ * @access Master
+ */
+router.delete("/:userid", master, deleteUser);
 
 export default router;
