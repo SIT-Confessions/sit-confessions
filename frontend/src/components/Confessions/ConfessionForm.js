@@ -101,7 +101,8 @@ const ConfessionForm = () => {
               <article className="prose transition-colors duration-500 dark:prose-dark">
                 <p>
                   Welcome to SIT Confessions! Do you have an interesting story
-                  to share? We'd love to hear about it! Your post will remain anonymous.
+                  to share? We'd love to hear about it! Your post will remain
+                  anonymous.
                 </p>
                 <h4 className="duration-500">Some important notes:</h4>
                 <ul>
@@ -121,7 +122,12 @@ const ConfessionForm = () => {
                 </ul>
                 <h4 className="duration-500">Helpful Links</h4>
               </article>
-              <a className="transition-colors duration-500 text-indigo-600 dark:text-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-400" href="https://www.singaporetech.edu.sg/life-at-sit/student-wellness#counselling">SIT Counselling Service</a>
+              <a
+                className="transition-colors duration-500 text-indigo-600 dark:text-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-400"
+                href="https://www.singaporetech.edu.sg/life-at-sit/student-wellness#counselling"
+              >
+                SIT Counselling Service
+              </a>
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
@@ -150,21 +156,28 @@ const ConfessionForm = () => {
 
                   <div className="flex items-start">
                     <div className="flex items-center h-5">
-                      <input
-                        id="agree"
-                        name="agree"
-                        type="checkbox"
-                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                        onChange={checkBoxChangeHandler}
-                      />
+                      <label>
+                        <input
+                          id="agree"
+                          name="agree"
+                          type="checkbox"
+                          className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                          onChange={checkBoxChangeHandler}
+                        />
+                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
+                          I have read the important notes and agree to post
+                          content that will not be offensive, hurtful and
+                          insensitive.
+                        </span>
+                      </label>
                     </div>
-                    <div className="ml-3 text-sm">
+                    {/* <div className="ml-3 text-sm">
                       <p className="transition-colors duration-500 text-gray-500 dark:text-gray-100">
                         I have read the important notes and agree to post
                         content that will not be offensive, hurtful and
                         insensitive.
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                   <div>
                     <ul>
