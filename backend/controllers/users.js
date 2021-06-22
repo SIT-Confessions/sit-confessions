@@ -179,3 +179,30 @@ export const deleteUser = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+
+/**
+ * Edit user profile.
+ *
+ * Update name and email attributes.
+ *
+ * @returns {json} Updated user profile
+ */
+export const updateUser = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const { name, email } = req.body;
+    const filter = { _id: req.user.id };
+    const update = { name, email };
+    const user = await User.findOneAndUpdate(filter, update, {
+      new: true,
+    }).select("-password");
+    return res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
