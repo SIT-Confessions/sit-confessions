@@ -265,7 +265,7 @@ const ConfessionDetailsModal = (props) => {
                                 </dt>
                                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                   <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
-                                    Pending Approval
+                                    Pending Action
                                   </span>
                                 </dd>
                               </div>
