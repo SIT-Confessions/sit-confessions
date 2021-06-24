@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addNotification } from "../../actions";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 const api = axios.create({
   baseURL: `http://localhost:5000/api/`,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ const ConfessionForm = () => {
   const [textIsValid, setTextIsValid] = useState(true);
   const [checkboxValid, setCheckboxValid] = useState(true);
   const dispatch = useDispatch();
+  const textAreaRef = useRef(null);
 
   const [userInput, setUserInput] = useState({
     enteredConfession: "",
@@ -87,7 +88,12 @@ const ConfessionForm = () => {
         return true;
       });
     }
-  });
+    
+    textAreaRef.current.style.height = "300px";
+    const scrollHeight = textAreaRef.current.scrollHeight;
+    textAreaRef.current.style.height = scrollHeight + "px";
+
+  }, [textAreaRef, userInput]);
 
   return (
     <>
@@ -143,6 +149,7 @@ const ConfessionForm = () => {
                     </label>
                     <div className="mt-1">
                       <textarea
+                        ref={textAreaRef}
                         id="confession"
                         name="confession"
                         rows={15}
