@@ -72,11 +72,6 @@ const SecurityForm = () => {
 
   return (
     <div className="md:col-span-9 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-lg">
-      {/* <div className="px-4 py-5 sm:px-6">
-        <h3 className="text-lg leading-6 font-medium text-gray-800">
-          Profile Information
-        </h3>
-      </div> */}
       <div className="border-gray-200">
         <form onSubmit={handleSave}>
           <div className="shadow sm:rounded-md sm:overflow-hidden">
