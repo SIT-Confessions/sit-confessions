@@ -1,4 +1,3 @@
-import setAuthToken from "../utils/setAuthToken";
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
