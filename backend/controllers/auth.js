@@ -90,11 +90,30 @@ export const authenticateUser = async (req, res) => {
       { expiresIn: "1h" },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res
+          .status(202)
+          .cookie("token", token, {
+            sameSite: "strict",
+            path: "/",
+            expires: new Date(new Date().getTime() + 3600 * 1000), // 1hr
+            httpOnly: true,
+            secure: true,
+          })
+          .json({ token });
       }
     );
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
   }
+};
+
+/**
+ * Clear cookie.
+ *
+ *
+ * @returns {json} Signed Json Web Token
+ */
+export const logout = (req, res) => {
+  res.status(202).clearCookie("token").json({ msg: "Cookie cleared" });
 };
