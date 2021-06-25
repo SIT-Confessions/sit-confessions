@@ -47,4 +47,20 @@ export const login = (formData) => async (dispatch) => {
 };
 
 // Logout User
-export const logout = () => ({ type: LOGOUT });
+export const logout = () => async (dispatch) => {
+  try {
+    await api.logout();
+    dispatch({
+      type: LOGOUT,
+    });
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      return errors;
+    }
+
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
