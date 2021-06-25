@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ConfessionCardFeed from "./Confessions/ConfessionCardFeed";
+import ConfessionsFeed from "./Confessions/ConfessionsFeed";
 import { GetApprovedConfessions } from "../api";
 import { viewApprovedConfessions, setApprovedConfessions } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
@@ -50,7 +50,7 @@ const Home = () => {
       <h1 className="text-4xl font-bold transition-colors duration-500 text-gray-800 dark:text-gray-100 mb-5">
         Latest Confessions
       </h1>
-      <ConfessionCardFeed confessions={confessions} />
+      <ConfessionsFeed confessions={confessions} />
     </motion.div>
   );
 };

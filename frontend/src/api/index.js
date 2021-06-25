@@ -12,14 +12,16 @@ export const GetApprovedConfessions = async () => {
   return res.data;
 };
 
+export const NewGetApprovedConfessions = (pageNumber) => {
+  return API.get("/confessions/approved", pageNumber);
+}
+
 export const GetAllConfessions = () => {
   //let resultData;
   if (localStorage.getItem("token")) {
     setAuthToken(localStorage.getItem("token"));
   }
   return API.get("/confessions");
-
-
 };
 
 export const ApproveConfession = async (id) => {
