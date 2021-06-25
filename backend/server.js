@@ -1,5 +1,6 @@
 import cors from "cors";
 import connectDB from "./config/db.js";
+import cookieParser from "cookie-parser";
 import express from "express";
 import fs from "fs";
 import helmet from "helmet";
@@ -52,7 +53,8 @@ app.use(rateLimiter);
 app.use(speedLimiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cookieParser());
 app.use(helmet());
 app.use(morgan("combined", { stream: accessLogStream }));
 

@@ -1,7 +1,12 @@
 import express from "express";
 import auth, { master, loginLimiter } from "../middleware/auth.js";
 import { check } from "express-validator";
-import { getAllUsers, getUser, authenticateUser } from "../controllers/auth.js";
+import {
+  getAllUsers,
+  getUser,
+  authenticateUser,
+  logout,
+} from "../controllers/auth.js";
 
 const router = express.Router();
 
@@ -35,6 +40,14 @@ router.post(
     check("password", "Password is required").notEmpty(),
   ],
   authenticateUser
-  );
+);
+
+/**
+ * Logout user
+ *
+ * @route POST api/auth/logout
+ * @access Public
+ */
+router.post("/logout", logout);
 
 export default router;

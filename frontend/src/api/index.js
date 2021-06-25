@@ -18,8 +18,6 @@ export const GetAllConfessions = () => {
     setAuthToken(localStorage.getItem("token"));
   }
   return API.get("/confessions");
-
-
 };
 
 export const ApproveConfession = async (id) => {
@@ -55,10 +53,19 @@ export const login = (formData) => {
     headers: {
       "Content-Type": "application/json",
     },
+    withCredentials: true,
   };
 
   const body = JSON.stringify(formData);
   return API.post("/auth", body, config);
+};
+
+export const logout = () => {
+  const config = {
+    withCredentials: true,
+  };
+
+  return API.post("/auth/logout", config);
 };
 
 export const getUser = () => {
