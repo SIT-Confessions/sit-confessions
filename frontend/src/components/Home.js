@@ -28,16 +28,16 @@ const pathVariants = {
 };
 
 const Home = () => {
-  const confessions = useSelector((state) => state.approvedConfessions);
-  const dispatch = useDispatch();
+  // const confessions = useSelector((state) => state.approvedConfessions);
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    let getData = async () => {
-      let resultData = await GetApprovedConfessions();
-      dispatch(setApprovedConfessions(resultData));
-    };
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   let getData = async () => {
+  //     let resultData = await GetApprovedConfessions();
+  //     dispatch(setApprovedConfessions(resultData));
+  //   };
+  //   getData();
+  // }, []);
 
   const transition = { duration: 4, yoyo: Infinity, ease: "easeInOut" }
 
@@ -50,7 +50,7 @@ const Home = () => {
       <h1 className="text-4xl font-bold transition-colors duration-500 text-gray-800 dark:text-gray-100 mb-5">
         Latest Confessions
       </h1>
-      <ConfessionsFeed confessions={confessions} />
+      <ConfessionsFeed />
     </motion.div>
   );
 };

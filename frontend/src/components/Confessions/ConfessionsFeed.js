@@ -1,46 +1,83 @@
-import React, { useState, useRef, useEffect, Fragment } from 'react';
+import React, { useState, useRef, useEffect, Fragment } from "react";
 import ConfessionCard from "./ConfessionCard";
+import { NewGetApprovedConfessions } from "../../api/index";
 
-const ConfessionsFeed = (props) => {
-    let confessionsData = props.confessions.posts;
-    const [page, setPage] = useState(1);
-    const loader = useRef(null);
+const ConfessionsFeed = () => {
+//   var options = {
+//     root: null,
+//     rootMargin: "20px",
+//     threshold: 1.0,
+//   };
 
-    useEffect(() => {
-        var options = {
-            root: null,
-            rootMargin: "20px",
-            threshold: 1.0
-         };
+  //let confessionsData = props.confessions.posts;
+  const [confessionsData, setConfessionsData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [isPopulated, setIsPopulated] = useState(false);
+  const loader = useRef(null);
 
-         const observer = new IntersectionObserver(handleObserver, options);
-         if (loader.current) {
-            observer.observe(loader.current)
-         }
-    }, [])
+  let getData = async () => {
+    try {
+      let result = await NewGetApprovedConfessions(page);
+      console.log("PagedAPI", result);
+      setConfessionsData((prevState) => {
+        return prevState.concat(result.data);
+      });
+      setIsPopulated((prevState) => {
+          return !prevState;
+      })
 
-    useEffect(() => {
-        // Append more confessions to be shown
-        alert("show more confessions")
-    }, [page])
+    //   const observer = new IntersectionObserver(handleObserver, options);
+    //   if (loader.current) {
+    //     observer.observe(loader.current);
+    //   }
 
-    const handleObserver = (entities) => {
-        const target = entities[0];
-        if (target.isIntersecting) {   
-            setPage((page) => page + 1)
+      //dispatch(setAllConfessions(result.data));
+    } catch (error) {
+      if (error.response) console.log(error.response);
+      //return <Redirect push to="/post" />;
+    }
+  };
+
+  useEffect(() => {
+    var options = {
+      root: null,
+      rootMargin: "20px",
+      threshold: 1.0,
+    };
+
+    if (isPopulated) {
+        const observer = new IntersectionObserver(handleObserver, options);
+        if (loader.current) {
+          observer.observe(loader.current);
         }
     }
 
-    return (
-      <>
-        {confessionsData?.map((item, itemIDx) => (
-          <Fragment key={itemIDx}>
-            <ConfessionCard data={item} />
-          </Fragment>
-        ))}
-        <div ref={loader}></div>
-      </>
-    );
-}
+    //getData();
+  }, [isPopulated]);
 
-export default ConfessionsFeed
+  useEffect(() => {
+    // Append more confessions to be shown
+    console.log("loader triggered", page);
+    getData();
+  }, [page]);
+
+  const handleObserver = (entities) => {
+    const target = entities[0];
+    if (target.isIntersecting) {
+      setPage((page) => page + 1);
+    }
+  };
+
+  return (
+    <>
+      {confessionsData?.map((item, itemIDx) => (
+        <Fragment key={itemIDx}>
+          <ConfessionCard data={item} />
+        </Fragment>
+      ))}
+      <div ref={loader}></div>
+    </>
+  );
+};
+
+export default ConfessionsFeed;

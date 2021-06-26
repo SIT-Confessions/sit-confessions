@@ -6,6 +6,7 @@ import {
   createConfession,
   getAllConfessions,
   getApprovedConfessions,
+  getPagedApprovedConfessions,
   getQueuedConfessions,
   getConfession,
   searchConfessions,
@@ -41,6 +42,14 @@ router.get("/", auth, getAllConfessions);
  * @access Public
  */
 router.get("/approved", getApprovedConfessions);
+
+/**
+ * Get all approved confessions by page
+ *
+ * @route GET api/confessions/approvedPaged/:pageNumber
+ * @access Public
+ */
+ router.get("/approved/:pageNumber", getPagedApprovedConfessions);
 
 /**
  * Search confession by substring

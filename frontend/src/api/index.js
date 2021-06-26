@@ -13,7 +13,7 @@ export const GetApprovedConfessions = async () => {
 };
 
 export const NewGetApprovedConfessions = (pageNumber) => {
-  return API.get("/confessions/approved", pageNumber);
+  return API.get("/confessions/approved/" + pageNumber);
 }
 
 export const GetAllConfessions = () => {

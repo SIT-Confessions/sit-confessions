@@ -66,6 +66,26 @@ export const getApprovedConfessions = async (req, res) => {
 };
 
 /**
+ * Retrieve all approved confessions in paged form.
+ *
+ * @returns {json} All approved confessions in paged form
+ */
+ export const getPagedApprovedConfessions = async (req, res) => {
+  try {
+    const confessions = await Confession.find({
+      status: APPROVED,
+      fbURL: { $ne: null },
+    }).sort({
+      approvedDate: -1,
+    }).skip((req.params.pageNumber * 10) - 10).limit(10);
+    res.json(confessions);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
+
+/**
  * Retrieve all queued confessions.
  *
  * @returns {json} All queued confessions
