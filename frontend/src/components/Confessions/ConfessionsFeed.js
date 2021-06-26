@@ -13,15 +13,22 @@ const ConfessionsFeed = () => {
   const [confessionsData, setConfessionsData] = useState([]);
   const [page, setPage] = useState(1);
   const [isPopulated, setIsPopulated] = useState(false);
+  const [allLoaded, setAllLoaded] = useState(false);
   const loader = useRef(null);
 
   let getData = async () => {
     try {
       let result = await NewGetApprovedConfessions(page);
       console.log("PagedAPI", result);
-      setConfessionsData((prevState) => {
-        return prevState.concat(result.data);
-      });
+      if (result.data.length === 0) {
+        setAllLoaded(() => {
+            return true;
+        })
+      } else {
+        setConfessionsData((prevState) => {
+            return prevState.concat(result.data);
+        });
+      }
       setIsPopulated((prevState) => {
           return !prevState;
       })
@@ -63,8 +70,9 @@ const ConfessionsFeed = () => {
 
   const handleObserver = (entities) => {
     const target = entities[0];
-    if (target.isIntersecting) {
-      setPage((page) => page + 1);
+    if (target.isIntersecting && !allLoaded) {
+        setTimeout(function(){ setPage((page) => page + 1); }, 1000);
+      //setPage((page) => page + 1);
     }
   };
 

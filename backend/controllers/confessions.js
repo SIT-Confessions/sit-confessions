@@ -75,7 +75,7 @@ export const getApprovedConfessions = async (req, res) => {
     const confessions = await Confession.find({
       status: APPROVED,
       fbURL: { $ne: null },
-    }).sort({
+    }, {approvedBy: 0, createdAt: 0, status: 0, rejectedReason: 0, isQueued: 0, isPostedToFB: 0, approvedDate:0 }).sort({
       approvedDate: -1,
     }).skip((req.params.pageNumber * 10) - 10).limit(10);
     res.json(confessions);
