@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import express from "express";
 import fs from "fs";
 import helmet from "helmet";
+import hpp from "hpp";
 import morgan from "morgan";
 import cron from "node-cron";
 import rateLimit from "express-rate-limit";
@@ -56,6 +57,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(cookieParser());
 app.use(helmet());
+app.use(hpp());
 app.use(morgan("combined", { stream: accessLogStream }));
 
 // Schedule task
