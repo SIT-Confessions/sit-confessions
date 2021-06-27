@@ -161,14 +161,14 @@ const ConfessionForm = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start">
+                  <div className="flex items-start pt-5 md:pt-0">
                     <div className="flex items-center h-5">
                       <label>
                         <input
                           id="agree"
                           name="agree"
                           type="checkbox"
-                          className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                          className="focus:outline-none focus:ring-0 h-4 w-4 text-purple-600 border-gray-300 rounded"
                           onChange={checkBoxChangeHandler}
                         />
                         <span className="ml-3 text-sm transition-colors duration-500 text-gray-500 dark:text-gray-100">
@@ -178,15 +178,8 @@ const ConfessionForm = () => {
                         </span>
                       </label>
                     </div>
-                    {/* <div className="ml-3 text-sm">
-                      <p className="transition-colors duration-500 text-gray-500 dark:text-gray-100">
-                        I have read the important notes and agree to post
-                        content that will not be offensive, hurtful and
-                        insensitive.
-                      </p>
-                    </div> */}
                   </div>
-                  <div>
+                  <div className="pt-4 md:pt-0">
                     <ul>
                       {textIsValid ? null : (
                         <li class="flex items-center py-1">
@@ -239,7 +232,7 @@ const ConfessionForm = () => {
                 <div className="px-4 py-3 transition-colors duration-500 bg-gray-100 dark:bg-dark-gray-lighter text-right sm:px-6">
                   <button
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
                   >
                     Submit
                   </button>

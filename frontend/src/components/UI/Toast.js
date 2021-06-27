@@ -29,7 +29,7 @@ const Toast = (props) => {
       exit={{ opacity: 0 }}
       className="flex-shrink-0 items-center sm:w-full max-w-max mb-3"
     >
-      <div class="flow-root shadow-lg border border-opacity-50 rounded-xl p-4 transition-colors duration-500 dark:border-gray-600 bg-white relative overflow-hidden dark:bg-dark-gray-lightest flex-row grid grid-flow-col">
+      <div class="shadow-lg border border-opacity-50 rounded-xl p-4 transition-colors duration-500 dark:border-gray-600 bg-white relative overflow-hidden dark:bg-dark-gray-lightest flex-row grid grid-flow-col">
         <div className="max-w-min mr-2 flex-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"

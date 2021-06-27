@@ -69,9 +69,9 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
 
   const styles = {
     className:
-      "text-gray-200 hover:bg-purple-500 dark:hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex",
+      "text-gray-200 hover:bg-purple-500 dark:hover:bg-violet-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex",
     activeStyle:
-      "bg-purple-900 hover:bg-purple-900 dark:bg-gray-900 dark:hover:bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium flex",
+      "transition-colors duration-500 bg-purple-900 hover:bg-purple-900 dark:bg-violet-900 dark:hover:bg-violet-900 text-white px-3 py-2 rounded-md text-sm font-medium flex",
   };
 
   const adminLinks = [
@@ -153,7 +153,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
 
   return (
     <div>
-      <Disclosure as="nav" className="transition-colors duration-500 bg-purple-700 dark:bg-gray-800">
+      <Disclosure as="nav" className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -201,10 +201,10 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                       </NavLink>
                     </div>
                   </div>
-                  <div className="ml-10 flex items-baseline space-x-4">
+                  <div className="ml-0 md:ml-10 flex items-baseline space-x-4">
                     <button
                       onClick={toggleDarkMode}
-                      className="bg-purple-700 dark:bg-gray-800 p-1 rounded-full text-gray-300 dark:text-gray-400 hover:text-white focus:outline-none"
+                      className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800 p-1 rounded-full text-gray-300 hover:text-white focus:outline-none"
                     >
                       <span className="sr-only">Dark Mode Toggle</span>
                       {isDark === false ? (
@@ -240,7 +240,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                       {({ open }) => (
                         <>
                           <div>
-                            <Menu.Button className="max-w-xs bg-gray-800 text-gray-400 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                            <Menu.Button className="max-w-xs transition-colors duration-500 bg-purple-700 dark:bg-violet-800 text-gray-300 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                               <span className="sr-only">Open user menu</span>
                               <UserCircleIcon
                                 className="h-6 w-6"
@@ -260,7 +260,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                           >
                             <Menu.Items
                               static
-                              className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-dark-gray-lighter ring-1 ring-black ring-opacity-5 focus:outline-none"
+                              className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white dark:bg-dark-gray-lighter ring-0 ring-black ring-opacity-5 focus:outline-none"
                             >
                               {userLinks.map((item) => (
                                 <Menu.Item key={item.name}>
@@ -291,7 +291,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
 
                 <div className="-mr-2 flex md:hidden">
                   {/* Mobile menu button */}
-                  <Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <Disclosure.Button className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-purple-700 dark:hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XIcon className="block h-6 w-6" aria-hidden="true" />

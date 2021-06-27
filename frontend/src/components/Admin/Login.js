@@ -109,7 +109,7 @@ const Login = ({ login, isAuthenticated }) => {
                 id="remember_me"
                 name="remember_me"
                 type="checkbox"
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                className="h-4 w-4 text-violet-600 focus:ring-violet-500 border-gray-300 rounded"
               />
               <label
                 htmlFor="remember_me"
@@ -122,7 +122,7 @@ const Login = ({ login, isAuthenticated }) => {
             <div className="text-sm">
               <Link
                 to="#"
-                className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-500 dark:hover:text-indigo-400"
+                className="font-medium text-violet-600 hover:text-violet-500 dark:text-violet-500 dark:hover:text-violet-400"
               >
                 Forgot your password?
               </Link>
@@ -132,7 +132,7 @@ const Login = ({ login, isAuthenticated }) => {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
             >
               Sign in
             </button>

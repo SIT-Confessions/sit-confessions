@@ -18,7 +18,7 @@ const NotificationCenter = (props) => {
   return (
     // <>
     //   {notifications.length > 0 && (
-    <div className="flex flex-col max-h-max fixed z-50 top-30 right-10">
+    <div className="flex flex-col max-h-max fixed z-50 px-2 md:px-0 md:top-30 md:right-10">
       <AnimatePresence>
         {notifications.length > 0 &&
           notifications.map((item) => (
