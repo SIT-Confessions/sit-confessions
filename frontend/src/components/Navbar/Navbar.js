@@ -69,9 +69,9 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
 
   const styles = {
     className:
-      "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex",
+      "text-gray-200 hover:bg-purple-500 dark:hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex",
     activeStyle:
-      "bg-gray-900 hover:bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium flex",
+      "bg-purple-900 hover:bg-purple-900 dark:bg-gray-900 dark:hover:bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium flex",
   };
 
   const adminLinks = [
@@ -153,7 +153,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
 
   return (
     <div>
-      <Disclosure as="nav" className="bg-gray-800 dark:bg-gray-800">
+      <Disclosure as="nav" className="transition-colors duration-500 bg-purple-700 dark:bg-gray-800">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -161,9 +161,9 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <img
-                      className="h-8 w-8"
-                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                      alt="Workflow"
+                      className="h-12 w-12"
+                      src="/SITC-Minimalist-White.png"
+                      alt="SIT Confessions"
                     />
                   </div>
                 </div>
@@ -202,7 +202,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                   <div className="ml-10 flex items-baseline space-x-4">
                     <button
                       onClick={toggleDarkMode}
-                      className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none"
+                      className="bg-purple-700 dark:bg-gray-800 p-1 rounded-full text-gray-300 dark:text-gray-400 hover:text-white focus:outline-none"
                     >
                       <span className="sr-only">Dark Mode Toggle</span>
                       {isDark === false ? (
