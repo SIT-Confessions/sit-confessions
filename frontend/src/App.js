@@ -28,7 +28,7 @@ function App() {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
-    store.dispatch(loadUser());
+    store.store.dispatch(loadUser());
   }, []);
 
   return (
@@ -55,12 +55,7 @@ function App() {
             exact
             component={Account}
           />
-          <PrivateRoute
-            key="users"
-            path="/users"
-            exact
-            component={Users}
-          />
+          <PrivateRoute key="users" path="/users" exact component={Users} />
           <PrivateRoute
             key="register"
             path="/register-user"

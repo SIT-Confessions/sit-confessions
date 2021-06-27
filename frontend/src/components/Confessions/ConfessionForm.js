@@ -153,7 +153,7 @@ const ConfessionForm = () => {
                         id="confession"
                         name="confession"
                         rows={15}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm transition-colors duration-500 border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md"
+                        className="shadow-sm focus:ring-violet-500 focus:border-violet-500 mt-1 block w-full sm:text-sm transition-colors duration-500 border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100 rounded-md"
                         placeholder="Your wonderful story goes in here."
                         value={userInput.enteredConfession}
                         onChange={confessionChangeHandler}

@@ -56,15 +56,15 @@ const Index = () => {
   };
 
   useEffect(() => {
-    // if (authenticated) {
-    //   if (getData()) {
-    //     console.log("came in here");
-    //     <Redirect push to="/" />;
-    //   }
-    // } else {
-    //   <Redirect push to="/login" />;
-    // }
-    getData();
+    if (authenticated) {
+      if (getData()) {
+        console.log("came in here");
+        <Redirect push to="/" />;
+      }
+    } else {
+      <Redirect push to="/login" />;
+    }
+    // getData();
   }, []);
 
   const SetDetailsOnModal = (data) => {
@@ -212,7 +212,7 @@ const Index = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <button
-                            className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-500 dark:hover:text-indigo-400 font-medium focus:outline-none"
+                            className="text-violet-600 hover:text-violet-900 dark:text-violet-500 dark:hover:text-violet-400 font-medium focus:outline-none"
                             onClick={() => SetDetailsOnModal(confession)}
                           >
                             View more

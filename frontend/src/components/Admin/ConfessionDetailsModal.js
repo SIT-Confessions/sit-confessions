@@ -194,7 +194,7 @@ const ConfessionDetailsModal = (props) => {
                                     <a
                                       href={data.fbURL}
                                       target="_blank"
-                                      className="text-indigo-600 hover:text-indigo-900 dark:text-indigo-500 dark:hover:text-indigo-400"
+                                      className="text-violet-600 hover:text-violet-900 dark:text-violet-500 dark:hover:text-violet-400"
                                     >
                                       {data.fbURL}
                                     </a>
@@ -291,7 +291,7 @@ const ConfessionDetailsModal = (props) => {
                                           id="agree"
                                           name="agree"
                                           type="checkbox"
-                                          className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                          className="focus:outline-none focus:ring-0 h-4 w-4 text-violet-600 border-gray-300 rounded"
                                           onChange={(e) =>
                                             checkBoxChangeHandler(
                                               e,
@@ -310,7 +310,7 @@ const ConfessionDetailsModal = (props) => {
                                           id="agree"
                                           name="agree"
                                           type="checkbox"
-                                          className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                          className="focus:outline-none focus:ring-0 h-4 w-4 text-violet-600 border-gray-300 rounded"
                                           onChange={(e) =>
                                             checkBoxChangeHandler(
                                               e,
@@ -329,7 +329,7 @@ const ConfessionDetailsModal = (props) => {
                                           id="agree"
                                           name="agree"
                                           type="checkbox"
-                                          className="focus:outline-none focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                          className="focus:outline-none focus:ring-0 h-4 w-4 text-violet-600 border-gray-300 rounded"
                                           onChange={(e) =>
                                             checkBoxChangeHandler(
                                               e,
@@ -339,6 +339,25 @@ const ConfessionDetailsModal = (props) => {
                                         />
                                         <span className="ml-3 text-sm transition-colors duration-500 text-gray-600 dark:text-gray-100">
                                           Offensive Content/Cyber Bullying
+                                        </span>
+                                      </label>
+                                    </div>
+                                    <div>
+                                      <label>
+                                        <input
+                                          id="agree"
+                                          name="agree"
+                                          type="checkbox"
+                                          className="focus:outline-none focus:ring-0 h-4 w-4 text-violet-600 border-gray-300 rounded"
+                                          onChange={(e) =>
+                                            checkBoxChangeHandler(
+                                              e,
+                                              "Others"
+                                            )
+                                          }
+                                        />
+                                        <span className="ml-3 text-sm transition-colors duration-500 text-gray-600 dark:text-gray-100">
+                                          Others
                                         </span>
                                       </label>
                                     </div>
