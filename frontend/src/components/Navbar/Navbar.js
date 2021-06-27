@@ -160,11 +160,13 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
               <div className="flex items-center justify-between h-16">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
+                    <Link key="home" exact to="/" >
                     <img
                       className="h-12 w-12"
                       src="/SITC-Minimalist-White.png"
                       alt="SIT Confessions"
                     />
+                    </Link>
                   </div>
                 </div>
                 <div className="flex items-center">
