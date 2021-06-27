@@ -23,7 +23,7 @@ const ConfessionCard = (props) => {
             <a
               href={itemData.fbURL}
               target="_blank"
-              className="text-sm text-indigo-600 dark:text-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-400"
+              className="text-sm text-violet-600 dark:text-violet-500 hover:text-violet-500 dark:hover:text-violet-400"
             >
               View on Facebook
             </a>

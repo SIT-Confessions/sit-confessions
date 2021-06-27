@@ -129,7 +129,7 @@ const ConfessionForm = () => {
                 <h4 className="duration-500">Helpful Links</h4>
               </article>
               <a
-                className="transition-colors duration-500 text-indigo-600 dark:text-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-400"
+                className="transition-colors duration-500 text-violet-600 dark:text-violet-500 hover:text-violet-500 dark:hover:text-violet-400"
                 href="https://www.singaporetech.edu.sg/life-at-sit/student-wellness#counselling"
               >
                 SIT Counselling Service
