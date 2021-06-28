@@ -49,7 +49,7 @@ router.get("/approved", getApprovedConfessions);
  * @route GET api/confessions/approvedPaged/:pageNumber
  * @access Public
  */
- router.get("/approved/:pageNumber", getPagedApprovedConfessions);
+router.get("/approved/:pageNumber", getPagedApprovedConfessions);
 
 /**
  * Search confession by substring
@@ -73,13 +73,13 @@ router.get("/queued", auth, getQueuedConfessions);
  * @route GET api/confessions/:id
  * @access Private
  */
-router.get("/:id", auth, getConfession);
+router.get("/:id", getConfession);
 
 /**
  * Approve confession by id
  *
  * @route PUT api/confessions/approve/:id
- * @access Private
+ * @access Public
  */
 router.put("/approve/:id", auth, approveConfession);
 
