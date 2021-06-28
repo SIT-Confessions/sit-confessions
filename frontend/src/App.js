@@ -14,6 +14,7 @@ import AdminHome from "./components/Admin";
 import Account from "./components/Admin/Account/Account";
 import Users from "./components/Admin/Users";
 import RegisterUser from "./components/Admin/RegisterUser";
+import SingleConfession from "./components/Confessions/SingleConfession";
 import NotificationCenter from "./components/UI/NotificationCenter";
 import { loadUser } from "./actions/auth";
 import store from "./store";
@@ -37,12 +38,15 @@ function App() {
         {isDark === false ? null : <html className="dark" />}
         <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
-      <Navbar isDark={isDark}></Navbar>
+      <div className="sticky top-0 z-30">
+        <Navbar isDark={isDark}></Navbar>
+      </div>
       <div className="container mx-auto py-10">
         <NotificationCenter data={notificationsData.notifications} />
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route path="/post" exact component={ConfessionForm}></Route>
+          <Route path="/confession" exact component={SingleConfession}></Route>
           <PrivateRoute
             key="dashboard"
             path="/dashboard"

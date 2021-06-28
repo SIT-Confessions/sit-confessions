@@ -6,18 +6,22 @@ const NotFound = () => {
     <div class="container mx-auto px-6 md:px-12 relative z-10 flex items-center">
       <div class="container mx-auto px-6 flex flex-col justify-between items-center relative">
         <div class="flex w-full items-center justify-center space-x-12 flex-col md:flex-row mb-16 md:mb-8">
-          <h1 class="text-center text-6xl text-gray-800 dark:text-gray-100">404 NOT FOUND!</h1>
-          <Link to="/">
-            <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Back To Home
-            </button>
-          </Link>
+          <h1 class="transition-colors duration-500 text-center text-6xl text-gray-800 dark:text-gray-100">
+            404 NOT FOUND!
+          </h1>
         </div>
         <div className="flex w-full items-center justify-center space-x-12 flex-col md:flex-row mb-16 md:mb-8">
-          <p className="text-center dark:text-gray-100">
+          <p className="transition-colors duration-500 text-center dark:text-gray-100">
             It looks like the page or resource that you're trying to reach is
             not available or does not exist.
           </p>
+        </div>
+        <div>
+          <Link to="/">
+            <button className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">
+              Home Page
+            </button>
+          </Link>
         </div>
         <div class="block w-full mx-auto mt-6 md:mt-0 relative">
           <svg
@@ -26,7 +30,11 @@ const NotFound = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <rect width="1440" height="1024" fill="bg-gray-50 dark:bg-gray-800"></rect>
+            <rect
+              width="1440"
+              height="1024"
+              fill="bg-gray-50 dark:bg-gray-800"
+            ></rect>
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"

@@ -85,10 +85,10 @@ const RegisterUser = () => {
           <form onSubmit={handleRegister}>
             <div className="shadow sm:rounded-md sm:overflow-hidden">
               <div className="px-6 py-6">
-                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-50">
+                <h2 className="transition-colors duration-500 text-2xl font-bold text-gray-800 dark:text-gray-50">
                   Register User
                 </h2>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="transition-colors duration-500 text-sm text-gray-600 dark:text-gray-300">
                   Create an account for a new user
                 </p>
               </div>
@@ -106,7 +106,7 @@ const RegisterUser = () => {
                       type="text"
                       name="name"
                       id="name"
-                      className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                      className="transition-colors duration-500 focus:ring-violet-500 focus:border-violet-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                       placeholder="Karen"
                       value={registerFormData.name}
                       onChange={nameChangeHandler}
@@ -126,7 +126,7 @@ const RegisterUser = () => {
                       type="email"
                       name="email"
                       id="email"
-                      className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                      className="transition-colors duration-500 focus:ring-violet-500 focus:border-violet-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                       placeholder="karen@wheresyourbadge.com"
                       value={registerFormData.email}
                       onChange={emailChangeHandler}
@@ -146,7 +146,7 @@ const RegisterUser = () => {
                       type="text"
                       name="password"
                       id="password"
-                      className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                      className="transition-colors duration-500 focus:ring-violet-500 focus:border-violet-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                       value={registerFormData.password}
                       onChange={passwordChangeHandler}
                     />
@@ -165,7 +165,7 @@ const RegisterUser = () => {
                       type="text"
                       name="confirmPassword"
                       id="confirmPassword"
-                      className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                      className="transition-colors duration-500 focus:ring-violet-500 focus:border-violet-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                       value={registerFormData.password2}
                       onChange={confirmPasswordChangeHandler}
                     />
@@ -183,7 +183,7 @@ const RegisterUser = () => {
                     id="role"
                     name="role"
                     autoComplete="role"
-                    className="transition-colors duration-500 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
+                    className="transition-colors duration-500 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-violet-500 focus:border-violet-500 sm:text-sm dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                     value={registerFormData.role}
                     onChange={roleChangeHandler}
                   >
@@ -195,10 +195,10 @@ const RegisterUser = () => {
                   </select>
                 </div>
               </div>
-              <div className="px-4 py-3 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light text-center sm:px-6">
+              <div className="px-4 py-3 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light text-center sm:px-6 mb-3">
                 <button
                   type="submit"
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full"
+                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 w-full"
                 >
                   Register
                 </button>
