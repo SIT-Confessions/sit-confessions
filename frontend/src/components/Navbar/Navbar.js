@@ -153,19 +153,22 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
 
   return (
     <div>
-      <Disclosure as="nav" className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800">
+      <Disclosure
+        as="nav"
+        className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800"
+      >
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between h-16">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <Link key="home" exact to="/" >
-                    <img
-                      className="h-12 w-12"
-                      src="/SITC-Minimalist-White.png"
-                      alt="SIT Confessions"
-                    />
+                    <Link key="home" exact to="/">
+                      <img
+                        className="h-12 w-12"
+                        src="/SITC-Minimalist-White.png"
+                        alt="SIT Confessions"
+                      />
                     </Link>
                   </div>
                 </div>
@@ -291,6 +294,15 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
 
                 <div className="-mr-2 flex md:hidden">
                   {/* Mobile menu button */}
+                  <Link
+                      key="compose-confession"
+                      exact
+                      to="/post"
+                      className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800 inline-flex items-center justify-center p-2 rounded-full text-gray-300 hover:text-white focus:outline-none"
+                  >
+                      <span className="sr-only">Compose Confession</span>
+                      <PencilAltIcon className="h-6 w-6" />
+                  </Link>
                   <Disclosure.Button className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-purple-700 dark:hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                     <span className="sr-only">Open main menu</span>
                     {open ? (
@@ -313,6 +325,11 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                     to={link.to}
                   >
                     {link.name}
+                    {link.icon && (
+                      <span className="relative right-0 inset-y-0 pl-2">
+                        {link.icon}
+                      </span>
+                    )}
                   </NavLink>
                 ))}
               </div>

@@ -3,11 +3,11 @@ import ConfessionCard from "./ConfessionCard";
 import { NewGetApprovedConfessions } from "../../api/index";
 
 const ConfessionsFeed = () => {
-//   var options = {
-//     root: null,
-//     rootMargin: "20px",
-//     threshold: 1.0,
-//   };
+  //   var options = {
+  //     root: null,
+  //     rootMargin: "20px",
+  //     threshold: 1.0,
+  //   };
 
   //let confessionsData = props.confessions.posts;
   const [confessionsData, setConfessionsData] = useState([]);
@@ -22,21 +22,21 @@ const ConfessionsFeed = () => {
       console.log("PagedAPI", result);
       if (result.data.length === 0) {
         setAllLoaded(() => {
-            return true;
-        })
+          return true;
+        });
       } else {
         setConfessionsData((prevState) => {
-            return prevState.concat(result.data);
+          return prevState.concat(result.data);
         });
       }
       setIsPopulated((prevState) => {
-          return !prevState;
-      })
+        return !prevState;
+      });
 
-    //   const observer = new IntersectionObserver(handleObserver, options);
-    //   if (loader.current) {
-    //     observer.observe(loader.current);
-    //   }
+      //   const observer = new IntersectionObserver(handleObserver, options);
+      //   if (loader.current) {
+      //     observer.observe(loader.current);
+      //   }
 
       //dispatch(setAllConfessions(result.data));
     } catch (error) {
@@ -53,10 +53,10 @@ const ConfessionsFeed = () => {
     };
 
     if (isPopulated) {
-        const observer = new IntersectionObserver(handleObserver, options);
-        if (loader.current) {
-          observer.observe(loader.current);
-        }
+      const observer = new IntersectionObserver(handleObserver, options);
+      if (loader.current) {
+        observer.observe(loader.current);
+      }
     }
 
     //getData();
@@ -71,18 +71,22 @@ const ConfessionsFeed = () => {
   const handleObserver = (entities) => {
     const target = entities[0];
     if (target.isIntersecting && !allLoaded) {
-        setTimeout(function(){ setPage((page) => page + 1); }, 1000);
+      setTimeout(function () {
+        setPage((page) => page + 1);
+      }, 1000);
       //setPage((page) => page + 1);
     }
   };
 
   return (
     <>
-      {confessionsData?.map((item, itemIDx) => (
-        <Fragment key={itemIDx}>
-          <ConfessionCard data={item} />
-        </Fragment>
-      ))}
+      <div className="space-y-8">
+        {confessionsData?.map((item, itemIDx) => (
+          <Fragment key={itemIDx}>
+            <ConfessionCard data={item} />
+          </Fragment>
+        ))}
+      </div>
       <div ref={loader}></div>
     </>
   );

@@ -10,8 +10,8 @@ const ConfessionCard = (props) => {
   let relativeTimeStamp = dayjs(itemData.postedToFBAt).fromNow();
 
   return (
-    <div className="flex-shrink-0 items-center justify-center transition-colors duration-500 bg-gray-50 max-w-full sm:w-full min-w-min py-4 dark:bg-dark-gray">
-      <div class="flow-root shadow-lg rounded-2xl p-4 transition-colors duration-500 bg-white relative overflow-hidden dark:bg-dark-gray-lighter">
+    <div className="flex-shrink-0 items-center justify-center transition-colors duration-500 bg-gray-50 max-w-full sm:w-full min-w-min dark:bg-dark-gray">
+      <div class="flow-root shadow-lg rounded-xl p-4 transition-colors duration-500 bg-white relative overflow-hidden dark:bg-dark-gray-lighter">
         <div className="sm:min-w-0">
           <p class="transition-colors duration-500 text-gray-800 dark:text-gray-50 text-xl font-medium mb-4">
             #{itemData._id}
