@@ -7,7 +7,7 @@ import he from "he";
 const SingleConfession = () => {
   const { id } = useParams();
   const [confessionData, setConfessionData] = useState({});
-  const [informationIsSet, setInformationIsSet] = useState(false);
+  const [informationIsSet, setInformationIsSet] = useState(0);
 
   const retrieveData = async () => {
     try {
@@ -18,13 +18,17 @@ const SingleConfession = () => {
           return result.data;
         });
         setInformationIsSet(() => {
-          return true;
+          return 1;
         });
-      } else if (result.status === 404) {
-        // Redirect to 404
       }
     } catch (error) {
-      if (error.response) console.log(error.response);
+      if (error.response) {
+        if (error.response.status === 404) {
+          setInformationIsSet(() => {
+            return 2;
+          });
+        }
+      }
       //return <Redirect push to="/post" />;
     }
   };
@@ -33,11 +37,11 @@ const SingleConfession = () => {
     retrieveData();
   }, []);
 
-  return informationIsSet ? (
-    <div className="flex justify-center px-2 md:px-0">
-      <div className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-lg md:w-1/2">
-        <div className="border-gray-200">
-          <div className="shadow sm:rounded-md sm:overflow-hidden">
+  return informationIsSet === 1 ? (
+    <div className="flex justify-center px-4 md:px-0">
+      <div className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-lg w-full md:w-1/2">
+        <div>
+          <div className="sm:rounded-md sm:overflow-hidden">
             <div className="px-6 py-6">
               <h2 className="transition-colors duration-500 text-2xl font-bold text-gray-800 dark:text-gray-50">
                 Confession #{id}
@@ -48,7 +52,7 @@ const SingleConfession = () => {
               </p>
             </div>
             <hr className="mx-6 transition-colors duration-500 dark:border-gray-700"></hr>
-            <div className="px-4 py-5 space-y-6 sm:p-6">
+            <div className="px-6 py-7 space-y-6">
               <p className="transition-colors duration-500 text-gray-600 dark:text-gray-200 text-md whitespace-pre-line font-medium">
                 {he.decode(confessionData.text)}
               </p>
@@ -65,17 +69,17 @@ const SingleConfession = () => {
         </div>
       </div>
     </div>
-  ) : (
+  ) : informationIsSet === 0 ? (
     <div className="flex justify-center px-2 md:px-0">
-      <div className="animate-pulse transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-lg md:w-1/2">
+      <div className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-lg md:w-1/2">
         <div className="border-gray-200">
-          <div className="shadow sm:rounded-md sm:overflow-hidden">
+          <div className="animate-pulse shadow sm:rounded-md sm:overflow-hidden">
             <div className="px-6 py-6">
               <div className="h-7 bg-gray-300 dark:bg-gray-600 rounded-md w-2/5 transition-colors duration-500"></div>
               <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded-md w-1/4 transition-colors duration-500 mt-2"></div>
             </div>
             <hr className="mx-6 transition-colors duration-500 dark:border-gray-700"></hr>
-            <div className="px-4 py-5 space-y-3 sm:p-6">
+            <div className="px-6 py-7 space-y-3">
               <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded-md w-full transition-colors duration-500"></div>
               <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded-md w-3/5 transition-colors duration-500"></div>
               <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded-md w-4/6 transition-colors duration-500"></div>
@@ -83,11 +87,15 @@ const SingleConfession = () => {
               <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded-md w-1/2 transition-colors duration-500"></div>
             </div>
             <div className="px-4 py-3 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light text-center sm:px-6 mb-3">
-            <div className="h-9 bg-gray-300 dark:bg-gray-600 rounded-md w-full transition-colors duration-500"></div>
+              <div className="h-9 bg-gray-300 dark:bg-gray-600 rounded-md w-full transition-colors duration-500"></div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="min-h-full mt-20 flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8">
+      <p className="font-semibold text-3xl text-gray-700 dark:text-gray-200 transition-colors duration-500">Confession Not Found</p>
     </div>
   );
 };
