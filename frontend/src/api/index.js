@@ -1,7 +1,7 @@
 import API from "axios";
 import setAuthToken from "../utils/setAuthToken";
 
-API.defaults.baseURL = "http://localhost:5000/api";
+API.defaults.baseURL = process.env.REACT_APP_API_ENDPOINT_URL;
 
 export const GetApprovedConfessions = async () => {
   let res = await API.get("/confessions/approved")
@@ -13,6 +13,7 @@ export const GetApprovedConfessions = async () => {
 };
 
 export const NewGetApprovedConfessions = (pageNumber) => {
+  console.log(process.env.REACT_APP_API_ENDPOINT_URL)
   return API.get("/confessions/approved/" + pageNumber);
 }
 

@@ -17,7 +17,7 @@ const ConfessionCard = (props) => {
           <Link
             key={itemData._id}
             to={"/confession/" + itemData._id}
-            class="transition-colors duration-500 text-violet-600 dark:text-violet-500 hover:text-violet-500 dark:hover:text-violet-400 text-xl font-medium"
+            class="transition-colors duration-500 text-violet-600 dark:text-violet-400 hover:text-violet-500 dark:hover:text-violet-500 text-xl font-medium"
           >
             #{itemData._id}
           </Link>
@@ -28,7 +28,7 @@ const ConfessionCard = (props) => {
             <a
               href={itemData.fbURL}
               target="_blank"
-              className="text-sm text-violet-600 dark:text-violet-500 hover:text-violet-500 dark:hover:text-violet-400"
+              className="text-sm text-violet-600 dark:text-violet-400 hover:text-violet-500 dark:hover:text-violet-500"
             >
               View on Facebook
             </a>
