@@ -6,7 +6,7 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 
 const api = axios.create({
-  baseURL: `http://localhost:5000/api/`,
+  baseURL: process.env.REACT_APP_API_ENDPOINT_URL,
 });
 
 const RegisterUser = () => {

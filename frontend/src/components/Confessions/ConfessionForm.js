@@ -6,7 +6,7 @@ import { addNotification } from "../../actions";
 import { v4 as uuidv4 } from "uuid";
 
 const api = axios.create({
-  baseURL: `http://localhost:5000/api/`,
+  baseURL: process.env.REACT_APP_API_ENDPOINT_URL,
 });
 
 const ConfessionForm = () => {
