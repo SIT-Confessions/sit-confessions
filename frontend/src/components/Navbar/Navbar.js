@@ -69,7 +69,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
 
   const styles = {
     className:
-      "text-gray-200 hover:bg-purple-500 dark:hover:bg-violet-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex",
+      "text-gray-200 hover:bg-purple-500 dark:hover:bg-violet-600 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex",
     activeStyle:
       "transition-colors duration-100 bg-purple-900 hover:bg-purple-900 dark:bg-violet-900 dark:hover:bg-violet-900 text-white px-3 py-2 rounded-md text-sm font-medium flex",
   };

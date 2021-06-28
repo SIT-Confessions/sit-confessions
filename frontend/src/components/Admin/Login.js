@@ -34,9 +34,9 @@ const Login = ({ login, isAuthenticated }) => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <img
-            className="mx-auto h-24 w-auto"
+            className="mx-auto h-24 w-24"
             src="/SITC-Rounded.png"
-            alt="Workflow"
+            alt="SIT Confessions"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold transition-colors duration-500 text-gray-900 dark:text-gray-100">
             Welcome to SIT Confessions
