@@ -14,6 +14,7 @@ import AdminHome from "./components/Admin";
 import Account from "./components/Admin/Account/Account";
 import Users from "./components/Admin/Users";
 import RegisterUser from "./components/Admin/RegisterUser";
+import SingleConfession from "./components/Confessions/SingleConfession";
 import NotificationCenter from "./components/UI/NotificationCenter";
 import { loadUser } from "./actions/auth";
 import store from "./store";
@@ -45,6 +46,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route path="/post" exact component={ConfessionForm}></Route>
+          <Route path="/confession" exact component={SingleConfession}></Route>
           <PrivateRoute
             key="dashboard"
             path="/dashboard"
