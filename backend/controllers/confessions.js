@@ -70,14 +70,28 @@ export const getApprovedConfessions = async (req, res) => {
  *
  * @returns {json} All approved confessions in paged form
  */
- export const getPagedApprovedConfessions = async (req, res) => {
+export const getPagedApprovedConfessions = async (req, res) => {
   try {
-    const confessions = await Confession.find({
-      status: APPROVED,
-      fbURL: { $ne: null },
-    }, {approvedBy: 0, createdAt: 0, status: 0, rejectedReason: 0, isQueued: 0, isPostedToFB: 0, approvedDate:0 }).sort({
-      approvedDate: -1,
-    }).skip((req.params.pageNumber * 10) - 10).limit(10);
+    const confessions = await Confession.find(
+      {
+        status: APPROVED,
+        fbURL: { $ne: null },
+      },
+      {
+        approvedBy: 0,
+        createdAt: 0,
+        status: 0,
+        rejectedReason: 0,
+        isQueued: 0,
+        isPostedToFB: 0,
+        approvedDate: 0,
+      }
+    )
+      .sort({
+        approvedDate: -1,
+      })
+      .skip(req.params.pageNumber * 10 - 10)
+      .limit(10);
     res.json(confessions);
   } catch (err) {
     console.error(err.message);
@@ -107,8 +121,10 @@ export const getQueuedConfessions = async (req, res) => {
  */
 export const getConfession = async (req, res) => {
   try {
-    const confession = await Confession.findById(req.params.id);
-    if (!confession) {
+    const confession = await Confession.findById(req.params.id).select(
+      "_id text isPostedToFB postedToFBAt fbURL"
+    );
+    if (confession?.isPostedToFB === false || !confession) {
       return res.status(404).json({ msg: "Confession not found" });
     }
     res.json(confession);
