@@ -37,7 +37,9 @@ function App() {
         {isDark === false ? null : <html className="dark" />}
         <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
-      <Navbar isDark={isDark}></Navbar>
+      <div className="sticky top-0 z-30">
+        <Navbar isDark={isDark}></Navbar>
+      </div>
       <div className="container mx-auto py-10">
         <NotificationCenter data={notificationsData.notifications} />
         <Switch>
