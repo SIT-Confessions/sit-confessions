@@ -24,6 +24,10 @@ export const GetAllConfessions = () => {
   return API.get("/confessions");
 };
 
+export const GetApprovedConfession = (id) => {
+  return API.get("confessions/" + id);
+};
+
 export const ApproveConfession = async (id) => {
   if (localStorage.getItem("token")) {
     setAuthToken(localStorage.getItem("token"));

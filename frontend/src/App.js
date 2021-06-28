@@ -46,7 +46,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route path="/post" exact component={ConfessionForm}></Route>
-          <Route path="/confession" exact component={SingleConfession}></Route>
+          <Route path="/confession/:id" exact component={SingleConfession}></Route>
           <PrivateRoute
             key="dashboard"
             path="/dashboard"
