@@ -19,19 +19,16 @@ const ConfessionsFeed = () => {
   let getData = async () => {
     try {
       let result = await NewGetApprovedConfessions(page);
-      console.log("PagedAPI", result);
+      //console.log("PagedAPI", result);
       if (result.data.length === 0) {
-        setAllLoaded(() => {
-          return true;
-        });
+        setAllLoaded(true);
       } else {
         setConfessionsData((prevState) => {
           return prevState.concat(result.data);
         });
       }
-      setIsPopulated((prevState) => {
-        return !prevState;
-      });
+      if (!isPopulated)
+        setIsPopulated(true);
 
       //   const observer = new IntersectionObserver(handleObserver, options);
       //   if (loader.current) {
@@ -65,16 +62,18 @@ const ConfessionsFeed = () => {
   useEffect(() => {
     // Append more confessions to be shown
     console.log("loader triggered", page);
-    getData();
+    console.log("443",allLoaded)
+    if(!allLoaded)
+        getData();
   }, [page]);
 
   const handleObserver = (entities) => {
     const target = entities[0];
-    if (target.isIntersecting && !allLoaded) {
-      setTimeout(function () {
-        setPage((page) => page + 1);
-      }, 1000);
-      //setPage((page) => page + 1);
+    console.log("isIntersecting", target.isIntersecting);
+    console.log("allLoaded", allLoaded);
+    if (target.isIntersecting) {
+      console.log("442",allLoaded);
+      setPage((page) => page + 1);
     }
   };
 
