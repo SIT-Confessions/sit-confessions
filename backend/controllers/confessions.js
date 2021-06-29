@@ -122,9 +122,13 @@ export const getQueuedConfessions = async (req, res) => {
 export const getConfession = async (req, res) => {
   try {
     const confession = await Confession.findById(req.params.id).select(
-      "_id text isPostedToFB postedToFBAt fbURL"
+      "_id text status isPostedToFB postedToFBAt fbURL"
     );
-    if (confession?.isPostedToFB === false || !confession) {
+    if (
+      !confession ||
+      confession?.isPostedToFB === false ||
+      confession?.status !== APPROVED
+    ) {
       return res.status(404).json({ msg: "Confession not found" });
     }
     res.json(confession);
