@@ -121,7 +121,9 @@ export const getQueuedConfessions = async (req, res) => {
  */
 export const getConfession = async (req, res) => {
   try {
-    if (Number.isInteger(req.params.id)){
+    var pattern = new RegExp('^(\\d+)$');
+
+    if (pattern.test(req.params.id)){
       const confession = await Confession.findById(req.params.id).select(
         "_id text isPostedToFB postedToFBAt fbURL"
       );
