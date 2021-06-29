@@ -35,14 +35,7 @@ function App() {
   return (
     <Router>
       <Helmet>
-        {isDark === false ? (
-          <meta name="theme-color" content="#7E22CE" />
-        ) : (
-          <>
-            <meta name="theme-color" content="#5B21B6" />
-            <html className="dark" />
-          </>
-        )}
+        {isDark === false ? null : <html className="dark" />}
         <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
       <div className="sticky top-0 z-30">
