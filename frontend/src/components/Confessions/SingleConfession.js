@@ -32,6 +32,10 @@ const SingleConfession = () => {
     }
   };
 
+  const btnClick = (url) => {
+    window.location.href = url;
+  };
+
   useEffect(() => {
     retrieveData();
   }, []);
@@ -57,13 +61,13 @@ const SingleConfession = () => {
               </p>
             </div>
             <div className="px-4 py-3 transition-colors duration-500 bg-white dark:bg-dark-gray-light text-center sm:px-6 mb-3">
-              <a
+              <button
                 type="button"
-                href={confessionData.fbURL}
+                onClick={() => {btnClick(confessionData.fbURL)}}
                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 w-full"
               >
                 View on Facebook
-              </a>
+              </button>
             </div>
           </div>
         </div>
