@@ -91,7 +91,7 @@ const ConfessionDetailsModal = (props) => {
       <Dialog
         as="div"
         static
-        className="fixed z-10 inset-0 overflow-y-auto"
+        className="fixed z-10 inset-0 overflow-y-auto top-4"
         initialFocus={approveButtonRef}
         open={open}
         onClose={setOpen}
@@ -138,19 +138,19 @@ const ConfessionDetailsModal = (props) => {
                   </div>
                   <div className="border-t border-gray-200 dark:border-gray-700">
                     <dl>
-                      <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                        <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                        <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                           Confession Message
                         </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100 whitespace-pre-line">
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9 dark:text-gray-100 whitespace-pre-line max-h-48 overflow-auto">
                           {decodeData(data.text)}
                         </dd>
                       </div>
-                      <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                        <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                        <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                           Submitted On
                         </dt>
-                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9 dark:text-gray-100">
                           {dayjs(data.createdAt).format(
                             "D MMM YYYY, h:mm:ss A"
                           )}
@@ -161,11 +161,11 @@ const ConfessionDetailsModal = (props) => {
                           if (data.isPostedToFB) {
                             return (
                               <>
-                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                     Status
                                   </dt>
-                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9">
                                     <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
                                       Approved
                                     </span>
@@ -174,11 +174,11 @@ const ConfessionDetailsModal = (props) => {
                                     </span>
                                   </dd>
                                 </div>
-                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                     Approved
                                   </dt>
-                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9 dark:text-gray-100">
                                     {data.approvedBy}
                                     <br />
                                     {dayjs(data.approvedDate).format(
@@ -186,11 +186,11 @@ const ConfessionDetailsModal = (props) => {
                                     )}
                                   </dd>
                                 </div>
-                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                     Facebook Post URL
                                   </dt>
-                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9 dark:text-gray-100">
                                     <a
                                       href={data.fbURL}
                                       target="_blank"
@@ -205,11 +205,11 @@ const ConfessionDetailsModal = (props) => {
                           } else if (data.isQueued) {
                             return (
                               <>
-                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                     Status
                                   </dt>
-                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9">
                                     <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
                                       Approved
                                     </span>
@@ -218,11 +218,11 @@ const ConfessionDetailsModal = (props) => {
                                     </span>
                                   </dd>
                                 </div>
-                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                     Approved
                                   </dt>
-                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9 dark:text-gray-100">
                                     {data.approvedBy}
                                     <br />
                                     {dayjs(data.approvedDate).format(
@@ -235,21 +235,21 @@ const ConfessionDetailsModal = (props) => {
                           } else {
                             return (
                               <>
-                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                     Status
                                   </dt>
-                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9">
                                     <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
                                       Approved
                                     </span>
                                   </dd>
                                 </div>
-                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                  <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                     Approved
                                   </dt>
-                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9 dark:text-gray-100">
                                     {data.approvedBy}
                                     <br />
                                     {dayjs(data.approvedDate).format(
@@ -263,21 +263,21 @@ const ConfessionDetailsModal = (props) => {
                         } else if (data.status === "PENDING")
                           return (
                             <>
-                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                   Status
                                 </dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9">
                                   <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
                                     Pending Action
                                   </span>
                                 </dd>
                               </div>
-                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                   Reject Reason
                                 </dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9">
                                   <div className="flex flex-col">
                                     <div className="mb-1">
                                       <span className="text-red-500 dark:text-red-400">
@@ -369,21 +369,21 @@ const ConfessionDetailsModal = (props) => {
                         else if (data.status === "REJECTED")
                           return (
                             <>
-                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                   Status
                                 </dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9">
                                   <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-300 dark:text-red-900">
                                     Rejected
                                   </span>
                                 </dd>
                               </div>
-                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                   Rejected
                                 </dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9 dark:text-gray-100">
                                   {data.rejectedBy}
                                   <br />
                                   {dayjs(data.rejectedDate).format(
@@ -391,11 +391,11 @@ const ConfessionDetailsModal = (props) => {
                                   )}
                                 </dd>
                               </div>
-                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
-                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                              <div className="bg-white dark:bg-dark-gray px-4 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-6 border-b dark:border-gray-700">
+                                <dt className="text-sm font-medium text-gray-500 dark:text-gray-400 sm:col-span-3">
                                   Reason(s) for Rejection
                                 </dt>
-                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-100">
+                                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9 dark:text-gray-100">
                                   <div className="flex space-x-2">
                                     {data.rejectedReason.map((reason) => (
                                       <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-md bg-gray-700 text-gray-100 dark:bg-gray-300 dark:text-dark-gray">
