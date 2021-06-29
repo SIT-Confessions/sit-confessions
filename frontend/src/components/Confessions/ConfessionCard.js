@@ -12,7 +12,7 @@ const ConfessionCard = (props) => {
 
   return (
     <div className="flex-shrink-0 items-center justify-center transition-colors duration-500 bg-gray-50 max-w-full sm:w-full min-w-min dark:bg-dark-gray">
-      <div class="flow-root shadow-lg rounded-xl p-4 transition-colors duration-500 bg-white relative overflow-hidden dark:bg-dark-gray-lighter">
+      <div class="flow-root shadow-md rounded-xl p-4 transition-colors duration-500 bg-white relative overflow-hidden dark:bg-dark-gray-lighter">
         <div className="sm:min-w-0">
           <Link
             key={itemData._id}
@@ -21,7 +21,7 @@ const ConfessionCard = (props) => {
           >
             #{itemData._id}
           </Link>
-          <p class="transition-colors duration-500 text-gray-600 dark:text-gray-200 text-md whitespace-pre-line font-medium mt-4">
+          <p class="transition-colors duration-500 text-gray-700 dark:text-gray-200 text-md whitespace-pre-line font-medium mt-4">
             {he.decode(itemData.text)}
           </p>
           <div className="flex mt-6 justify-between">

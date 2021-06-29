@@ -35,9 +35,22 @@ function App() {
   return (
     <Router>
       <Helmet>
-        {isDark === false ? null : <html className="dark" />}
+        <meta property="og:title" content="SIT Confessions" />
+        <meta property="og:url" content="https://sitconfessions.com" />
+        <meta property="og:image" content="%PUBLIC_URL%/SITC-Full.png" />
+        <meta
+          property="og:description"
+          content="SIT Confessions is a one-stop platform for SIT students to rant and share interesting stories about university life and anything under the sun."
+        />
+        {isDark === false ? (
+          <meta name="theme-color" content="#7E22CE" />
+        ) : (
+          <meta name="theme-color" content="#5B21B6" />
+        )}
+        {isDark && <html className="dark" />}
         <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
+      <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       <div className="sticky top-0 z-30">
         <Navbar isDark={isDark}></Navbar>
       </div>
@@ -46,7 +59,11 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home}></Route>
           <Route path="/post" exact component={ConfessionForm}></Route>
-          <Route path="/confession/:id" exact component={SingleConfession}></Route>
+          <Route
+            path="/confession/:id"
+            exact
+            component={SingleConfession}
+          ></Route>
           <PrivateRoute
             key="dashboard"
             path="/dashboard"
