@@ -256,7 +256,11 @@ export const postToFB = async () => {
     if (!queue) return;
 
     const post = await Confession.findById(queue.post);
-    const res = await postFB(`#${post.id}: ${he.decode(post.text)}`);
+    const res = await postFB(
+      `#${post.id}: ${he.decode(
+        post.text
+      )}``${process.env.CLIENTURL}/confessions/${post.id}`
+    );
 
     await queue.remove();
 
@@ -286,11 +290,12 @@ export const postToFB = async () => {
  * @param {*} msg
  * @returns {int} Facebook post id
  */
-const postFB = async (msg) => {
+const postFB = async (message, link) => {
   // Post to facebook
   FB.setAccessToken(process.env.FBACCESSTOKEN);
   const res = await FB.api(`/${process.env.FBPAGEID}/feed`, "POST", {
-    message: msg,
+    message,
+    link,
   });
   return res.id;
 };
