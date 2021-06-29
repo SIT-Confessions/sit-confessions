@@ -61,18 +61,18 @@ const ConfessionsFeed = () => {
 
   useEffect(() => {
     // Append more confessions to be shown
-    console.log("loader triggered", page);
-    console.log("443",allLoaded)
+    // console.log("loader triggered", page);
+    // console.log("443",allLoaded)
     if(!allLoaded)
         getData();
   }, [page]);
 
   const handleObserver = (entities) => {
     const target = entities[0];
-    console.log("isIntersecting", target.isIntersecting);
-    console.log("allLoaded", allLoaded);
+    // console.log("isIntersecting", target.isIntersecting);
+    // console.log("allLoaded", allLoaded);
     if (target.isIntersecting) {
-      console.log("442",allLoaded);
+    //   console.log("442",allLoaded);
       setPage((page) => page + 1);
     }
   };

@@ -12,7 +12,6 @@ const SingleConfession = () => {
   const retrieveData = async () => {
     try {
       let result = await GetApprovedConfession(id);
-      console.log("SingleConfession", result);
       if (result.status === 200) {
         setConfessionData(() => {
           return result.data;
@@ -57,7 +56,7 @@ const SingleConfession = () => {
                 {he.decode(confessionData.text)}
               </p>
             </div>
-            <div className="px-4 py-3 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light text-center sm:px-6 mb-3">
+            <div className="px-4 py-3 transition-colors duration-500 bg-white dark:bg-dark-gray-light text-center sm:px-6 mb-3">
               <a
                 type="button"
                 href={confessionData.fbURL}
@@ -86,7 +85,7 @@ const SingleConfession = () => {
             <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded-md w-10/12 transition-colors duration-500"></div>
             <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded-md w-1/2 transition-colors duration-500"></div>
           </div>
-          <div className="px-4 py-3 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light text-center sm:px-6 mb-3">
+          <div className="px-4 py-3 transition-colors duration-500 bg-white dark:bg-dark-gray-light text-center sm:px-6 mb-3">
             <div className="h-9 bg-gray-300 dark:bg-gray-600 rounded-md w-full transition-colors duration-500"></div>
           </div>
         </div>
