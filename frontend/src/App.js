@@ -35,6 +35,13 @@ function App() {
   return (
     <Router>
       <Helmet>
+        <meta property="og:title" content="SIT Confessions" />
+        <meta property="og:url" content="https://sitconfessions.com" />
+        <meta property="og:image" content="%PUBLIC_URL%/SITC-Full.png" />
+        <meta
+          property="og:description"
+          content="SIT Confessions is a one-stop platform for SIT students to rant and share interesting stories about university life and anything under the sun."
+        />
         {isDark === false ? (
           <meta name="theme-color" content="#7E22CE" />
         ) : (
