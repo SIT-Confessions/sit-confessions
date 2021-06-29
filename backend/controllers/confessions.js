@@ -121,13 +121,18 @@ export const getQueuedConfessions = async (req, res) => {
  */
 export const getConfession = async (req, res) => {
   try {
-    const confession = await Confession.findById(req.params.id).select(
-      "_id text isPostedToFB postedToFBAt fbURL"
-    );
-    if (confession?.isPostedToFB === false || !confession) {
+    if (Number.isInteger(req.params.id)){
+      const confession = await Confession.findById(req.params.id).select(
+        "_id text isPostedToFB postedToFBAt fbURL"
+      );
+      if (confession?.isPostedToFB === false || !confession) {
+        return res.status(404).json({ msg: "Confession not found" });
+      }
+      res.json(confession);
+    } else {
       return res.status(404).json({ msg: "Confession not found" });
     }
-    res.json(confession);
+    
   } catch (err) {
     console.error(err.message);
 
