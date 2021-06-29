@@ -39,7 +39,7 @@ const SingleConfession = () => {
 
   return informationIsSet === 1 ? (
     <div className="flex justify-center px-4 md:px-0">
-      <div className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-lg w-full md:w-2/3">
+      <div className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-md w-full md:w-2/3">
         <div>
           <div className="sm:rounded-md sm:overflow-hidden">
             <div className="px-6 py-6">
@@ -48,12 +48,12 @@ const SingleConfession = () => {
               </h2>
               <p className="transition-colors duration-500 text-sm text-gray-500 dark:text-gray-400">
                 Posted{" "}
-                {dayjs(confessionData.createdAt).format("D MMM YYYY, h:mm A")}
+                {dayjs(confessionData.postedToFBAt).format("D MMM YYYY, h:mm A")}
               </p>
             </div>
             <hr className="mx-6 transition-colors duration-500 dark:border-gray-700"></hr>
             <div className="px-6 py-7 space-y-6">
-              <p className="transition-colors duration-500 text-gray-600 dark:text-gray-200 text-md whitespace-pre-line font-medium">
+              <p className="transition-colors duration-500 text-gray-700 dark:text-gray-200 text-md whitespace-pre-line font-medium">
                 {he.decode(confessionData.text)}
               </p>
             </div>
@@ -72,7 +72,7 @@ const SingleConfession = () => {
     </div>
   ) : informationIsSet === 0 ? (
     <div className="flex justify-center px-4 md:px-0">
-      <div className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-lg w-full md:w-2/3">
+      <div className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-md w-full md:w-2/3">
         <div className="animate-pulse sm:rounded-md">
           <div className="px-6 py-6">
             <div className="h-7 bg-gray-300 dark:bg-gray-600 rounded-md w-2/5 transition-colors duration-500"></div>
@@ -93,10 +93,20 @@ const SingleConfession = () => {
       </div>
     </div>
   ) : (
-    <div className="min-h-full mt-20 flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8">
-      <p className="font-semibold text-3xl text-gray-700 dark:text-gray-200 transition-colors duration-500">
-        Confession Not Found
-      </p>
+    // <div className="min-h-full mt-20 flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8">
+    //   <p className="font-semibold text-3xl text-gray-700 dark:text-gray-200 transition-colors duration-500">
+    //     Confession Not Found
+    //   </p>
+    // </div>
+
+    <div className="flex justify-center px-4 md:px-0">
+      <div className="h-80 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light overflow-auto rounded-xl shadow-md w-full md:w-2/3">
+        <div className="min-h-full flex justify-center items-center sm:rounded-md">
+          <p className="font-semibold text-3xl text-gray-700 dark:text-gray-200 transition-colors duration-500">
+             Confession Not Found
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
