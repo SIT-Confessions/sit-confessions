@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import rateLimit from "express-rate-limit";
 import { MASTER } from "../constants/roles.js";
 
 /**
@@ -50,22 +49,3 @@ export const master = (req, res, next) => {
     res.status(401).json({ msg: "Token is not valid" });
   }
 };
-
-/**
- * Limits the number of login attempts from the same ip
- * address to 5 within a 15 min window
- */
-export const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  skipSuccessfulRequests: true,
-  max: 5,
-  handler: (req, res) => {
-    res.status(429).json({
-      errors: [
-        {
-          msg: "We have detected too many login attempts from this IP, please try again after 15 minutes.",
-        },
-      ],
-    });
-  },
-});

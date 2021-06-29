@@ -61,8 +61,7 @@ app.use(hpp());
 app.use(morgan("combined", { stream: accessLogStream }));
 
 // Schedule task
-// cron.schedule("*/15 * * * *", postToFB);
-postToFB();
+cron.schedule("*/15 * * * *", postToFB);
 
 // Default route
 app.get("/", (req, res) => res.send("API Running"));
