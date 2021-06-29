@@ -38,10 +38,12 @@ function App() {
         {isDark === false ? (
           <meta name="theme-color" content="#7E22CE" />
         ) : (
-          <html className="dark" />
+          <meta name="theme-color" content="#5B21B6" />
         )}
+        {isDark && <html className="dark" />}
         <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
+      <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       <div className="sticky top-0 z-30">
         <Navbar isDark={isDark}></Navbar>
       </div>
