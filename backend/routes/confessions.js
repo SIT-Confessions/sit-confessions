@@ -1,6 +1,7 @@
 import auth from "../middleware/auth.js";
 import express from "express";
 import { check } from "express-validator";
+import { longLimiter } from "../middleware/rateLimiter.js";
 import {
   approveConfession,
   createConfession,
@@ -49,7 +50,7 @@ router.get("/approved", getApprovedConfessions);
  * @route GET api/confessions/approvedPaged/:pageNumber
  * @access Public
  */
-router.get("/approved/:pageNumber", getPagedApprovedConfessions);
+router.get("/approved/:pageNumber", longLimiter, getPagedApprovedConfessions);
 
 /**
  * Search confession by substring
@@ -73,7 +74,7 @@ router.get("/queued", auth, getQueuedConfessions);
  * @route GET api/confessions/:id
  * @access Private
  */
-router.get("/:id", getConfession);
+router.get("/:id", longLimiter, getConfession);
 
 /**
  * Approve confession by id

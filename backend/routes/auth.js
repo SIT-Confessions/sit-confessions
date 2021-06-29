@@ -1,5 +1,6 @@
 import express from "express";
-import auth, { master, loginLimiter } from "../middleware/auth.js";
+import auth, { master } from "../middleware/auth.js";
+import { loginLimiter } from "../middleware/rateLimiter.js";
 import { check } from "express-validator";
 import {
   getAllUsers,
