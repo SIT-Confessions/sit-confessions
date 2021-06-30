@@ -301,12 +301,11 @@ export const postToFB = async () => {
  * @param {*} msg
  * @returns {int} Facebook post id
  */
-const postFB = async (message, link) => {
+const postFB = async (message) => {
   // Post to facebook
   FB.setAccessToken(process.env.FBACCESSTOKEN);
   const res = await FB.api(`/${process.env.FBPAGEID}/feed`, "POST", {
-    message,
-    link,
+    message
   });
   return res.id;
 };

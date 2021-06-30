@@ -48,6 +48,7 @@ const pathVariants = {
 
 const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
   const [isShown, setIsShown] = useState("hidden");
+  const [mobileMenuState, setMobileMenuState] = useState(false);
   const dispatch = useDispatch();
 
   const toggleHamburger = () => {
@@ -96,6 +97,13 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
       icon: false,
       name: "Dashboard",
     },
+    {
+      className: styles.className,
+      to: "#",
+      icon: false,
+      name: "Logout",
+      onClick: logout,
+    },
   ];
 
   const profile = [
@@ -134,14 +142,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
       to: "/login",
       icon: false,
       name: "Login",
-    },
-    {
-      className: styles.className,
-      to: "#",
-      icon: false,
-      name: "Logout",
-      onClick: logout,
-    },
+    }
   ];
 
   const links = isAuthenticated ? adminLinks : guestLinks;
@@ -192,7 +193,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                           )}
                         </NavLink>
                       ))}
-                      <NavLink
+                      {/* <NavLink
                         key="authLink"
                         exact
                         className={authLink.className}
@@ -201,7 +202,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                         onClick={authLink.onClick}
                       >
                         {authLink.name}
-                      </NavLink>
+                      </NavLink> */}
                     </div>
                   </div>
                   <div className="ml-0 md:ml-10 flex items-baseline space-x-4">
@@ -295,15 +296,20 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                 <div className="-mr-2 flex md:hidden">
                   {/* Mobile menu button */}
                   <Link
-                      key="compose-confession"
-                      exact
-                      to="/post"
-                      className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800 inline-flex items-center justify-center p-2 rounded-full text-gray-300 hover:text-white focus:outline-none"
+                    key="compose-confession"
+                    exact
+                    to="/post"
+                    className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800 inline-flex items-center justify-center p-2 rounded-full text-gray-300 hover:text-white focus:outline-none"
                   >
-                      <span className="sr-only">Compose Confession</span>
-                      <PencilAltIcon className="h-6 w-6" />
+                    <span className="sr-only">Compose Confession</span>
+                    <PencilAltIcon className="h-6 w-6" />
                   </Link>
-                  <Disclosure.Button className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-purple-700 dark:hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                  <Disclosure.Button
+                    onBlur={(e) => {
+                      //When mobile hamburger button loses focus
+                    }}
+                    className="transition-colors duration-500 bg-purple-700 dark:bg-violet-800 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-purple-700 dark:hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  >
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XIcon className="block h-6 w-6" aria-hidden="true" />
