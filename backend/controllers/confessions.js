@@ -267,7 +267,7 @@ export const postToFB = async () => {
 
     const post = await Confession.findById(queue.post);
     const res = await postFB(
-      '#' + post.id + ': ' + he.decode(post.text+'\n\n') + process.env.CLIENTURL + '/confession/' + post.id
+      '#' + post.id + ': ' + he.decode(post.text+'\n\n- ') + process.env.CLIENTURL + '/confession/' + post.id
     );
 
     await queue.remove();
