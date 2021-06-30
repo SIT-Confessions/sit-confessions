@@ -168,7 +168,6 @@ const ConfessionForm = () => {
                           name="agree"
                           type="checkbox"
                           className="focus:outline-none focus:ring-0 h-4 w-4 text-purple-600 border-gray-300 rounded"
-                          defaultChecked={userInput.checkboxIsChecked}
                           checked={userInput.checkboxIsChecked}
                           onChange={checkBoxChangeHandler}
                         />

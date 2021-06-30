@@ -27,7 +27,7 @@ export default function auth(state = initialState, action) {
       return {
         ...state,
         ...payload,
-        isAuthenticated: true,
+        isAuthenticated: false,
         loading: false,
       };
     case AUTH_ERROR:

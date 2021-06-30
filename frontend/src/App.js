@@ -28,8 +28,8 @@ function App() {
   useEffect(() => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
+      store.store.dispatch(loadUser());
     }
-    store.store.dispatch(loadUser());
   }, []);
 
   return (
@@ -43,7 +43,6 @@ function App() {
         {isDark && <html className="dark" />}
         <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       </Helmet>
-      <body className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray" />
       <div className="sticky top-0 z-30">
         <Navbar isDark={isDark}></Navbar>
       </div>

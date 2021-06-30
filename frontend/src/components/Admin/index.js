@@ -57,10 +57,10 @@ const Index = () => {
 
   useEffect(() => {
     if (authenticated) {
-      if (getData()) {
-        console.log("came in here");
-        <Redirect push to="/" />;
-      }
+      getData();
+      // if (getData()) {
+      //   <Redirect push to="/" />;
+      // }
     } else {
       <Redirect push to="/login" />;
     }
