@@ -135,10 +135,10 @@ const ConfessionForm = () => {
               </a>
             </div>
           </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2 rounded-3xl">
             <form onSubmit={handleSubmit}>
-              <div className="shadow sm:rounded-md sm:overflow-hidden">
-                <div className="px-4 py-5 transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light space-y-6 sm:p-6">
+              <div className="shadow rounded-xl sm:overflow-hidden">
+                <div className="px-4 py-5 rounded-t-xl transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-light space-y-6 sm:p-6">
                   <div>
                     <label
                       htmlFor="Confession"
@@ -229,7 +229,7 @@ const ConfessionForm = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="px-4 py-3 transition-colors duration-500 bg-gray-100 dark:bg-dark-gray-lighter text-right sm:px-6">
+                <div className="px-4 py-3 rounded-b-xl transition-colors duration-500 bg-gray-100 dark:bg-dark-gray-lighter text-right sm:px-6">
                   <button
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
