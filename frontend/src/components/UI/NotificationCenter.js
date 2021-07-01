@@ -8,7 +8,7 @@ const NotificationCenter = (props) => {
   let notifications = props.data;
   let dispatch = useDispatch();
   let test = useSelector((state) => state.notifications);
-  console.log(test)
+  //console.log(test)
 
   const delNotification = (id) => {
     //const index = notifications.findIndex((e) => e.id === id);
