@@ -20,6 +20,10 @@ module.exports = {
       fuchsia: colors.fuchsia,
     },
     extend: {
+      width: {
+        '24percent': '24%',
+        '49percent': '49%',
+      },
       colors: {
         transparent: "transparent",
         "dark-gray-lightest": "#303030",
