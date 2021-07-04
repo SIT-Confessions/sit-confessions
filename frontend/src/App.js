@@ -26,10 +26,7 @@ function App() {
   // const isDark = localStorage.getItem("darkPreferred")
 
   useEffect(() => {
-    if (localStorage.token) {
-      setAuthToken(localStorage.token);
-      store.store.dispatch(loadUser());
-    }
+    store.store.dispatch(loadUser());
   }, []);
 
   return (
