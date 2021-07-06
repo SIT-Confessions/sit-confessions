@@ -218,6 +218,49 @@ export const approveConfession = async (req, res) => {
 };
 
 /**
+ * Approve and post a confession to fb.
+ *
+ * Set the status attribute to approved.
+ *
+ * @returns {json} Message of update results
+ */
+export const approveAndPostConfession = async (req, res) => {
+  try {
+    const confession = await Confession.findById(req.params.id);
+
+    if (!confession) {
+      return res.status(404).json({ msg: "Confession not found" });
+    }
+
+    // Approve confession
+    if (confession.status !== APPROVED) {
+      const res = await postFB(
+        `#${confession.id}: ${he.decode(confession.text + "\n\n- ")}${
+          process.env.CLIENTURL
+        }/confession/${confession.id}`
+      );
+
+      const ids = res.split("_");
+      confession.fbURL = `https://www.facebook.com/permalink.php?story_fbid=${ids[1]}&id=${ids[0]}`;
+      confession.status = APPROVED;
+      confession.approvedBy = req.user.id;
+      confession.approvedDate = Date();
+      confession.postedToFBAt = Date();
+      confession.isPostedToFB = true;
+
+      await confession.save();
+      console.log(`Posted #${confession.id} to facebook.`);
+    }
+    res.status(200).json({
+      msg: "The confession has been approved and posted to Facebook.",
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
+
+/**
  * Reject a confession.
  *
  * Set status attribute to rejected
@@ -267,7 +310,6 @@ export const postToFB = async () => {
 
     const post = await Confession.findById(queue.post);
     const res = await postFB(
-      // '#' + post.id + ': ' + he.decode(post.text+'\n\n- ') + process.env.CLIENTURL + '/confession/' + post.id
       `#${post.id}: ${he.decode(post.text + "\n\n- ")}${
         process.env.CLIENTURL
       }/confession/${post.id}`
@@ -305,7 +347,7 @@ const postFB = async (message) => {
   // Post to facebook
   FB.setAccessToken(process.env.FBACCESSTOKEN);
   const res = await FB.api(`/${process.env.FBPAGEID}/feed`, "POST", {
-    message
+    message,
   });
   return res.id;
 };
