@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 
 const Login = ({ login, isAuthenticated }) => {
   const [serverMessages, setServerMessages] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -26,9 +28,16 @@ const Login = ({ login, isAuthenticated }) => {
     handleLoginFunc();
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => {
+      return !prevState;
+    });
+  };
+
   if (isAuthenticated) {
     return <Redirect to="/dashboard" />;
   }
+
   return (
     <div className="min-h-screen flex items-center justify-center transition-colors duration-500 bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 dark:bg-dark-gray">
       <div className="max-w-md w-full space-y-8">
@@ -85,14 +94,14 @@ const Login = ({ login, isAuthenticated }) => {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-            <div>
+            <div className="relative">
               <label htmlFor="password" className="sr-only">
                 Password
               </label>
               <input
                 id="password"
                 name="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
                 required
                 className="appearance-none rounded-none transition-colors duration-500 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
@@ -100,6 +109,17 @@ const Login = ({ login, isAuthenticated }) => {
                 value={password}
                 onChange={(e) => handleChange(e)}
               />
+              <button
+                type="button"
+                className="z-10 absolute inset-y-0 right-0 flex items-center mx-2 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <EyeOffIcon className="h-5 w-5"></EyeOffIcon>
+                ) : (
+                  <EyeIcon className="h-5 w-5"></EyeIcon>
+                )}
+              </button>
             </div>
           </div>
 

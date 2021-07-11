@@ -229,10 +229,10 @@ const ConfessionForm = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="px-4 py-3 rounded-b-xl transition-colors duration-500 bg-gray-100 dark:bg-dark-gray-lighter text-right sm:px-6">
+                <div className="px-4 py-3 rounded-b-xl transition-colors duration-500 bg-gray-100 dark:bg-dark-gray-lighter text-center md:text-right sm:px-6">
                   <button
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
+                    className="w-full md:w-auto inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
                   >
                     Submit
                   </button>
