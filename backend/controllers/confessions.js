@@ -40,17 +40,21 @@ export const getAllConfessions = async (req, res) => {
     const confessions = await Confession.find().sort({ createdAt: -1 });
     const pending = await Confession.find({
       status: PENDING,
-    }).count();
-    const rejected = await Confession.find({ status: REJECTED }).count();
-    const queued = await Queue.find().count();
-    const posted = await Confession.find({ isPostedToFB: true }).count();
+    }).countDocuments();
+    const rejected = await Confession.find({
+      status: REJECTED,
+    }).countDocuments();
+    const queued = await Queue.find().countDocuments();
+    const posted = await Confession.find({
+      isPostedToFB: true,
+    }).countDocuments();
     res.json({
-      postStats: {
-        pending,
-        rejected,
-        queued,
-        posted,
-      },
+      // postStats: {
+      //   pending,
+      //   rejected,
+      //   queued,
+      //   posted,
+      // },
       confessions,
     });
   } catch (err) {
