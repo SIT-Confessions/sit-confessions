@@ -4,7 +4,7 @@ import Queue from "../models/Queue.js";
 import mongoose from "mongoose";
 import he from "he";
 import { validationResult } from "express-validator";
-import { APPROVED, REJECTED } from "../constants/status.js";
+import { APPROVED, PENDING, REJECTED } from "../constants/status.js";
 
 /**
  * Create a new confession post into db.
@@ -38,7 +38,21 @@ export const createConfession = async (req, res) => {
 export const getAllConfessions = async (req, res) => {
   try {
     const confessions = await Confession.find().sort({ createdAt: -1 });
-    res.json(confessions);
+    const pendingActionCount = await Confession.find({
+      status: PENDING,
+    }).count();
+    const rejectedCount = await Confession.find({ status: REJECTED }).count();
+    const queuedCount = await Queue.find().count();
+    const postedCount = await Confession.find({ isPostedToFB: true }).count();
+    res.json({
+      postStats: {
+        pendingActionCount,
+        rejectedCount,
+        queuedCount,
+        postedCount,
+      },
+      confessions,
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
