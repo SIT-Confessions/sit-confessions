@@ -49,12 +49,12 @@ export const getAllConfessions = async (req, res) => {
       isPostedToFB: true,
     }).countDocuments();
     res.json({
-      // postStats: {
-      //   pending,
-      //   rejected,
-      //   queued,
-      //   posted,
-      // },
+      postStats: {
+        pending,
+        rejected,
+        queued,
+        posted,
+      },
       confessions,
     });
   } catch (err) {
