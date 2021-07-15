@@ -12,6 +12,7 @@ import {
   getConfession,
   searchConfessions,
   rejectConfession,
+  approveAndPostConfession,
 } from "../controllers/confessions.js";
 
 const router = express.Router();
@@ -83,6 +84,14 @@ router.get("/:id", longLimiter, getConfession);
  * @access Public
  */
 router.put("/approve/:id", auth, approveConfession);
+
+/**
+ * Approve confession and post to fb by id
+ *
+ * @route PUT api/confessions/approve-and-post/:id
+ * @access Public
+ */
+router.put("/approve-and-post/:id", auth, approveAndPostConfession);
 
 /**
  * Reject confession by id
