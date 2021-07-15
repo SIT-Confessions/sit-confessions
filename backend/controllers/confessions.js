@@ -38,18 +38,18 @@ export const createConfession = async (req, res) => {
 export const getAllConfessions = async (req, res) => {
   try {
     const confessions = await Confession.find().sort({ createdAt: -1 });
-    const pendingActionCount = await Confession.find({
+    const pending = await Confession.find({
       status: PENDING,
     }).count();
-    const rejectedCount = await Confession.find({ status: REJECTED }).count();
-    const queuedCount = await Queue.find().count();
-    const postedCount = await Confession.find({ isPostedToFB: true }).count();
+    const rejected = await Confession.find({ status: REJECTED }).count();
+    const queued = await Queue.find().count();
+    const posted = await Confession.find({ isPostedToFB: true }).count();
     res.json({
       postStats: {
-        pendingActionCount,
-        rejectedCount,
-        queuedCount,
-        postedCount,
+        pending,
+        rejected,
+        queued,
+        posted,
       },
       confessions,
     });
