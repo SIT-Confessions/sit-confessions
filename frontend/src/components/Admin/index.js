@@ -96,7 +96,7 @@ const Index = () => {
           options={{ key: 1, colour: "yellow" }}
           data={{
             title: "Pending Action",
-            value: stat.pending ?? 0,
+            value: stat?.pending ?? 0,
             count: 100,
           }}
         />
@@ -104,7 +104,7 @@ const Index = () => {
           options={{ key: 2, colour: "red" }}
           data={{
             title: "Confessions Rejected",
-            value: stat.rejected ?? 0,
+            value: stat?.rejected ?? 0,
             count: 69,
           }}
         />
@@ -112,7 +112,7 @@ const Index = () => {
           options={{ key: 3, colour: "pink" }}
           data={{
             title: "Confessions Queued",
-            value: stat.queued ?? 0,
+            value: stat?.queued ?? 0,
             count: 45,
           }}
         />
@@ -120,7 +120,7 @@ const Index = () => {
           options={{ key: 4, colour: "blue" }}
           data={{
             title: "Confessions Posted",
-            value: stat.posted ?? 0,
+            value: stat?.posted ?? 0,
             count: 100,
           }}
         />
