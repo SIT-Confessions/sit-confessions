@@ -75,6 +75,7 @@ const Index = () => {
     setOpen(false);
   };
 
+  const stat = confessions?.posts?.postStats;
   return confessions.set ? (
     <div className="px-4 sm:px-0">
       <ConfessionDetailsModal
@@ -95,7 +96,7 @@ const Index = () => {
           options={{ key: 1, colour: "yellow" }}
           data={{
             title: "Pending Action",
-            value: confessions.posts.postStats.pending ?? 0,
+            value: stat.pending ?? 0,
             count: 100,
           }}
         />
@@ -103,7 +104,7 @@ const Index = () => {
           options={{ key: 2, colour: "red" }}
           data={{
             title: "Confessions Rejected",
-            value: confessions.posts.postStats.rejected ?? 0,
+            value: stat.rejected ?? 0,
             count: 69,
           }}
         />
@@ -111,7 +112,7 @@ const Index = () => {
           options={{ key: 3, colour: "pink" }}
           data={{
             title: "Confessions Queued",
-            value: confessions.posts.postStats.queued ?? 0,
+            value: stat.queued ?? 0,
             count: 45,
           }}
         />
@@ -119,7 +120,7 @@ const Index = () => {
           options={{ key: 4, colour: "blue" }}
           data={{
             title: "Confessions Posted",
-            value: confessions.posts.postStats.posted ?? 0,
+            value: stat.posted ?? 0,
             count: 100,
           }}
         />
