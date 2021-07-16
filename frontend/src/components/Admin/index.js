@@ -32,7 +32,7 @@ const Index = () => {
   let getData = async (authenticated) => {
     // let resultData = await GetAllConfessions();
     // dispatch(setAllConfessions(resultData))
-    
+
     //  GetAllConfessions((response) => {
     //   console.log(response)
     //   if (response.status === 200) {
@@ -43,16 +43,13 @@ const Index = () => {
     //     <Redirect push to="/" />;
     //   }
     try {
-        let result = await GetAllConfessions()
-        console.log(result)
-        dispatch(setAllConfessions(result.data))
-
+      let result = await GetAllConfessions();
+      console.log(result);
+      dispatch(setAllConfessions(result.data));
     } catch (error) {
-      if (error.response)
-        console.log(error.response);
-        return <Redirect push to="/post" />;
+      if (error.response) console.log(error.response);
+      return <Redirect push to="/post" />;
     }
-
   };
 
   useEffect(() => {
@@ -96,19 +93,35 @@ const Index = () => {
       <div className="flex flex-row justify-between flex-wrap">
         <SummaryCard
           options={{ key: 1, colour: "yellow" }}
-          data={{ title: "Pending Action", value: 50, count: 100 }}
+          data={{
+            title: "Pending Action",
+            value: confessions.posts.postStats.pending,
+            count: 100,
+          }}
         />
         <SummaryCard
           options={{ key: 2, colour: "red" }}
-          data={{ title: "Confessions Rejected", value: 62, count: 69 }}
+          data={{
+            title: "Confessions Rejected",
+            value: confessions.posts.postStats.rejected,
+            count: 69,
+          }}
         />
         <SummaryCard
           options={{ key: 3, colour: "pink" }}
-          data={{ title: "Confessions Queued", value: 11, count: 45 }}
+          data={{
+            title: "Confessions Queued",
+            value: confessions.posts.postStats.queued,
+            count: 45,
+          }}
         />
         <SummaryCard
           options={{ key: 4, colour: "blue" }}
-          data={{ title: "Confessions Posted", value: 14, count: 100 }}
+          data={{
+            title: "Confessions Posted",
+            value: confessions.posts.postStats.posted,
+            count: 100,
+          }}
         />
       </div>
       <div className="mt-5">
@@ -149,7 +162,7 @@ const Index = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-dark-gray-dark">
-                    {confessions?.posts.map((confession) => (
+                    {confessions?.posts.confessions.map((confession) => (
                       <tr key={confession._id}>
                         <td className="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-200">
                           #{confession._id}
