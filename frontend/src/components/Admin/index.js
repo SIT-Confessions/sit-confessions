@@ -44,8 +44,8 @@ const Index = () => {
     //   }
     try {
       let result = await GetAllConfessions();
-      console.log(result);
       dispatch(setAllConfessions(result.data));
+      console.log("Set confessions", result);
     } catch (error) {
       if (error.response) console.log(error.response);
       return <Redirect push to="/post" />;
