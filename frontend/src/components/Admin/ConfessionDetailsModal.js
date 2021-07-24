@@ -79,10 +79,6 @@ const ConfessionDetailsModal = (props) => {
     });
   };
 
-  // useEffect(() => {
-  //   console.log(rejectReasons)
-  // })
-
   const cancelButtonRef = useRef(null);
   const approveButtonRef = useRef(null);
 

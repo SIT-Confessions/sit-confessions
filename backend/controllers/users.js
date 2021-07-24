@@ -200,7 +200,8 @@ export const updateUser = async (req, res) => {
     const user = await User.findOneAndUpdate(filter, update, {
       new: true,
     }).select("-password");
-    return res.json(user);
+    //return res.json(user);
+    return res.json({"msg" : "User profile successfully updated."})
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");

@@ -51,7 +51,7 @@ const SecurityForm = () => {
     const result = await ChangePassword(formData);
     dispatch(addNotification({
       id: uuidv4(),
-      title: "It's a Success!!",
+      title: "It's a success!",
       message: result.data.msg,
       type: "success",
     }));

@@ -30,22 +30,9 @@ const Index = () => {
   const dispatch = useDispatch();
 
   let getData = async (authenticated) => {
-    // let resultData = await GetAllConfessions();
-    // dispatch(setAllConfessions(resultData))
-
-    //  GetAllConfessions((response) => {
-    //   console.log(response)
-    //   if (response.status === 200) {
-    //     dispatch(setAllConfessions(response.data))
-    //     return false;
-    //   } else if (response.status === 401) {
-    //     alert("nabuey");
-    //     <Redirect push to="/" />;
-    //   }
     try {
       let result = await GetAllConfessions();
       dispatch(setAllConfessions(result.data));
-      console.log("Set confessions", result);
     } catch (error) {
       if (error.response) console.log(error.response);
       return <Redirect push to="/post" />;

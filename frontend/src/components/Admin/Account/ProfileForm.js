@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import * as dayjs from "dayjs";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { UpdateUserProfile } from "../../../api";
+import { addNotification } from "../../../actions";
+import { v4 as uuidv4 } from "uuid";
 
 const schema = yup.object().shape({
   name: yup.string().required('Please enter a name'),
@@ -11,14 +14,20 @@ const schema = yup.object().shape({
 });
 
 const ProfileForm = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
-  const onSubmit = data => {
-    //Submit logic here
-    console.log(data)
-    alert("Work in Progress");
+  const onSubmit = async data => {
+    //Submit to records.
+    const result = await UpdateUserProfile(data);
+    dispatch(addNotification({
+      id: uuidv4(),
+      title: "It's a success!",
+      message: result.data.msg,
+      type: "success",
+    }));
   };
 
   return user !== null ? (

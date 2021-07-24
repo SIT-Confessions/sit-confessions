@@ -33,10 +33,6 @@ export const ApproveConfession = async (id) => {
   if (localStorage.getItem("token")) {
     setAuthToken(localStorage.getItem("token"));
   }
-  // const res = await API.put("/confessions/approve/" + id)
-  //   .then((res) => res)
-  //   .catch((err) => err);
-  // return res.msg;
   const result = await API.put("/confessions/approve/" + id);
   return result;
 };
@@ -90,3 +86,7 @@ export const GetAllUsers = async () => {
     .catch((err) => console.log("from api All Users call", err));
   return res.data;
 };
+
+export const UpdateUserProfile = (data) => {
+  return API.put("/users", data);
+}
