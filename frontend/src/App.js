@@ -23,7 +23,6 @@ import setAuthToken from "./utils/setAuthToken";
 function App() {
   const notificationsData = useSelector((state) => state.notifications);
   const isDark = useSelector((state) => state.darkPreferred);
-  // const isDark = localStorage.getItem("darkPreferred")
 
   useEffect(() => {
     store.store.dispatch(loadUser());
