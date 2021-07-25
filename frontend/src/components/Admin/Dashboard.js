@@ -112,31 +112,31 @@ const Index = () => {
         <div className="flex flex-col">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow overflow-hidden border-b border-gray-200 dark:border-dark-gray-darkest sm:rounded-lg dark:bg-dark-gray-light">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
-                  <thead className="bg-gray-50 dark:bg-dark-gray-lighter">
+              <div className="transition-colors duration-500 shadow overflow-hidden border-b border-red-200 dark:border-dark-gray-darkest sm:rounded-lg dark:bg-dark-gray-light">
+                <table className="min-w-full divide-y transition-colors duration-500 divide-gray-200 dark:divide-gray-800">
+                  <thead className="transition-colors duration-500 bg-gray-50 dark:bg-dark-gray-lighter">
                     <tr className="">
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                        className="transition-colors duration-500 px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                       >
                         Confession ID
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                        className="transition-colors duration-500 px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                       >
                         Confession Preview
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                        className="transition-colors duration-500 px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                       >
                         Submitted
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                        className="transition-colors duration-500 px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                       >
                         Status
                       </th>
@@ -145,18 +145,18 @@ const Index = () => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-dark-gray-dark">
+                  <tbody className="transition-colors duration-500 bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-dark-gray-dark">
                     {confessions?.posts.confessions.map((confession) => (
                       <tr key={confession._id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-200">
+                        <td className="transition-colors duration-500 px-6 py-4 whitespace-nowrap text-gray-700 dark:text-gray-200">
                           #{confession._id}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <p className="text-sm text-gray-700 max-w-lg truncate dark:text-gray-200">
+                          <p className="transition-colors duration-500 text-sm text-gray-700 max-w-lg truncate dark:text-gray-200">
                             {he.decode(confession.text)}
                           </p>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
+                        <td className="transition-colors duration-500 px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
                           {dayjs(confession.createdAt).format(
                             "D MMM YYYY, h:mm:ss A"
                           )}
@@ -167,10 +167,10 @@ const Index = () => {
                               if (confession.isPostedToFB) {
                                 return (
                                   <>
-                                    <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                    <span className="transition-colors duration-500 px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
                                       Approved
                                     </span>
-                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-300 dark:text-blue-900">
+                                    <span className="transition-colors duration-500 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-300 dark:text-blue-900">
                                       Posted
                                     </span>
                                   </>
@@ -178,30 +178,30 @@ const Index = () => {
                               } else if (confession.isQueued) {
                                 return (
                                   <>
-                                    <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                    <span className="transition-colors duration-500 px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
                                       Approved
                                     </span>
-                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800 dark:bg-pink-300 dark:text-pink-900">
+                                    <span className="transition-colors duration-500 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100 text-pink-800 dark:bg-pink-300 dark:text-pink-900">
                                       Queued
                                     </span>
                                   </>
                                 );
                               } else {
                                 return (
-                                  <span className="px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
+                                  <span className="transition-colors duration-500 px-2 mr-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-300 dark:text-green-900">
                                     Approved
                                   </span>
                                 );
                               }
                             } else if (confession.status === "PENDING")
                               return (
-                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
+                                <span className="transition-colors duration-500 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-300 dark:text-yellow-900">
                                   Pending Action
                                 </span>
                               );
                             else if (confession.status === "REJECTED")
                               return (
-                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-300 dark:text-red-900">
+                                <span className="transition-colors duration-500 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-300 dark:text-red-900">
                                   Rejected
                                 </span>
                               );
@@ -209,7 +209,7 @@ const Index = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <button
-                            className="text-violet-600 hover:text-violet-900 dark:text-violet-500 dark:hover:text-violet-400 font-medium focus:outline-none"
+                            className="transition-colors duration-500 text-violet-600 hover:text-violet-900 dark:text-violet-500 dark:hover:text-violet-400 font-medium focus:outline-none"
                             onClick={() => SetDetailsOnModal(confession)}
                           >
                             View more
@@ -228,7 +228,7 @@ const Index = () => {
   ) : (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <div className="max-w-max w-full text-center pb-4">
-        <p className="font-bold text-xl text-gray-500 dark:text-gray-400">
+        <p className="transition-colors duration-500 font-bold text-xl text-gray-500 dark:text-gray-400">
           Loading Content...
         </p>
       </div>

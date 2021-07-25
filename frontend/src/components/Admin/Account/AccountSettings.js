@@ -87,7 +87,7 @@ const AccountSettings = () => {
               {menuItems.map((item, itemIndex) => (
                 <button
                   class={
-                    "hover:text-gray-800 hover:bg-gray-200 flex items-center p-2 my-6 focus:outline-none dark:hover:text-white dark:hover:bg-gray-600 rounded-lg min-w-full " +
+                    "hover:text-gray-800 hover:bg-gray-200 transition-colors duration-500 flex items-center p-2 my-6 focus:outline-none dark:hover:text-white dark:hover:bg-gray-600 rounded-lg min-w-full " +
                     (itemIndex === activeIndex
                       ? "text-gray-800 dark:text-gray-100 bg-gray-200 dark:bg-gray-600"
                       : "text-gray-600 dark:text-gray-400")
