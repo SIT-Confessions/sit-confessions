@@ -51,7 +51,7 @@ const KeyIcon = () => {
   );
 };
 
-const Account = () => {
+const AccountSettings = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const settingsBtnHandler = (index) => {
@@ -113,4 +113,4 @@ const Account = () => {
   );
 };
 
-export default Account;
+export default AccountSettings;

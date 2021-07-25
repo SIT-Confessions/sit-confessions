@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ConfessionDetailsModal from "./ConfessionDetailsModal";
-import SummaryCard from "./SummaryCard";
+import ConfessionStatusCounter from "./ConfessionStatusCounter";
 import { GetAllConfessions } from "../../api";
 import { getAllConfessions, setAllConfessions } from "../../actions";
 import * as dayjs from "dayjs";
@@ -79,7 +79,7 @@ const Index = () => {
         </p>
       </div>
       <div className="flex flex-row justify-between flex-wrap">
-        <SummaryCard
+        <ConfessionStatusCounter
           options={{ key: 1, colour: "yellow" }}
           data={{
             title: "Pending Action",
@@ -87,7 +87,7 @@ const Index = () => {
             count: 100,
           }}
         />
-        <SummaryCard
+        <ConfessionStatusCounter
           options={{ key: 2, colour: "red" }}
           data={{
             title: "Confessions Rejected",
@@ -95,7 +95,7 @@ const Index = () => {
             count: 69,
           }}
         />
-        <SummaryCard
+        <ConfessionStatusCounter
           options={{ key: 3, colour: "pink" }}
           data={{
             title: "Confessions Queued",
@@ -103,7 +103,7 @@ const Index = () => {
             count: 45,
           }}
         />
-        <SummaryCard
+        <ConfessionStatusCounter
           options={{ key: 4, colour: "blue" }}
           data={{
             title: "Confessions Posted",

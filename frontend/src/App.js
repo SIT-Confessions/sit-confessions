@@ -4,17 +4,17 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { AdjustmentsIcon } from "@heroicons/react/outline";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ConfessionForm from "./components/Confessions/ConfessionForm";
+import ComposeConfession from "./components/Confessions/ComposeConfession";
 import NotFound from "./components/NotFound";
 import Home from "./components/Home";
 import { Helmet } from "react-helmet";
 import Login from "./components/Admin/Login";
 import PrivateRoute from "./components/Routing/PrivateRoute";
-import AdminHome from "./components/Admin";
-import Account from "./components/Admin/Account/Account";
+import AdminHome from "./components/Admin/Dashboard";
+import AccountSettings from "./components/Admin/Account/AccountSettings";
 import Users from "./components/Admin/Users";
 import RegisterUser from "./components/Admin/RegisterUser";
-import SingleConfession from "./components/Confessions/SingleConfession";
+import ViewConfession from "./components/Confessions/ViewConfession";
 import NotificationCenter from "./components/UI/NotificationCenter";
 import { loadUser } from "./actions/auth";
 import store from "./store";
@@ -46,11 +46,11 @@ function App() {
         <NotificationCenter data={notificationsData.notifications} />
         <Switch>
           <Route path="/" exact component={Home}></Route>
-          <Route path="/post" exact component={ConfessionForm}></Route>
+          <Route path="/post" exact component={ComposeConfession}></Route>
           <Route
             path="/confession/:id"
             exact
-            component={SingleConfession}
+            component={ViewConfession}
           ></Route>
           <PrivateRoute
             key="dashboard"
@@ -62,7 +62,7 @@ function App() {
             key="account"
             path="/account"
             exact
-            component={Account}
+            component={AccountSettings}
           />
           <PrivateRoute key="users" path="/users" exact component={Users} />
           <PrivateRoute
