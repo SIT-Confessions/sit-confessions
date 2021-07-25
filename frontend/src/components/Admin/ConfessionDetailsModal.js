@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import * as dayjs from "dayjs";
 import { Dialog, Transition } from "@headlessui/react";
-import { ApproveConfession, RejectConfession } from "../../api";
+import { approveConfession, rejectConfession } from "../../api";
 import { addNotification } from "../../actions";
 import { v4 as uuidv4 } from "uuid";
 import he from "he";
@@ -22,8 +22,8 @@ const ConfessionDetailsModal = (props) => {
     props.closeModal();
   };
 
-  const approveConfession = async (id) => {
-    const result = await ApproveConfession(id);
+  const approve = async (id) => {
+    const result = await approveConfession(id);
     props.closeModal();
     ShowNotification({
       id: uuidv4(),
@@ -34,8 +34,8 @@ const ConfessionDetailsModal = (props) => {
     clearCheckboxData();
   };
 
-  const rejectConfession = async (id) => {
-    const result = await RejectConfession(id, {
+  const reject = async (id) => {
+    const result = await rejectConfession(id, {
       rejectedReason: rejectReasons,
     });
     props.closeModal();
@@ -414,7 +414,7 @@ const ConfessionDetailsModal = (props) => {
                     <button
                       type="button"
                       className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-30"
-                      onClick={() => rejectConfession(data._id)}
+                      onClick={() => reject(data._id)}
                       disabled={rejectReasons.length === 0}
                     >
                       Reject
@@ -422,7 +422,7 @@ const ConfessionDetailsModal = (props) => {
                     <button
                       type="button"
                       className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                      onClick={() => approveConfession(data._id)}
+                      onClick={() => approve(data._id)}
                       ref={approveButtonRef}
                     >
                       Approve
@@ -432,7 +432,7 @@ const ConfessionDetailsModal = (props) => {
                   <button
                     type="button"
                     className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => approveConfession(data._id)}
+                    onClick={() => approve(data._id)}
                     ref={approveButtonRef}
                   >
                     Approve

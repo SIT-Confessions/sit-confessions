@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
-import { ChangePassword } from "../../../api";
+import { changePassword } from "../../../api";
 import { addNotification } from "../../../actions";
 import { v4 as uuidv4 } from "uuid";
 
@@ -48,26 +48,13 @@ const SecurityForm = () => {
   const handleSave = async (event) => {
     event.preventDefault();
     console.log(formData)
-    const result = await ChangePassword(formData);
+    const result = await changePassword(formData);
     dispatch(addNotification({
       id: uuidv4(),
       title: "It's a success!",
       message: result.data.msg,
       type: "success",
     }));
-    // if (checkForm()) {
-    //   // Passed validation
-    //   let data = userInput.enteredConfession;
-    //   let confessionJSON = { text: data };
-    //   let res = await api.post("/confessions", confessionJSON);
-    //   clearInputs();
-    //   ShowNotification({
-    //     id: uuidv4(),
-    //     title: "Successfully Submitted!",
-    //     message: "Your confession has been submitted for approval!",
-    //     type: "success",
-    //   });
-    // }
   };
 
   return (

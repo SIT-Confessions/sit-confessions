@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ConfessionsFeed from "./Confessions/ConfessionsFeed";
-import { GetApprovedConfessions } from "../api";
+import { getApprovedConfessions } from "../api";
 import { viewApprovedConfessions, setApprovedConfessions } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
@@ -28,19 +28,6 @@ const pathVariants = {
 };
 
 const Home = () => {
-  // const confessions = useSelector((state) => state.approvedConfessions);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   let getData = async () => {
-  //     let resultData = await GetApprovedConfessions();
-  //     dispatch(setApprovedConfessions(resultData));
-  //   };
-  //   getData();
-  // }, []);
-
-  const transition = { duration: 4, yoyo: Infinity, ease: "easeInOut" }
-
   return (
     <motion.div
       className="px-4 sm:px-0"

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
-import { GetApprovedConfession } from "../../api";
+import { getApprovedConfession } from "../../api";
 import * as dayjs from "dayjs";
 import he from "he";
 import { Helmet } from "react-helmet";
@@ -12,7 +12,7 @@ const SingleConfession = () => {
 
   const retrieveData = async () => {
     try {
-      let result = await GetApprovedConfession(id);
+      let result = await getApprovedConfession(id);
       if (result.status === 200) {
         setConfessionData(() => {
           return result.data;

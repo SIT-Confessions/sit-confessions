@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GetAllUsers } from "../../api";
+import { retrieveAllUsers } from "../../api";
 import { getAllUsers, setAllUsers } from "../../actions";
 import * as dayjs from "dayjs";
 import { UserAddIcon } from "@heroicons/react/outline";
@@ -12,7 +12,7 @@ const Users = () => {
   const authenticated = useSelector((state) => state.auth.isAuthenticated);
 
   let getData = async () => {
-    let resultData = await GetAllUsers();
+    let resultData = await retrieveAllUsers();
     dispatch(setAllUsers(resultData));
   };
 

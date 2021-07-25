@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as dayjs from "dayjs";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { UpdateUserProfile } from "../../../api";
+import { updateUserProfile } from "../../../api";
 import { addNotification } from "../../../actions";
 import { v4 as uuidv4 } from "uuid";
 
@@ -21,7 +21,7 @@ const ProfileForm = () => {
   });
   const onSubmit = async data => {
     //Submit to records.
-    const result = await UpdateUserProfile(data);
+    const result = await updateUserProfile(data);
     dispatch(addNotification({
       id: uuidv4(),
       title: "It's a success!",

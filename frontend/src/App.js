@@ -15,7 +15,7 @@ import AccountSettings from "./components/Admin/Account/AccountSettings";
 import Users from "./components/Admin/Users";
 import RegisterUser from "./components/Admin/RegisterUser";
 import ViewConfession from "./components/Confessions/ViewConfession";
-import NotificationCenter from "./components/UI/NotificationCenter";
+import NotificationCenter from "./components/Notifications/NotificationCenter";
 import { loadUser } from "./actions/auth";
 import store from "./store";
 import setAuthToken from "./utils/setAuthToken";

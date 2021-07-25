@@ -2,8 +2,8 @@ import React, { Fragment, useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ConfessionDetailsModal from "./ConfessionDetailsModal";
 import ConfessionStatusCounter from "./ConfessionStatusCounter";
-import { GetAllConfessions } from "../../api";
-import { getAllConfessions, setAllConfessions } from "../../actions";
+import { getAllConfessions } from "../../api";
+import { setAllConfessions } from "../../actions";
 import * as dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import he from "he";
@@ -31,7 +31,7 @@ const Index = () => {
 
   let getData = async (authenticated) => {
     try {
-      let result = await GetAllConfessions();
+      let result = await getAllConfessions();
       dispatch(setAllConfessions(result.data));
     } catch (error) {
       if (error.response) console.log(error.response);
@@ -42,13 +42,9 @@ const Index = () => {
   useEffect(() => {
     if (authenticated) {
       getData();
-      // if (getData()) {
-      //   <Redirect push to="/" />;
-      // }
     } else {
       <Redirect push to="/login" />;
     }
-    // getData();
   }, []);
 
   const SetDetailsOnModal = (data) => {

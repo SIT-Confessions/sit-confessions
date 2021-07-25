@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, Fragment } from "react";
 import ConfessionCard from "./ConfessionCard";
-import { NewGetApprovedConfessions } from "../../api/index";
+import { getApprovedConfessions } from "../../api/index";
 
 const ConfessionsFeed = () => {
   const [confessionsData, setConfessionsData] = useState([]);
@@ -11,7 +11,7 @@ const ConfessionsFeed = () => {
 
   let getData = async () => {
     try {
-      let result = await NewGetApprovedConfessions(page);
+      let result = await getApprovedConfessions(page);
       if (result.data.length === 0) {
         setAllLoaded(true);
       } else {
