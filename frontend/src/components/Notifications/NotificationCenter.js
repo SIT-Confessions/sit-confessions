@@ -8,26 +8,24 @@ const NotificationCenter = (props) => {
   let notifications = props.data;
   let dispatch = useDispatch();
   let test = useSelector((state) => state.notifications);
-  //console.log(test)
 
   const delNotification = (id) => {
-    //const index = notifications.findIndex((e) => e.id === id);
     dispatch(deleteNotification(id));
   };
 
   return (
-    // <>
-    //   {notifications.length > 0 && (
     <div className="flex flex-col max-h-max fixed z-50 px-2 md:px-0 md:top-30 md:right-10">
       <AnimatePresence>
         {notifications.length > 0 &&
           notifications.map((item) => (
-            <Toast key={item.id} data={item} onDelNotification={delNotification} />
+            <Toast
+              key={item.id}
+              data={item}
+              onDelNotification={delNotification}
+            />
           ))}
       </AnimatePresence>
     </div>
-    //   )}
-    // </>
   );
 };
 

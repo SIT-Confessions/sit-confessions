@@ -101,12 +101,6 @@ const SingleConfession = () => {
       </div>
     </div>
   ) : (
-    // <div className="min-h-full mt-20 flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8">
-    //   <p className="font-semibold text-3xl text-gray-700 dark:text-gray-200 transition-colors duration-500">
-    //     Confession Not Found
-    //   </p>
-    // </div>
-
     <div className="flex justify-center px-4 md:px-0">
       <div className="h-80 transition-colors duration-500 bg-white dark:bg-dark-gray-light overflow-auto rounded-xl shadow-md w-full md:w-2/3">
         <div className="min-h-full flex justify-center items-center sm:rounded-md">

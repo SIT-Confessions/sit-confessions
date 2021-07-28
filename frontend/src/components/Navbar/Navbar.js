@@ -18,7 +18,6 @@ import { logout } from "../../actions/auth";
 import { connect } from "react-redux";
 import { getThemePreference, setThemePreference } from "../../actions";
 import { motion } from "framer-motion";
-// import { style } from "../../../craco.config";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -142,7 +141,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
       to: "/login",
       icon: false,
       name: "Login",
-    }
+    },
   ];
 
   const links = isAuthenticated ? adminLinks : guestLinks;

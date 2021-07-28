@@ -54,19 +54,7 @@ const SummaryCard = (props) => {
           <p class="transition-colors duration-500 text-base text-gray-700 dark:text-gray-100">
             {data.value}
           </p>
-          {/* <p class="text-5xl transition-colors duration-500 text-gray-600 dark:text-gray-200">
-            <CountUp end={data.count} />
-          </p> */}
         </div>
-        {/* <button
-            type="button"
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
-          >
-            
-            <span className="relative left-0 inset-y-0 flex items-center pl-2">
-                <AdjustmentsIcon className="h-5 w-5 text-white-500" />
-              </span>
-          </button> */}
       </div>
     </div>
   );
