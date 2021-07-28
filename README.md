@@ -34,7 +34,7 @@ components - create a folder for each component inside this folder
 
 constants - store constant variables to be used throughout the app
 
-src/reducers - redux implementation (global app state)
+reducers - redux implementation (global app state)
 
 utils - stores utility/helper codes
 
