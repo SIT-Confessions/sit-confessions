@@ -6,7 +6,7 @@ This is a confessions web application built on the MERN stack. It allows SIT stu
 **Backend:** NodeJS, ExpressJS  
 **Database:** MongoDB  
 
-## Project setup
+## Project Setup
 
 Install packages in both frontend and backend folders
 
@@ -22,7 +22,7 @@ Run both frontend and backend applications concurrently
 npm run dev
 ```
 
-## Frontend folder structure
+## Frontend Folder Structure
 
 actions - store all actions for Redux
 
@@ -38,7 +38,7 @@ reducers - redux implementation (global app state)
 
 utils - stores utility/helper codes
 
-## Backend folder structure
+## Backend Folder Structure
 
 config - database configurations and connections
 
