@@ -52,11 +52,6 @@ models - models for each class
 
 routes - routing for each request call
 
-## Recommended naming conventions
-
-variables/function names: camelCase  
-component/model names: PascalCase
-
 ## Contributors
 
 | [<img src="https://avatars.githubusercontent.com/u/20179273?v=4" style="border-radius: 50%" width="75px;"/><br /><sub><b>Gabriel Kok</b></sub>](https://gabrielkok.com/)<br />Frontend  | [<img src="https://avatars.githubusercontent.com/u/19357352?v=4" style="border-radius: 50%" width="75px;"/><br /><sub><b>Ng Han Yi</b></sub>](https://nghanyi.com)<br />Backend |
