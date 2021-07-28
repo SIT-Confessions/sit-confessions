@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import * as dayjs from "dayjs";
 import { Dialog, Transition } from "@headlessui/react";
@@ -346,10 +346,7 @@ const ConfessionDetailsModal = (props) => {
                                           type="checkbox"
                                           className="focus:outline-none focus:ring-0 h-4 w-4 text-violet-600 border-gray-300 rounded"
                                           onChange={(e) =>
-                                            checkBoxChangeHandler(
-                                              e,
-                                              "Others"
-                                            )
+                                            checkBoxChangeHandler(e, "Others")
                                           }
                                         />
                                         <span className="ml-3 text-sm transition-colors duration-500 text-gray-600 dark:text-gray-100">

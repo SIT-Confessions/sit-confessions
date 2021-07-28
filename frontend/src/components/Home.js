@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ConfessionsFeed from "./Confessions/ConfessionsFeed";
-import { getApprovedConfessions } from "../api";
-import { viewApprovedConfessions, setApprovedConfessions } from "../actions";
-import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 
 const svgVariants = {
-  initial: { opacity: 0},
-  visible: { opacity: 1},
+  initial: { opacity: 0 },
+  visible: { opacity: 1 },
 };
 
 const pathVariants = {

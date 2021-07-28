@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ConfessionDetailsModal from "./ConfessionDetailsModal";
 import ConfessionStatusCounter from "./ConfessionStatusCounter";

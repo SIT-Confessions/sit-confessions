@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import Toast from "./Toast";
 import { deleteNotification } from "../../actions";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const NotificationCenter = (props) => {
   let notifications = props.data;
   let dispatch = useDispatch();
-  let test = useSelector((state) => state.notifications);
 
   const delNotification = (id) => {
     dispatch(deleteNotification(id));

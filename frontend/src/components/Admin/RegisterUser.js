@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNotification } from "../../actions";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_ENDPOINT_URL,

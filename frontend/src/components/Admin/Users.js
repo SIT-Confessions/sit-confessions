@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { retrieveAllUsers } from "../../api";
-import { getAllUsers, setAllUsers } from "../../actions";
+import { setAllUsers } from "../../actions";
 import * as dayjs from "dayjs";
 import { UserAddIcon } from "@heroicons/react/outline";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const dispatch = useDispatch();
@@ -24,16 +24,15 @@ const Users = () => {
     <div>
       <div className="flex flex-row-reverse">
         <Link to="/register-user" exact>
-        <button
-          type="button"
-          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
-          
-        >
-          Add New User
-          <span className="left-0 inset-y-0 flex items-center pl-2">
-            <UserAddIcon className="h-5 w-5 text-white-500" />
-          </span>
-        </button>
+          <button
+            type="button"
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
+          >
+            Add New User
+            <span className="left-0 inset-y-0 flex items-center pl-2">
+              <UserAddIcon className="h-5 w-5 text-white-500" />
+            </span>
+          </button>
         </Link>
       </div>
       <div className="flex flex-col mt-5">

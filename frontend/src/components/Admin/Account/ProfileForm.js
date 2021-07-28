@@ -1,33 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as dayjs from "dayjs";
 import * as yup from "yup";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import { updateUserProfile } from "../../../api";
 import { addNotification } from "../../../actions";
 import { v4 as uuidv4 } from "uuid";
 
 const schema = yup.object().shape({
-  name: yup.string().required('Please enter a name'),
-  email: yup.string().email('Email must be a valid email address').required('Please enter an email address'),
+  name: yup.string().required("Please enter a name"),
+  email: yup
+    .string()
+    .email("Email must be a valid email address")
+    .required("Please enter an email address"),
 });
 
 const ProfileForm = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  const { register, handleSubmit, watch, formState: { errors } } = useForm({
-    resolver: yupResolver(schema)
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
   });
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     //Submit to records.
     const result = await updateUserProfile(data);
-    dispatch(addNotification({
-      id: uuidv4(),
-      title: "It's a success!",
-      message: result.data.msg,
-      type: "success",
-    }));
+    dispatch(
+      addNotification({
+        id: uuidv4(),
+        title: "It's a success!",
+        message: result.data.msg,
+        type: "success",
+      })
+    );
   };
 
   return user !== null ? (
@@ -74,14 +84,19 @@ const ProfileForm = () => {
                       id="name"
                       className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                       placeholder="Karen"
-                      {...register("name")} />
+                      {...register("name")}
+                    />
                   </div>
-                  {errors.name ? <p className="mt-2 text-sm text-red-500 dark:text-red-400">{errors.name.message}</p> :
+                  {errors.name ? (
+                    <p className="mt-2 text-sm text-red-500 dark:text-red-400">
+                      {errors.name.message}
+                    </p>
+                  ) : (
                     <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                       Your name may appear when you access the Dashboard and to
                       identify you when you perform an action on a confession.
                     </p>
-                  }
+                  )}
                 </div>
               </div>
 
@@ -100,8 +115,13 @@ const ProfileForm = () => {
                     className="transition-colors duration-500 focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-dark-gray-darkest dark:text-gray-100"
                     placeholder="karen@example.com"
                     defaultValue={user.email}
-                    {...register("email")} />
-                    {errors.email && <p className="mt-2 text-sm transition-colors duration-500 text-red-500 dark:text-red-400">{errors.email.message}</p>}
+                    {...register("email")}
+                  />
+                  {errors.email && (
+                    <p className="mt-2 text-sm transition-colors duration-500 text-red-500 dark:text-red-400">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

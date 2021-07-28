@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addNotification } from "../../actions";
 import { v4 as uuidv4 } from "uuid";
 

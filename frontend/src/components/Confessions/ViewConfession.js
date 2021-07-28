@@ -1,9 +1,8 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getApprovedConfession } from "../../api";
 import * as dayjs from "dayjs";
 import he from "he";
-import { Helmet } from "react-helmet";
 
 const SingleConfession = () => {
   const { id } = useParams();

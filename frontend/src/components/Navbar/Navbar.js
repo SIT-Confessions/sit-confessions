@@ -1,9 +1,8 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, Fragment } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
-  BellIcon,
   MenuIcon,
   XIcon,
   MoonIcon,
@@ -12,12 +11,10 @@ import {
   StatusOnlineIcon,
   PencilAltIcon,
 } from "@heroicons/react/outline";
-import { MoonIcon as MoonIconSolid } from "@heroicons/react/solid";
 import { Link, NavLink } from "react-router-dom";
 import { logout } from "../../actions/auth";
 import { connect } from "react-redux";
-import { getThemePreference, setThemePreference } from "../../actions";
-import { motion } from "framer-motion";
+import { setThemePreference } from "../../actions";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -192,16 +189,6 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                           )}
                         </NavLink>
                       ))}
-                      {/* <NavLink
-                        key="authLink"
-                        exact
-                        className={authLink.className}
-                        activeClassName={authLink.activeStyle}
-                        to={authLink.to}
-                        onClick={authLink.onClick}
-                      >
-                        {authLink.name}
-                      </NavLink> */}
                     </div>
                   </div>
                   <div className="ml-0 md:ml-10 flex items-baseline space-x-4">
@@ -213,27 +200,7 @@ const Navbar = ({ isDark, auth: { isAuthenticated, user }, logout }) => {
                       {isDark === false ? (
                         <MoonIcon className="h-6 w-6" aria-hidden="true" />
                       ) : (
-                        // <motion.svg
-                        //   xmlns="http://www.w3.org/2000/svg"
-                        //   initial="initial"
-                        //   animate="visible"
-                        //   class="h-6 w-6"
-                        //   fill="none"
-                        //   viewBox="0 0 24 24"
-                        //   stroke="currentColor"
-                        // >
-                        //   <motion.path
-                        //     variants={pathVariants}
-                        //     stroke-linecap="round"
-                        //     stroke-linejoin="round"
-                        //     stroke-width="2"
-                        //     d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                        //   />
-                        // </motion.svg>
                         <SunIcon className="h-6 w-6" aria-hidden="true" />
-                        //   <motion.svg variants={svgVariants} initial="initial" animate="visible" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        //   <motion.path variants={pathVariants} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                        // </motion.svg>
                       )}
                     </button>
                   </div>

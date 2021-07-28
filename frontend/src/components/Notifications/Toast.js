@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteNotification } from "../../actions";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 
 const Toast = (props) => {
   let notificationID = props.data.id;
-  
+
   const deleteBtn = (id) => {
     props.onDelNotification(id);
-  }
+  };
 
   useEffect(() => {
     const interval = setTimeout(() => {
-      //if (notifications.length) {
       deleteBtn(notificationID);
-      
     }, 4000);
     return () => {
       clearTimeout(interval);
@@ -53,7 +49,9 @@ const Toast = (props) => {
             </p>
           </div>
 
-          <p class="transition-colors duration-500 text-gray-600 dark:text-gray-200 text-sm">{props.data.message}</p>
+          <p class="transition-colors duration-500 text-gray-600 dark:text-gray-200 text-sm">
+            {props.data.message}
+          </p>
         </div>
         <div className="flex-none max-w-min">
           <button className="ml-2" onClick={() => deleteBtn(props.data.id)}>

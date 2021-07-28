@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ProfileForm from "./ProfileForm";
 import SecurityForm from "./SecurityForm";
-import { Redirect } from "react-router-dom";
 
 const ProfileIcon = () => {
   return (

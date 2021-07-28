@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { AdjustmentsIcon } from "@heroicons/react/outline";
-import CountUp from "react-countup";
 
 const SummaryCard = (props) => {
   const colour = props.options.colour;
   const data = props.data;
   const [colourBG, setColourBG] = useState("");
-  const [textColour, setTextColour] = useState("");
+  const [setTextColour] = useState("");
 
   const backgroundColourSettings = () => {
     switch (colour) {
