@@ -4,7 +4,7 @@ const SummaryCard = (props) => {
   const colour = props.options.colour;
   const data = props.data;
   const [colourBG, setColourBG] = useState("");
-  const [setTextColour] = useState("");
+  const [textColour, setTextColour] = useState("");
 
   const backgroundColourSettings = () => {
     switch (colour) {
