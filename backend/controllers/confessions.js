@@ -37,7 +37,7 @@ export const createConfession = async (req, res) => {
  */
 export const getAllConfessions = async (req, res) => {
   try {
-    const confessions = await Confession.find().sort({ createdAt: -1 });
+    const confessions = await Confession.find().populate("approvedBy").sort({ createdAt: -1 });
     const pending = await Confession.find({
       status: PENDING,
     }).countDocuments();
