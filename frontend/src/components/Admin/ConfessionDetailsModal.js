@@ -175,7 +175,7 @@ const ConfessionDetailsModal = (props) => {
                                     Approved
                                   </dt>
                                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-9 dark:text-gray-100">
-                                    {data.approvedBy}
+                                    {data.approvedBy.name}
                                     <br />
                                     {dayjs(data.approvedDate).format(
                                       "D MMM YYYY, h:mm:ss A"
