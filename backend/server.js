@@ -13,6 +13,7 @@ import dotenv from "dotenv";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { postToFB } from "./controllers/confessions.js";
+import { sendEmail } from "./services/email.js";
 
 import authRoute from "./routes/auth.js";
 import confessionRoute from "./routes/confessions.js";
@@ -61,7 +62,8 @@ app.use(hpp());
 app.use(morgan("combined", { stream: accessLogStream }));
 
 // Schedule task
-cron.schedule("*/15 * * * *", postToFB);
+cron.schedule("*/15 * * * *", postToFB); // Every 15 mins
+cron.schedule("0 * * * *", sendEmail); // Every hour
 
 // Default route
 app.get("/", (req, res) => res.send("API Running"));
